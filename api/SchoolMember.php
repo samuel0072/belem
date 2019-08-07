@@ -10,11 +10,13 @@ class SchoolMember
     private $age;
     private $gender;
     private $enrollNumber;
+    private $schoolId;
 
-    function __construct($name, $age, $gender, $enrollNumber) {
-        $this->$name = $name;
-        $this->$age = $age;
-        $this->$gender = $gender;
-        $this->$enrollNumber = $enrollNumber;
+    function __construct($name, $age, $gender, $enrollNumber, $schoolId) {
+        $this->name = $name;
+        $this->age = $age;
+        $this->gender = $gender;
+        $this->enrollNumber = $enrollNumber;
+        $this->schoolId = $schoolId;
     }
 }

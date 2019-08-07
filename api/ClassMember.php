@@ -4,15 +4,13 @@
 namespace api\School;
 
 
-class Teacher extends SchoolMember
+class ClassMember extends SchoolMember
 {
     private $classId;
-    private $schoolId;
 
     function __construct($name, $age, $gender, $enrollNumber, $classId, $schoolId)
     {
-        parent::__construct($name, $age, $gender, $enrollNumber);
+        parent::__construct($name, $age, $gender, $enrollNumber, $schoolId);
         $this->classId = $classId;
-        $this->schoolId = $schoolId;
     }
 }
