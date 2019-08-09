@@ -1,8 +1,8 @@
 <?php
-/*
+
 define('DB_HOST', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_NAME', 'redevis');
+define('DB_NAME', 'belem');
 define('DB_PASSWORD', '');
 
 include_once __DIR__.'/Database.php';
@@ -72,4 +72,3 @@ class MySQLDatabase extends Database{
         return $this->db_connection->insert_id;
     }
 }
-*/

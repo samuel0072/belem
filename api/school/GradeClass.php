@@ -17,4 +17,14 @@ class GradeClass extends Grade
         $this->classLetter = $classLetter;
         $this->teacherEnroll = $teacherEnroll;
     }
+
+    public function getTeacherEnroll() {
+        return $this->teacherEnroll;
+    }
+    public function getCapacity() {
+        return $this->capacity;
+    }
+    public function getClassLetter() {
+        return $this->classLetter;
+    }
 }

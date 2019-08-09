@@ -13,4 +13,8 @@ class ClassMember extends SchoolMember
         parent::__construct($name, $age, $gender, $enrollNumber, $schoolId);
         $this->classId = $classId;
     }
+
+    public function getClassId() {
+        return $this->classId;
+    }
 }
