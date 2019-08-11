@@ -10,7 +10,7 @@ class School
     private $name;
     private $principal;
 
-    function __construct( $id, $name, $principal)
+    function __construct($name, $id = 0, $principal = 0)
     {
         $this->name = $name;
         $this->id = $id;

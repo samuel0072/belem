@@ -116,8 +116,7 @@ ALTER TABLE `GradeClass`
 -- Indexes for table `school`
 --
 ALTER TABLE `school`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `principal` (`principal`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `schoolmember`
@@ -181,8 +180,6 @@ ALTER TABLE `GradeClass`
 --
 -- Constraints for table `school`
 --
-ALTER TABLE `school`
-  ADD CONSTRAINT `principal` FOREIGN KEY (`principal`) REFERENCES `schoolmember` (`enrollnumber`);
 
 --
 -- Constraints for table `schoolmember`

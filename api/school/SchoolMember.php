@@ -19,4 +19,8 @@ class SchoolMember
         $this->enrollNumber = $enrollNumber;
         $this->schoolId = $schoolId;
     }
+
+    function getName() {
+        return $this->name;
+    }
 }
