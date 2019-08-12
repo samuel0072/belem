@@ -1,0 +1,14 @@
+for genericCRUD.php:
+    {
+        "table":"tablename",
+        "value": object
+    }
+
+    exemple:
+
+    {
+        "table":"school",
+        value: {
+            "name": "EEMM"
+        }
+    }

@@ -98,33 +98,33 @@ class QueryBuilder{
     }
 
     public function insert_into($table, $columns){
-        $this->query .= " INSERT INTO $table(";
+        $this->query .= ' INSERT INTO '.$table.'(';
 
         $i = 0;
         foreach ($columns as $column) {
-            $this->query .= $column;
+            $this->query .= strval($column);
             if($i++ != count($columns) - 1){
-                $this->query .= ", ";
+                $this->query .= ', ';
             }
         }
 
-        $this->query .= ")";
+        $this->query .= ')';
 
         return $this;
     }
 
     public function values($values){
-        $this->query .= " VALUES (";
+        $this->query .= ' VALUES (';
 
         $i = 0;
         foreach ($values as $value) {
             $this->query .= $value;
             if($i++ != count($values) - 1){
-                $this->query .= ", ";
+                $this->query .= ', ';
             }
         }
 
-        $this->query .= ")";
+        $this->query .= ')';
 
         return $this;
     }

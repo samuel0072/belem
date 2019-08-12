@@ -4,10 +4,10 @@ include_once __DIR__.'/../util/MySQLDatabase.php';
 include_once __DIR__.'/../util/QueryBuilder.php';
 
 
-include_once __DIR__.'/../school/School.php';
+include_once __DIR__.'/../school/SchoolMember.php';
 include_once  __DIR__.'/../util/Response.php';
 
-use api\School\School as School;
+use api\School\SchoolMember as SchoolMember;
 use util\Response as Response;
 
 $response = new Response();
@@ -21,24 +21,29 @@ if($db->get_error()) {
     die();
 }
 
-function insert_School(){
+function insert_member(){
     global $response, $queryBuilder, $db;
-    $school = new School($_POST['name']);
-    $queryBuilder->insert_into('school', ['name'])->values([$school->getName()]);
+    //recebe um json com o objeto
+    $member= new SchoolMember(json_decode($_POST['member']));
+    $queryBuilder->insert_into('schoolmember',
+        ['name','age','gender','enrollnumber','schoolid'])->values([$member->getName(), $member->getAge(), $member->getGender(),
+        $member->getEnroll(), $member->getSchoolId()]);
     if($db->query($queryBuilder->get_query()))  {
-        return get_school($db->get_last_insert_id());
+        return get_member($db->get_last_insert_id());
     }
     else {
         $response->set_error(true);
         $response->set_object($db->get_error());
+        $response->set_object($queryBuilder->get_query());
+        $response->set_object(var_dump($member));
         return json_encode($response);
     }
 }
 
-function get_school($id) {
+function get_member($id) {
     global $response, $queryBuilder, $db;
     $queryBuilder->clear();
-    $queryBuilder->select('*')->from('school')->where("id = $id");
+    $queryBuilder->select('*')->from('schoolmember')->where("id = $id");
     if($db->query($queryBuilder->get_query())) {
         $response->set_error(false);
         $re = $db->fetch_all();
@@ -46,18 +51,17 @@ function get_school($id) {
             $response->set_object($r);
 
         }
-        return json_encode($response);
     }
     else {
         $response->set_error(true);
         $response->object($db->get_error);
-        return json_encode($response);
     }
+    return json_encode($response);
 }
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
-        echo insert_School();
+        echo insert_member();
         break;
     case 'GET':
         break;

@@ -12,13 +12,12 @@ class Response
     function __construct()
     {
         $error = false;
-        $object = null;
+        $object = [];
     }
-
     function set_error($error){
         $this->error = $error;
     }
     function set_object($object) {
-        $this->object = $object;
+        $this->object[] = $object;
     }
 }
