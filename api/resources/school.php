@@ -24,8 +24,11 @@ if($db->get_error()) {
 function insert_School(){
     global $response, $queryBuilder, $db;
     $school = new School($_POST['name']);
-    $queryBuilder->insert_into('school', ['name'])->values([$school->getName()]);
-    if($db->query($queryBuilder->get_query()))  {
+    $queryBuilder->insert_into('school', ['name'])->values(1);
+    $stm = $db->prepare($queryBuilder->get_query());
+    $name = $school->getName();
+    $stm->bind_param("s",$name);
+    if($stm->execute())  {
         return get_school($db->get_last_insert_id());
     }
     else {

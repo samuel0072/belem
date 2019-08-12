@@ -67,8 +67,7 @@ CREATE TABLE `GradeClass` (
 
 CREATE TABLE `school` (
   `id` int(11) NOT NULL,
-  `name` varchar(300) DEFAULT NULL,
-  `principal` int(11) NOT NULL
+  `name` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

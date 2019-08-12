@@ -27,7 +27,7 @@ function insert_member(){
     $member= new SchoolMember(json_decode($_POST['member']));
     $queryBuilder->insert_into('schoolmember',
         ['name','age','gender','enrollnumber','schoolid'])->values(5);
-
+    //todo: orgaizar isso
     $stm = $db->prepare($queryBuilder->get_query());
     $name = $member->getName();
     $age  = $member->getAge();
@@ -35,24 +35,24 @@ function insert_member(){
     $enroll = $member->getEnroll();
     $schoolid = $member->getSchoolId();
 
+
     $stm->bind_param("sisii",$name, $age, $gender, $enroll, $schoolid);
-    //echo var_dump($stm);
+    //todo: ate aqui
     if($stm->execute())  {
-        return get_member($db->get_last_insert_id());
+        return get_member($enroll);
     }
     else {
         $response->error();
         $response->set_object($db->get_error());
-        //$response->set_object($queryBuilder->get_query());
-        //$response->set_object(var_dump($member));
+
         return json_encode($response);
     }
 }
 
-function get_member($id) {
+function get_member($enroll) {
     global $response, $queryBuilder, $db;
     $queryBuilder->clear();
-    $queryBuilder->select('*')->from('schoolmember')->where("id = $id");
+    $queryBuilder->select('*')->from('schoolmember')->where("enrollnumber = $enroll");
     if($db->query($queryBuilder->get_query())) {
         $response->ok($db->fetch_all());
     }

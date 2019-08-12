@@ -12,3 +12,6 @@ for genericCRUD.php:
             "name": "EEMM"
         }
     }
+for schoolmember.php:
+    example:
+    {"name":"samuel", "age":20, "gender":"masculino","enrollNumber":4,"schoolId":1}
