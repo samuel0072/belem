@@ -11,7 +11,7 @@ $db = new MySQLDatabase();
 $queryBuilder = new QueryBuilder();
 
 if($db->get_error()) {
-    $response->set_error(true);
+    $response->error(true);
     $response->set_object($db->get_error());
     echo json_encode($response);
     die();
@@ -22,14 +22,14 @@ function get_one($table, $coloum) {
     $queryBuilder->clear();
     $queryBuilder->select(['*'])->from($table)->where($coloum[0].'='.$coloum[1]);
     if($db->query($queryBuilder->get_query())) {
-        $response->set_error(false);
+        $response->error(false);
         $re = $db->fetch_all();
         foreach ($re as $r) {
             $response->set_object($r);
         }
     }
     else {
-        $response->set_error(true);
+        $response->error(true);
         $response->set_object($db->get_error());
 
     }

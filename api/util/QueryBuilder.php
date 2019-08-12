@@ -113,17 +113,16 @@ class QueryBuilder{
         return $this;
     }
 
-    public function values($values){
+    public function values($count){
         $this->query .= ' VALUES (';
-
         $i = 0;
-        foreach ($values as $value) {
-            $this->query .= $value;
-            if($i++ != count($values) - 1){
+
+        for(;$i < $count; $i++) {
+            $this->query .= '?';
+            if($i != $count - 1){
                 $this->query .= ', ';
             }
         }
-
         $this->query .= ')';
 
         return $this;

@@ -14,10 +14,15 @@ class Response
         $error = false;
         $object = [];
     }
-    function set_error($error){
-        $this->error = $error;
+    function error(){
+        $this->error = true;
     }
-    function set_object($object) {
+    function set_object($object = []) {
         $this->object[] = $object;
     }
+    function ok($object) {
+        $this->error = false;
+        $this->object = $object;
+    }
+
 }

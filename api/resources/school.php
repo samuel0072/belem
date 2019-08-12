@@ -15,7 +15,7 @@ $db = new MySQLDatabase();
 $queryBuilder = new QueryBuilder();
 
 if($db->get_error()) {
-    $response->set_error(true);
+    $response->error();
     $response->set_object($db->get_error());
     echo json_encode($response);
     die();
@@ -29,7 +29,7 @@ function insert_School(){
         return get_school($db->get_last_insert_id());
     }
     else {
-        $response->set_error(true);
+        $response->error();
         $response->set_object($db->get_error());
         return json_encode($response);
     }
@@ -40,17 +40,13 @@ function get_school($id) {
     $queryBuilder->clear();
     $queryBuilder->select('*')->from('school')->where("id = $id");
     if($db->query($queryBuilder->get_query())) {
-        $response->set_error(false);
-        $re = $db->fetch_all();
-        foreach($re as $r) {
-            $response->set_object($r);
-
-        }
+        $response->ok($db->fetch_all());
         return json_encode($response);
     }
     else {
-        $response->set_error(true);
-        $response->object($db->get_error);
+        $response->error();
+        $response->set_object($db->get_error());
+        $response->set_object($queryBuilder->get_query());
         return json_encode($response);
     }
 }
