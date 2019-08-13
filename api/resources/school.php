@@ -21,9 +21,9 @@ if($db->get_error()) {
     die();
 }
 
-function insert_School(){
+function insert_School($body){
     global $response, $queryBuilder, $db;
-    $school = new School($_POST['name']);
+    $school = new School($body['name']);
     $queryBuilder->insert_into('school', ['name'])->values(1);
     $stm = $db->prepare($queryBuilder->get_query());
     $name = $school->getName();

@@ -12,7 +12,6 @@
   "require": {
     "ext-json": "*",
     "ext-mysqli": "*",
-    "rbdwllr/reallysimplejwt": "^2.0",
-    "catfan/medoo":"*"
+    "rbdwllr/reallysimplejwt": "^2.0"
   }
 }
