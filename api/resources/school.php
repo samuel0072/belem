@@ -14,15 +14,24 @@ $response = new Response();
 $db = new MySQLDatabase();
 $queryBuilder = new QueryBuilder();
 
-if($db->get_error()) {
-    $response->error();
-    $response->set_object($db->get_error());
-    echo json_encode($response);
-    die();
+function prepare() {
+    global $response, $queryBuilder, $db;
+    $response = new Response();
+    $db = new MySQLDatabase();
+    $queryBuilder = new QueryBuilder();
+    if($db->get_error()) {
+        $response->error();
+        $response->set_object($db->get_error());
+        echo json_encode($response);
+        die();
+    }
 }
 
 function insert_School($body){
-    global $response, $queryBuilder, $db;
+    prepare();
+    $response = new Response();
+    $db = new MySQLDatabase();
+    $queryBuilder = new QueryBuilder();
     $school = new School($body['name']);
     $queryBuilder->insert_into('school', ['name'])->values(1);
     $stm = $db->prepare($queryBuilder->get_query());
@@ -33,7 +42,7 @@ function insert_School($body){
     }
     else {
         $response->error();
-        $response->set_object($db->get_error());
+        $response->set_object([$db->get_error(), $queryBuilder->get_query()]);
         return json_encode($response);
     }
 }
@@ -52,12 +61,4 @@ function get_school($id) {
         $response->set_object($queryBuilder->get_query());
         return json_encode($response);
     }
-}
-
-switch ($_SERVER['REQUEST_METHOD']) {
-    case 'POST':
-        echo insert_School();
-        break;
-    case 'GET':
-        break;
 }

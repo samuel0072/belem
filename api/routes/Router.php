@@ -42,6 +42,35 @@ class Router
     {
         header("{$this->request->serverProtocol} 404 Not Found");
     }
+    private function getURLParams($routeUrl) {
+
+        $request["params"] = [];
+
+        $url = $this->request->requestUri;
+        $size = mb_strlen($routeUrl);
+
+        for ($i = 0, $j = 0; $i < $size; $i++, $j++) {
+            //achou um parametro
+            if($routeUrl[$i] == ':') {
+                $name = '';
+                $value = '';
+                //atribui seu nome
+                while($routeUrl[$i] != '/') {
+                    $name += $routeUrl[$i];
+                    $i++;
+                }
+                //avanca ate seu valor
+                while($url[$j] != ':') {
+                    $j++;
+                }
+                //atribui seu valor como uma string
+                for($j++ ; $url[$j] != '/'; $j++) {
+                    $value += $url[$j];
+                }
+                $request["params"][$name] = $value;
+            }
+        }
+    }
 
     function resolve()
     {
@@ -53,10 +82,12 @@ class Router
             $this->defaultRequestHandler();
             return;
         }
+        $this->getURLParams($formatedRoute);
         echo call_user_func_array($method, array($this->request));
     }
     function __destruct()
     {
+        echo var_dump($this);
         $this->resolve();
     }
 }

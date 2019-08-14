@@ -62,11 +62,3 @@ function get_member($enroll) {
     }
     return json_encode($response);
 }
-
-switch ($_SERVER['REQUEST_METHOD']) {
-    case 'POST':
-        echo insert_member();
-        break;
-    case 'GET':
-        break;
-}
