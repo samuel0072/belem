@@ -18,5 +18,6 @@ $router->post('/belem/', function($request) {
 });
 
 $router->get('/belem/get/:id', function($request) {
-   echo var_dump($request->getBody());
-});
+    echo "funcionando";
+  // echo $request["params"]["id"];
+})->getURLParams('/belem/get/:id');
