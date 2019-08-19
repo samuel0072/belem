@@ -80,6 +80,7 @@ CREATE TABLE `schoolmember` (
   `name` varchar(300) DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
   `gender` enum('masculino','feminio') DEFAULT NULL,
+  `type` enum('aluno', 'professor') DEFAULT NULL,
   `schoolid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

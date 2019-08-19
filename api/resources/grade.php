@@ -43,10 +43,26 @@ function insert_class($teacherEnroll,$letter, $gradeNumber, $schoolId) {
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("iis", $gradeNumber, $teacherEnroll, $letter);
     if($stm->execute()) {
-        $response->ok($db->fetch_all());
+        $response->ok($class);
     }
     else {
         $response->error([$db->get_error(), $queryBuilder->get_query()]);
     }
+    return json_encode($response);
+}
+
+
+
+function find_by_criteria($critName, $critValue, $table) {
+    global $response, $db, $queryBuilder;
+    prepare();
+    $queryBuilder->select(["*"])->from($table)->where("$critName = $critValue");
+    if($db->query($queryBuilder)) {
+        $response->ok($db->fetch_all());
+    }
+    else{
+        $response->error([$db->get_error(), $queryBuilder->get_query()]);
+    }
+
     return json_encode($response);
 }
