@@ -51,7 +51,20 @@ function insert_class($teacherEnroll,$letter, $gradeNumber, $schoolId) {
     return json_encode($response);
 }
 
-
+function insert_class_member($schoolmemberid, $classid) {
+    global $queryBuilder, $db, $response;
+    prepare();
+    $queryBuilder->insert_into("classmember", ['schoolmember', 'classid'])->values(2);
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param("ii", $schoolmemberid, $classid);
+    if($stm->execute()) {
+        $response->okay();
+    }
+    else {
+        $response->error([$db->get_error(). $queryBuilder->get_query()]);
+    }
+    return json_encode($response);
+}
 
 function find_by_criteria($critName, $critValue, $table) {
     global $response, $db, $queryBuilder;

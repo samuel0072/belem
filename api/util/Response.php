@@ -18,7 +18,7 @@ class Response
         $this->error = true;
         $this->object[] = $object;
     }
-    function ok($object) {
+    function ok($object =[]) {
         $this->error = false;
         $this->object = $object;
     }

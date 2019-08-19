@@ -8,9 +8,9 @@ class ClassMember extends SchoolMember
 {
     private $classId;
 
-    function __construct($name, $age, $gender, $enrollNumber, $classId, $schoolId)
+    function __construct($name, $age, $gender, $enrollNumber, $classId, $schoolId, $type)
     {
-        parent::__construct($name, $age, $gender, $enrollNumber, $schoolId);
+        parent::__construct($name, $age, $gender, $enrollNumber, $schoolId, $type);
         $this->classId = $classId;
     }
 

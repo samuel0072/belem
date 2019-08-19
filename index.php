@@ -18,28 +18,28 @@ header("Content-Type: application/json");
 
 $router->post('/belem/school/',
     function($request) {
-        extract($request->getBody());
-        echo insert_School($name);
+        $body = $request->getBody();
+        echo insert_School($body['name']);
     }
 );
 
 $router->post('/belem/class/',
     function ($request) {
-        extract($request->getBody());
-        echo insert_class($teacherEnroll, $letter, $gradeNumber, $schoolId);
+        $body = $request->getBody();
+        echo insert_class($body['teacherEnroll'], $body['letter'], $body['gradeNumber'], $body['schoolId']);
     }
 );
 
 $router->post('/belem/grade/',
     function($request) {
-        extract($request->getBody());
-        echo insert_grade($gradeNumber, $schoolId);
+        $body = $request->getBody();
+        echo insert_grade($body['gradeNumber'], $body['schoolId']);
     }
 );
 $router->post('/belem/schoolmember/',
     function($request) {
-        extract($request->getBody());
-        echo insert_member($name,$age, $gender, $enroll, $schoolid);
+        $body = $request->getBody();
+        echo insert_member($body['name'],$body['age'], $body['gender'], $body['enroll'], $body['schoolid'], $body['type']);
     }
 );
 
@@ -49,6 +49,14 @@ $router->post('/belem/class/',
         echo insert_class($body["teacher"], $body["letter"], $body["grade"], $body["school"]);
     }
 );
+$router->post('belem/classmember/',
+    function($request) {
+        $body = $request->getBody();
+        echo insert_class_member($body["schoolmemberid"], $body["classid"]);
+    }
+);
+
+
 $router->get('/belem/get/',
     function($request) {
         echo var_dump($request->getURLParams());
