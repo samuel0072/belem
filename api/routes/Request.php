@@ -48,4 +48,14 @@ class Request implements IRequest
             return $body;
         }
     }
+
+    public function getURLParams() {
+        if($this->requestMethod === "GET") {
+            $params = array();
+            foreach ($_GET as $key => $value) {
+                $params[$key] = $value;
+            }
+            return $params;
+        }
+    }
 }

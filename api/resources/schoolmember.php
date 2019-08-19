@@ -5,22 +5,14 @@ include_once __DIR__.'/../school/SchoolMember.php';
 use api\School\SchoolMember as SchoolMember;
 
 //todo:reoerganizar os parametros
-function insert_member(){
+function insert_member($name,$age, $gender, $enroll, $schoolid){
     prepare();
     global $response, $queryBuilder, $db;
-    //recebe um json com o objeto
-    $member= new SchoolMember(json_decode($_POST['member']));
+    $member= new SchoolMember($name,$age, $gender, $enroll, $schoolid);
     $queryBuilder->insert_into('schoolmember',
         ['name','age','gender','enrollnumber','schoolid'])->values(5);
     //todo: orgaizar isso
     $stm = $db->prepare($queryBuilder->get_query());
-    $name = $member->getName();
-    $age  = $member->getAge();
-    $gender = $member->getGender();
-    $enroll = $member->getEnroll();
-    $schoolid = $member->getSchoolId();
-
-
     $stm->bind_param("sisii",$name, $age, $gender, $enroll, $schoolid);
     //todo: ate aqui
     if($stm->execute())  {

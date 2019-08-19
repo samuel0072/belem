@@ -42,11 +42,16 @@ class Router
     {
         header("{$this->request->serverProtocol} 404 Not Found");
     }
+    private function cleanRoute($route){
+        $input = explode("?", $route);
+        return $input[0];
+    }
 
     function resolve()
     {
+        $routeClean = $this->cleanRoute($this->request->requestUri);
         $methodDictionary = $this->{strtolower($this->request->requestMethod)};
-        $formatedRoute = $this->formatRoute($this->request->requestUri);
+        $formatedRoute = $this->formatRoute($routeClean);
         $method = $methodDictionary[$formatedRoute];
         if(is_null($method))
         {

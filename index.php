@@ -14,23 +14,32 @@ use \routes\Request as Request;
 
 $router = new Router(new Request);
 
+header("Content-Type: application/json");
+
 $router->post('/belem/school/',
     function($request) {
-        echo insert_School($request->getBody());
+        extract($request->getBody());
+        echo insert_School($name);
     }
 );
 
 $router->post('/belem/class/',
     function ($request) {
-        $var = $request->getBody();
-        echo insert_class(...$var);
+        extract($request->getBody());
+        echo insert_class($teacherEnroll, $letter, $gradeNumber, $schoolId);
     }
 );
 
 $router->post('/belem/grade/',
     function($request) {
-        $params = $request->getBody();
-        echo insert_grade(...$params);
+        extract($request->getBody());
+        echo insert_grade($gradeNumber, $schoolId);
+    }
+);
+$router->post('/belem/schoolmember',
+    function($request) {
+        extract($request->getBody());
+        echo insert_member($name,$age, $gender, $enroll, $schoolid);
     }
 );
 $router->get('/belem/get/',

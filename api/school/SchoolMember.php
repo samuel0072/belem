@@ -12,12 +12,12 @@ class SchoolMember
     private $enrollNumber;
     private $schoolId;
 
-    function __construct($object) {
-        $this->name = $object->name;
-        $this->age = $object->age;
-        $this->gender = $object->gender;
-        $this->enrollNumber = $object->enrollNumber;
-        $this->schoolId = $object->schoolId;
+    function __construct($name,$age, $gender, $enroll, $schoolId) {
+        $this->name = $name;
+        $this->age = $age;
+        $this->gender = $gender;
+        $this->enrollNumber = $enroll;
+        $this->schoolId = $schoolId;
     }
 
     function getName() {
