@@ -36,6 +36,7 @@ $router->post('/belem/grade/',
         echo insert_grade($body['gradeNumber'], $body['schoolId']);
     }
 );
+
 $router->post('/belem/schoolmember/',
     function($request) {
         $body = $request->getBody();
@@ -49,10 +50,11 @@ $router->post('/belem/class/',
         echo insert_class($body["teacher"], $body["letter"], $body["grade"], $body["school"]);
     }
 );
-$router->post('belem/classmember/',
+$router->post('/belem/classmember',
     function($request) {
         $body = $request->getBody();
         echo insert_class_member($body["schoolmemberid"], $body["classid"]);
+        //echo $body["schoolmemberid"], $body["classid"];
     }
 );
 
@@ -60,5 +62,12 @@ $router->post('belem/classmember/',
 $router->get('/belem/get/',
     function($request) {
         echo var_dump($request->getURLParams());
+    }
+);
+
+$router->get('/belem/class/students',
+    function($request) {
+        $params = $request->getURLParams();
+        echo get_class_students($params["schoolId"], $params["classId"]);
     }
 );

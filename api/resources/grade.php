@@ -58,7 +58,7 @@ function insert_class_member($schoolmemberid, $classid) {
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("ii", $schoolmemberid, $classid);
     if($stm->execute()) {
-        $response->okay();
+        $response->ok();
     }
     else {
         $response->error([$db->get_error(). $queryBuilder->get_query()]);
@@ -77,5 +77,22 @@ function find_by_criteria($critName, $critValue, $table) {
         $response->error([$db->get_error(), $queryBuilder->get_query()]);
     }
 
+    return json_encode($response);
+}
+
+function get_class_students($schoolId, $classId) {
+    global $response, $queryBuilder, $db;
+    prepare();
+    $queryBuilder->select("C.*")->from("school A, schoolmember C, classmember D")
+        ->where("A.id = $schoolId")
+        ->where("D.classid = $classId")
+        ->where("D.schoolmember = C.enrollnumber")
+        ->where("C.type='aluno'");
+    if($db->query($queryBuilder->get_query())) {
+        $response->ok($db->fetch_all());
+    }
+    else{
+        $response->error([$db->get_error(), $queryBuilder->get_query()]);
+    }
     return json_encode($response);
 }
