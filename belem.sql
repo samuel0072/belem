@@ -41,7 +41,6 @@ CREATE TABLE `classmember` (
 --
 
 CREATE TABLE `grade` (
-  `id` int(11) NOT NULL,
   `gradeNumber` int(11) NOT NULL,
   `schoolId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -54,7 +53,7 @@ CREATE TABLE `grade` (
 
 CREATE TABLE `GradeClass` (
   `id` int(11) NOT NULL,
-  `gradeId` int(11) NOT NULL,
+  `gradeNumber` int(11) NOT NULL,
   `teacherEnroll` int(11) NOT NULL,
   `classLetter` varchar(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -100,7 +99,7 @@ ALTER TABLE `classmember`
 -- Indexes for table `grade`
 --
 ALTER TABLE `grade`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`gradeNumber`),
   ADD KEY `schoolId` (`schoolId`);
 
 --
@@ -108,7 +107,7 @@ ALTER TABLE `grade`
 --
 ALTER TABLE `GradeClass`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `gradeId` (`gradeId`),
+  ADD KEY `gradeNumber` (`gradeNumber`),
   ADD KEY `teacherEnroll` (`teacherEnroll`);
 
 --
@@ -137,8 +136,6 @@ ALTER TABLE `classmember`
 --
 -- AUTO_INCREMENT for table `grade`
 --
-ALTER TABLE `grade`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `GradeClass`
@@ -173,7 +170,7 @@ ALTER TABLE `grade`
 -- Constraints for table `GradeClass`
 --
 ALTER TABLE `GradeClass`
-  ADD CONSTRAINT `GradeClass_ibfk_1` FOREIGN KEY (`gradeId`) REFERENCES `grade` (`id`),
+  ADD CONSTRAINT `GradeClass_ibfk_1` FOREIGN KEY (`gradeNumber`) REFERENCES `grade` (`gradeNumber`),
   ADD CONSTRAINT `GradeClass_ibfk_2` FOREIGN KEY (`teacherEnroll`) REFERENCES `schoolmember` (`enrollnumber`);
 
 --
