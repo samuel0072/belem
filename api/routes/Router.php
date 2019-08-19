@@ -42,25 +42,6 @@ class Router
     {
         header("{$this->request->serverProtocol} 404 Not Found");
     }
-    private function getURLParams($route) {
-        /*$request["params"] = [];
-
-        $url = $this->request->requestUri;
-        $size = mb_strlen($route);
-        $barIndex = 1;
-        for ($i = 0; $i < $size; $i++) {
-            if($route[$i] == ':') {
-                $name = '';
-                while($route[$i] != '/') {
-                    $name += $route[$i];
-                    $i++;
-                }
-                $request["params"][$name] = '';
-                $barIndex++;
-            }
-        }*/
-        echo "oiiiii";
-    }
 
     function resolve()
     {
@@ -76,7 +57,6 @@ class Router
     }
     function __destruct()
     {
-        echo var_dump($this);
         $this->resolve();
     }
 }

@@ -4,6 +4,7 @@ define('DB_HOST', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_NAME', 'belem');
 define('DB_PASSWORD', '');
+define('DB_PORT', 3307);
 
 include_once __DIR__.'/Database.php';
 
@@ -18,7 +19,7 @@ class MySQLDatabase extends Database{
         $this->params = [];
         $this->types = "";
 
-        $this->db_connection = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+        $this->db_connection = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
 
         $this->db_connection->set_charset('utf8');
         if(!$this->db_connection){
