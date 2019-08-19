@@ -14,7 +14,6 @@ class Grade
         $this->gradeNumber = $gradeNumber;
         $this->schoolId = $schoolId;
     }
-
     public function getGradeNumber() {
         return $this->gradeNumber;
     }

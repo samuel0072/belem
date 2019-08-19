@@ -14,10 +14,8 @@ class Response
         $error = false;
         $object = [];
     }
-    function error(){
+    function error($object = []){
         $this->error = true;
-    }
-    function set_object($object = []) {
         $this->object[] = $object;
     }
     function ok($object) {
