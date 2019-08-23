@@ -1,0 +1,5 @@
+/vendor/
+/composer.json
+/composer_2.phar
+/.idea/
+/composer.lock
