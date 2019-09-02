@@ -17,4 +17,11 @@ class School
     public function getName() {
         return $this->name;
     }
+
+    function isOkay() {
+        $ok = true;
+        if($this->name == null || !is_string($this->name)) {
+            $ok = false;
+        }
+    }
 }

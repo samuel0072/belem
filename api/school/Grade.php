@@ -21,4 +21,15 @@ class Grade
         return $this->schoolId;
     }
 
+    public function isOkay()  {
+        $ok = true;
+        foreach ($this as $key => $value) {
+            if($value == null || !is_int($value)) {
+                $ok = false;
+                break;
+            }
+        }
+        return $ok;
+    }
+
 }

@@ -19,10 +19,22 @@ class GradeClass extends Grade
     public function getTeacherEnroll() {
         return $this->teacherEnroll;
     }
-    public function getCapacity() {
-        return $this->capacity;
-    }
     public function getClassLetter() {
         return $this->classLetter;
+    }
+
+    public function isOkay()  {
+        $ok = true;
+        foreach ($this as $key => $value) {
+            if($value == null) {
+                $ok = false;
+                return $ok;
+            }
+        }
+        if(!is_int($this->teacherEnroll) || !is_string($this->classLetter)) {
+            $ok = false;
+        }
+
+        return $ok;
     }
 }

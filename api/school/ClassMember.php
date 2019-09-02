@@ -17,4 +17,15 @@ class ClassMember extends SchoolMember
     public function getClassId() {
         return $this->classId;
     }
+
+    public function isOkay() {
+        $ok = true;
+        if(!parent::isOkay()) {
+            $ok = false;
+        }
+        else if($this->classId == null || !is_int($this->classId) || $this->classId <= 0) {
+            $ok = false;
+        }
+        return $ok;
+    }
 }
