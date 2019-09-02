@@ -13,11 +13,11 @@ function insert_School($name){
     $queryBuilder->insert_into('school', ['name'])->values(1);
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("s",$name);
-    if($stm->execute())  {
+    if($stm->execute() && $school->isOkay())  {
         return get_school($db->get_last_insert_id());
     }
     else {
-        $response->error([$db->get_error(), $queryBuilder->get_query()]);
+        $response->error("Verificar os dados informados");
         return json_encode($response);
     }
 }

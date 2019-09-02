@@ -2,6 +2,8 @@
 include_once __DIR__.'/../util/prepare.php';
 include_once __DIR__.'/../school/Grade.php';
 include_once __DIR__.'/../school/GradeClass.php';
+
+use api\School\ClassMember;
 use \api\School\Grade as Grade;
 use \api\School\GradeClass as GradeClass;
 
@@ -9,15 +11,17 @@ function insert_grade($gradeNumber, $schoolId) {
     prepare();
     global $queryBuilder, $db, $response;
     $grade = new Grade($gradeNumber, $schoolId);
+
     $queryBuilder->insert_into('grade', ['gradeNumber', 'schoolId'])->values(2);
+
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("ii", $gradeNumber, $schoolId);
 
-    if($stm->execute()) {
+    if($stm->execute() && $grade->isOkay()) {
         $response->ok($gradeNumber);
     }
     else {
-        $response->error([$db->get_error(), $queryBuilder->get_query()]);
+        $response->error([$db->get_error(), "verificar os dados inseridos"]);
     }
     return json_encode($response);
 }
@@ -39,14 +43,16 @@ function insert_class($teacherEnroll,$letter, $gradeNumber, $schoolId) {
     global $response, $db, $queryBuilder;
     prepare();
     $class = new GradeClass($gradeNumber, $letter, $teacherEnroll, $schoolId);
+
     $queryBuilder->insert_into('gradeclass', ['gradeNumber, teacherEnroll, classLetter'])->values(3);
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("iis", $gradeNumber, $teacherEnroll, $letter);
-    if($stm->execute()) {
+
+    if($stm->execute() && $class->isOkay()) {
         $response->ok($class);
     }
     else {
-        $response->error([$db->get_error(), $queryBuilder->get_query()]);
+        $response->error([$db->get_error(), "verificar os dados inseridos"]);
     }
     return json_encode($response);
 }

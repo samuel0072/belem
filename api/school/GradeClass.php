@@ -34,6 +34,9 @@ class GradeClass extends Grade
         if(!is_int($this->teacherEnroll) || !is_string($this->classLetter)) {
             $ok = false;
         }
+        else if(strlen($this->classLetter) > 1) {
+            $ok = false;
+        }
 
         return $ok;
     }
