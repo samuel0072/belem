@@ -26,19 +26,6 @@ function insert_grade($gradeNumber, $schoolId) {
     return json_encode($response);
 }
 
-function get_grade($gradeNumber) {
-    prepare();
-    global $queryBuilder, $db, $response;
-    $queryBuilder->select(['*'])->from('grade')->where("gradeNumber = $gradeNumber");
-    if($db->query($queryBuilder->get_query())) {
-        $response->ok($db->fetch_all());
-    }
-    else {
-        $response->error([$db->get_error(), $queryBuilder->get_query()]);
-    }
-    return json_encode($response);
-}
-
 function insert_class($teacherEnroll,$letter, $gradeNumber, $schoolId) {
     global $response, $db, $queryBuilder;
     prepare();
@@ -72,15 +59,17 @@ function insert_class_member($schoolmemberid, $classid) {
     return json_encode($response);
 }
 
-function find_by_criteria($critName, $critValue, $table) {
+function find_by_criteria($critName, $critValue, $table, $type) {
     global $response, $db, $queryBuilder;
     prepare();
-    $queryBuilder->select(["*"])->from($table)->where("$critName = $critValue");
-    if($db->query($queryBuilder)) {
-        $response->ok($db->fetch_all());
+    $queryBuilder->select(["*"])->from($table)->where("$critName = ?");
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param($type, $critValue);
+    if($stm->execute()) {
+        $response->ok([$db->fetch_all()]);
     }
     else{
-        $response->error([$db->get_error(), $queryBuilder->get_query()]);
+        $response->error([$db->get_error(), "ops houve algum erro"]);
     }
 
     return json_encode($response);
@@ -101,4 +90,38 @@ function get_class_students($schoolId, $classId) {
         $response->error([$db->get_error(), $queryBuilder->get_query()]);
     }
     return json_encode($response);
+}
+
+function get_grade($gradeNumber) {
+    prepare();
+    global $queryBuilder, $db, $response;
+    $queryBuilder->select(['*'])->from('grade')->where("gradeNumber = $gradeNumber");
+    if($db->query($queryBuilder->get_query())) {
+        $response->ok($db->fetch_all());
+    }
+    else {
+        $response->error([$db->get_error(), $queryBuilder->get_query()]);
+    }
+    return json_encode($response);
+}
+
+function get_class_student($studentId) {
+    return find_by_criteria("schoolmember", $studentId, 'classmember', 'i');
+}
+
+function delete_class_member($enrollNumber) {
+    global $response, $db, $queryBuilder;
+    prepare();
+    $queryBuilder->delete('schoolmember', 'schoolmember=?');
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param('i', $enrollNumber);
+
+    if($stm->execute()) {
+        $response->ok([$db->fetch_all()]);
+    }
+    else {
+        $response->error([$db->get_error(), "Ocorreu um erro ao deletar. Verificar se as informacoes estao corretas"]);
+    }
+    return json_encode($response);
+
 }
