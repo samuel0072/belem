@@ -38,7 +38,7 @@ class Request implements IRequest
         {
             return;
         }
-        if ($this->requestMethod == "POST")
+        if ($this->requestMethod === "POST")
         {
             $body = array();
             foreach($_POST as $key => $value)

@@ -103,13 +103,12 @@ function get_grade($gradeNumber) {
         $response->error([$db->get_error(), $queryBuilder->get_query()]);
     }
     return json_encode($response);
-}
 
 function get_class_student($studentId) {
     return find_by_criteria("schoolmember", $studentId, 'classmember', 'i');
 }
 
-function delete_class_member($enrollNumber) {
+function delete_school_member($enrollNumber) {
     global $response, $db, $queryBuilder;
     prepare();
     $queryBuilder->delete('schoolmember', 'schoolmember=?');

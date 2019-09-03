@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `schoolmember` (
   `enrollnumber` int(11) NOT NULL,
   `name` varchar(300) DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
-  `gender` enum('masculino','feminio') DEFAULT NULL,
+  `gender` enum('masculino','feminino') DEFAULT NULL,
   `type` enum('aluno','professor') DEFAULT NULL,
   `schoolid` int(11) NOT NULL,
   PRIMARY KEY (`enrollnumber`),
@@ -148,7 +148,7 @@ INSERT INTO `subject` (`name`, `id`) VALUES
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE IF NOT EXISTS `test` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `dt` date DEFAULT NULL,
+  `dt` date NOT NULL,
   `class_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `class_id` (`class_id`)
