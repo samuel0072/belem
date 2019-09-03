@@ -12,9 +12,7 @@ class Grade{
         $this->gradeNumber = $gradeNumber;
         $this->schoolId = $schoolId;
     }
-    public function getGradeNumber() {
-        return $this->gradeNumber;
-    }
+
     public function getSchoolId() {
         return $this->schoolId;
     }
@@ -29,5 +27,14 @@ class Grade{
         }
         return $ok;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getGradeNumber()
+    {
+        return $this->gradeNumber;
+    }
+
 
 }

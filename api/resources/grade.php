@@ -1,11 +1,14 @@
 <?php
+
 include_once __DIR__.'/../util/prepare.php';
 include_once __DIR__.'/../school/Grade.php';
 include_once __DIR__.'/../school/GradeClass.php';
+include_once __DIR__.'/../school/Test.php';
 
 use api\School\ClassMember;
 use \api\School\Grade as Grade;
 use \api\School\GradeClass as GradeClass;
+use \api\School\Test as Test;
 
 function insert_grade($gradeNumber, $schoolId) {
     prepare();
@@ -59,6 +62,24 @@ function insert_class_member($schoolmemberid, $classid) {
     return json_encode($response);
 }
 
+function insert_test($dt, $subject_id, $class_id){
+    prepare();
+    global $queryBuilder, $db, $response;
+
+    $test = new Test((int)$class_id, $dt, (int)$subject_id);
+    $queryBuilder->insert_into('test', ['class_id', 'dt', 'subject_id'])->values(3);
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param("isi", $class_id, $dt, $subject_id);
+
+    if($test->isOkay() && $stm->execute() ){
+
+        $response->ok([$db->get_last_insert_id()]);
+    }else{
+        $response->error([$db->get_error(), "Verificar os dados inseridos!"]);
+    }
+    return json_encode($response);
+}
+
 function find_by_criteria($critName, $critValue, $table, $type) {
     global $response, $db, $queryBuilder;
     prepare();
@@ -92,17 +113,17 @@ function get_class_students($schoolId, $classId) {
     return json_encode($response);
 }
 
-function get_grade($gradeNumber) {
+function get_grade($gradeNumber){
     prepare();
     global $queryBuilder, $db, $response;
     $queryBuilder->select(['*'])->from('grade')->where("gradeNumber = $gradeNumber");
-    if($db->query($queryBuilder->get_query())) {
+    if ($db->query($queryBuilder->get_query())) {
         $response->ok($db->fetch_all());
-    }
-    else {
+    } else {
         $response->error([$db->get_error(), $queryBuilder->get_query()]);
     }
     return json_encode($response);
+}
 
 function get_class_student($studentId) {
     return find_by_criteria("schoolmember", $studentId, 'classmember', 'i');

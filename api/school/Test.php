@@ -1,12 +1,14 @@
 <?php
 
+namespace api\School;
+
 class Test{
 
     private $class_id;
     private $date;
     private $subject_id;
 
-    function __construct($class_id, $date, $subject_id){
+    function __construct($class_id , $date, $subject_id ){
         $this->class_id = $class_id;
         $this->date = $date;
         $this->subject_id = $subject_id;
@@ -26,11 +28,11 @@ class Test{
     
     public function isOkay() {
         $ok = true;
-        
+
         $ints = [$this->class_id, $this->subject_id];
 
         foreach ($ints as $int) {
-            if(!is_int($int)|| $int < 0) {
+            if(!is_int($int)|| $int <= 0) {
                 $ok = false;
             }
         }

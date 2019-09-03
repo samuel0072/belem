@@ -30,7 +30,7 @@ $router->post('/belem/class/',
         echo insert_class($body['teacherEnroll'], $body['letter'], $body['gradeNumber'], $body['schoolId']);
     }
 );
-//cria uma série
+//cria uma serie
 $router->post('/belem/grade/',
     function($request) {
         $body = $request->getBody();
@@ -50,6 +50,14 @@ $router->post('/belem/classmember',
     function($request) {
         $body = $request->getBody();
         echo insert_class_member($body["schoolmemberid"], $body["classid"]);
+    }
+);
+
+
+$router->post('/belem/test',
+    function ($request) {
+        $body = $request->getBody();
+        echo insert_test($body['date'], $body['class_id'], $body['subject_id']);
     }
 );
 
