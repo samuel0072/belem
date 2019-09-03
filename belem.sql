@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 07, 2019 at 08:09 PM
+-- Host: 127.0.0.1
+-- Generation Time: Sep 03, 2019 at 01:39 AM
 -- Server version: 10.3.16-MariaDB
--- PHP Version: 7.1.30
+-- PHP Version: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,10 +48,10 @@ CREATE TABLE `grade` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `GradeClass`
+-- Table structure for table `gradeclass`
 --
 
-CREATE TABLE `GradeClass` (
+CREATE TABLE `gradeclass` (
   `id` int(11) NOT NULL,
   `gradeNumber` int(11) NOT NULL,
   `teacherEnroll` int(11) NOT NULL,
@@ -80,8 +80,39 @@ CREATE TABLE `schoolmember` (
   `name` varchar(300) DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
   `gender` enum('masculino','feminio') DEFAULT NULL,
-  `type` enum('aluno', 'professor') DEFAULT NULL,
+  `type` enum('aluno','professor') DEFAULT NULL,
   `schoolid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subject`
+--
+
+CREATE TABLE `subject` (
+  `name` varchar(100) DEFAULT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`name`, `id`) VALUES
+('portugues', 1),
+('matematica', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `topic`
+--
+
+CREATE TABLE `topic` (
+  `id` int(11) NOT NULL,
+  `name` varchar(300) NOT NULL,
+  `subject_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -104,9 +135,9 @@ ALTER TABLE `grade`
   ADD KEY `schoolId` (`schoolId`);
 
 --
--- Indexes for table `GradeClass`
+-- Indexes for table `gradeclass`
 --
-ALTER TABLE `GradeClass`
+ALTER TABLE `gradeclass`
   ADD PRIMARY KEY (`id`),
   ADD KEY `gradeNumber` (`gradeNumber`),
   ADD KEY `teacherEnroll` (`teacherEnroll`);
@@ -125,6 +156,19 @@ ALTER TABLE `schoolmember`
   ADD KEY `schoolid` (`schoolid`);
 
 --
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `topic`
+--
+ALTER TABLE `topic`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subject_id` (`subject_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -135,19 +179,27 @@ ALTER TABLE `classmember`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `grade`
+-- AUTO_INCREMENT for table `gradeclass`
 --
-
---
--- AUTO_INCREMENT for table `GradeClass`
---
-ALTER TABLE `GradeClass`
+ALTER TABLE `gradeclass`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `school`
 --
 ALTER TABLE `school`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `topic`
+--
+ALTER TABLE `topic`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -159,7 +211,7 @@ ALTER TABLE `school`
 --
 ALTER TABLE `classmember`
   ADD CONSTRAINT `classmember_ibfk_1` FOREIGN KEY (`schoolmember`) REFERENCES `schoolmember` (`enrollnumber`),
-  ADD CONSTRAINT `classmember_ibfk_2` FOREIGN KEY (`classid`) REFERENCES `GradeClass` (`id`);
+  ADD CONSTRAINT `classmember_ibfk_2` FOREIGN KEY (`classid`) REFERENCES `gradeclass` (`id`);
 
 --
 -- Constraints for table `grade`
@@ -168,21 +220,23 @@ ALTER TABLE `grade`
   ADD CONSTRAINT `grade_ibfk_1` FOREIGN KEY (`schoolId`) REFERENCES `school` (`id`);
 
 --
--- Constraints for table `GradeClass`
+-- Constraints for table `gradeclass`
 --
-ALTER TABLE `GradeClass`
+ALTER TABLE `gradeclass`
   ADD CONSTRAINT `GradeClass_ibfk_1` FOREIGN KEY (`gradeNumber`) REFERENCES `grade` (`gradeNumber`),
   ADD CONSTRAINT `GradeClass_ibfk_2` FOREIGN KEY (`teacherEnroll`) REFERENCES `schoolmember` (`enrollnumber`);
-
---
--- Constraints for table `school`
---
 
 --
 -- Constraints for table `schoolmember`
 --
 ALTER TABLE `schoolmember`
   ADD CONSTRAINT `schoolmember_ibfk_1` FOREIGN KEY (`schoolid`) REFERENCES `school` (`id`);
+
+--
+-- Constraints for table `topic`
+--
+ALTER TABLE `topic`
+  ADD CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

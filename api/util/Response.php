@@ -11,8 +11,8 @@ class Response
 
     function __construct()
     {
-        $error = false;
-        $object = [];
+        $this->error = false;
+        $this->object = [];
     }
     function error($object = []){
         $this->error = true;
