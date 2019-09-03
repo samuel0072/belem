@@ -6,7 +6,9 @@
   "authors": [
     {
       "name": "Samuel Lima da Silva",
-      "email": "sls@ic.ufal.br"
+      "email": "sls@ic.ufal.br",
+      "name": "Jhonnye Gabriel de Oliveira Farias",
+      "email": "jgof@ic.ufal.br"
     }
   ],
   "require": {

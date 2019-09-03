@@ -4,8 +4,7 @@
 namespace api\School;
 
 
-class SchoolMember
-{
+class SchoolMember{
     private $name;
     private $age;
     private $gender;

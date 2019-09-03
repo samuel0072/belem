@@ -4,12 +4,11 @@
 namespace api\School;
 
 
-class School
-{
+class School{
+    
     private $name;
 
-    function __construct($name, $id = 0)
-    {
+    function __construct($name, $id = 0){
         $this->name = $name;
         $this->id = $id;
     }
