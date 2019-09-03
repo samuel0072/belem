@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 03, 2019 at 01:39 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.7
+-- Host: 127.0.0.1:3307
+-- Generation Time: Sep 03, 2019 at 04:45 PM
+-- Server version: 10.3.14-MariaDB
+-- PHP Version: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,10 +28,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `classmember`
 --
 
-CREATE TABLE `classmember` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `classmember`;
+CREATE TABLE IF NOT EXISTS `classmember` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `schoolmember` int(11) NOT NULL,
-  `classid` int(11) NOT NULL
+  `classid` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `schoolmember` (`schoolmember`),
+  KEY `classid` (`classid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -40,9 +44,12 @@ CREATE TABLE `classmember` (
 -- Table structure for table `grade`
 --
 
-CREATE TABLE `grade` (
+DROP TABLE IF EXISTS `grade`;
+CREATE TABLE IF NOT EXISTS `grade` (
   `gradeNumber` int(11) NOT NULL,
-  `schoolId` int(11) NOT NULL
+  `schoolId` int(11) NOT NULL,
+  PRIMARY KEY (`gradeNumber`),
+  KEY `schoolId` (`schoolId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -51,12 +58,34 @@ CREATE TABLE `grade` (
 -- Table structure for table `gradeclass`
 --
 
-CREATE TABLE `gradeclass` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `gradeclass`;
+CREATE TABLE IF NOT EXISTS `gradeclass` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `gradeNumber` int(11) NOT NULL,
   `teacherEnroll` int(11) NOT NULL,
-  `classLetter` varchar(1) DEFAULT NULL
+  `classLetter` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `gradeNumber` (`gradeNumber`),
+  KEY `teacherEnroll` (`teacherEnroll`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `question`
+--
+
+DROP TABLE IF EXISTS `question`;
+CREATE TABLE IF NOT EXISTS `question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `test_id` int(11) NOT NULL,
+  `correct_answer` varchar(1) DEFAULT NULL,
+  `number` int(11) DEFAULT NULL,
+  `topic_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `test_id` (`test_id`),
+  KEY `topic_id` (`topic_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -64,9 +93,11 @@ CREATE TABLE `gradeclass` (
 -- Table structure for table `school`
 --
 
-CREATE TABLE `school` (
-  `id` int(11) NOT NULL,
-  `name` varchar(300) DEFAULT NULL
+DROP TABLE IF EXISTS `school`;
+CREATE TABLE IF NOT EXISTS `school` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(300) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -75,13 +106,16 @@ CREATE TABLE `school` (
 -- Table structure for table `schoolmember`
 --
 
-CREATE TABLE `schoolmember` (
+DROP TABLE IF EXISTS `schoolmember`;
+CREATE TABLE IF NOT EXISTS `schoolmember` (
   `enrollnumber` int(11) NOT NULL,
   `name` varchar(300) DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
   `gender` enum('masculino','feminio') DEFAULT NULL,
   `type` enum('aluno','professor') DEFAULT NULL,
-  `schoolid` int(11) NOT NULL
+  `schoolid` int(11) NOT NULL,
+  PRIMARY KEY (`enrollnumber`),
+  KEY `schoolid` (`schoolid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -90,10 +124,12 @@ CREATE TABLE `schoolmember` (
 -- Table structure for table `subject`
 --
 
-CREATE TABLE `subject` (
+DROP TABLE IF EXISTS `subject`;
+CREATE TABLE IF NOT EXISTS `subject` (
   `name` varchar(100) DEFAULT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subject`
@@ -106,101 +142,32 @@ INSERT INTO `subject` (`name`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `test`
+--
+
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE IF NOT EXISTS `test` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dt` date DEFAULT NULL,
+  `class_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `class_id` (`class_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `topic`
 --
 
-CREATE TABLE `topic` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `topic`;
+CREATE TABLE IF NOT EXISTS `topic` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) NOT NULL,
-  `subject_id` int(11) NOT NULL
+  `subject_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `subject_id` (`subject_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `classmember`
---
-ALTER TABLE `classmember`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `schoolmember` (`schoolmember`),
-  ADD KEY `classid` (`classid`);
-
---
--- Indexes for table `grade`
---
-ALTER TABLE `grade`
-  ADD PRIMARY KEY (`gradeNumber`),
-  ADD KEY `schoolId` (`schoolId`);
-
---
--- Indexes for table `gradeclass`
---
-ALTER TABLE `gradeclass`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `gradeNumber` (`gradeNumber`),
-  ADD KEY `teacherEnroll` (`teacherEnroll`);
-
---
--- Indexes for table `school`
---
-ALTER TABLE `school`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `schoolmember`
---
-ALTER TABLE `schoolmember`
-  ADD PRIMARY KEY (`enrollnumber`),
-  ADD KEY `schoolid` (`schoolid`);
-
---
--- Indexes for table `subject`
---
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `topic`
---
-ALTER TABLE `topic`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `subject_id` (`subject_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `classmember`
---
-ALTER TABLE `classmember`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `gradeclass`
---
-ALTER TABLE `gradeclass`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `school`
---
-ALTER TABLE `school`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `subject`
---
-ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `topic`
---
-ALTER TABLE `topic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
