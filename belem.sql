@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 03, 2019 at 10:30 PM
+-- Generation Time: Sep 04, 2019 at 08:43 PM
 -- Server version: 10.3.14-MariaDB
 -- PHP Version: 7.2.18
 
@@ -21,6 +21,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `belem`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answered_test`
+--
+
+DROP TABLE IF EXISTS `answered_test`;
+CREATE TABLE IF NOT EXISTS `answered_test` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `classmember_id` int(11) DEFAULT NULL,
+  `test_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -97,6 +111,21 @@ CREATE TABLE IF NOT EXISTS `question` (
   PRIMARY KEY (`id`),
   KEY `test_id` (`test_id`),
   KEY `topic_id` (`topic_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `question_answered_test`
+--
+
+DROP TABLE IF EXISTS `question_answered_test`;
+CREATE TABLE IF NOT EXISTS `question_answered_test` (
+  `answered_test_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `option_choosed` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`answered_test_id`,`question_id`),
+  KEY `question_id` (`question_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -193,6 +222,8 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) NOT NULL,
   `subject_id` int(11) NOT NULL,
+  `dificult` enum('f','m','d') DEFAULT NULL,
+  `test_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `subject_id` (`subject_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
