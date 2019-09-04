@@ -6,7 +6,6 @@ include_once __DIR__ . '/api/routes/Request.php';
 
 include_once __DIR__ . '/api/resources/schoolmember.php';
 include_once __DIR__ . '/api/resources/school.php';
-include_once __DIR__.'/api/resources/grade.php';
 
 use \routes\Router as Router;
 use \routes\Request as Request;

@@ -1,38 +1,17 @@
 <?php
 
 include_once __DIR__.'/../util/prepare.php';
-include_once __DIR__.'/../school/Grade.php';
 include_once __DIR__.'/../school/GradeClass.php';
 include_once __DIR__.'/../school/Test.php';
 
-use api\School\ClassMember;
-use \api\School\Grade as Grade;
 use \api\School\GradeClass as GradeClass;
 use \api\School\Test as Test;
 
-function insert_grade($gradeNumber, $schoolId) {
-    prepare();
-    global $queryBuilder, $db, $response;
-    $grade = new Grade($gradeNumber, $schoolId);
-
-    $queryBuilder->insert_into('grade', ['gradeNumber', 'schoolId'])->values(2);
-
-    $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param("ii", $gradeNumber, $schoolId);
-
-    if($stm->execute() && $grade->isOkay()) {
-        $response->ok($gradeNumber);
-    }
-    else {
-        $response->error([$db->get_error(), "verificar os dados inseridos"]);
-    }
-    return json_encode($response);
-}
 
 function insert_class($teacherEnroll,$letter, $gradeNumber, $schoolId) {
     global $response, $db, $queryBuilder;
     prepare();
-    $class = new GradeClass($gradeNumber, $letter, $teacherEnroll, $schoolId);
+    $class = new GradeClass($gradeNumber, $letter, $schoolId);
 
     $queryBuilder->insert_into('gradeclass', ['gradeNumber, teacherEnroll, classLetter'])->values(3);
     $stm = $db->prepare($queryBuilder->get_query());
@@ -47,20 +26,6 @@ function insert_class($teacherEnroll,$letter, $gradeNumber, $schoolId) {
     return json_encode($response);
 }
 
-function insert_class_member($schoolmemberid, $classid) {
-    global $queryBuilder, $db, $response;
-    prepare();
-    $queryBuilder->insert_into("classmember", ['schoolmember', 'classid'])->values(2);
-    $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param("ii", $schoolmemberid, $classid);
-    if($stm->execute()) {
-        $response->ok();
-    }
-    else {
-        $response->error([$db->get_error(). $queryBuilder->get_query()]);
-    }
-    return json_encode($response);
-}
 
 function insert_test($dt, $subject_id, $class_id){
     prepare();
@@ -113,10 +78,10 @@ function get_class_students($schoolId, $classId) {
     return json_encode($response);
 }
 
-function get_grade($gradeNumber){
+function get_grade_class($gradeNumber){
     prepare();
     global $queryBuilder, $db, $response;
-    $queryBuilder->select(['*'])->from('grade')->where("gradeNumber = $gradeNumber");
+    $queryBuilder->select(['*'])->from('Gradeclass')->where("gradeNumber = $gradeNumber");
     if ($db->query($queryBuilder->get_query())) {
         $response->ok($db->fetch_all());
     } else {

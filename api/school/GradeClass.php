@@ -4,19 +4,18 @@
 namespace api\School;
 
 
-class GradeClass extends Grade{
-    private $teacherEnroll;
+class GradeClass{
+    private $gradeNumber;
     private $classLetter;
+    private $schoolId;
 
-    function __construct($gradeNumber, $classLetter, $teacherEnroll, $schoolId){
-        parent::__construct($gradeNumber, $schoolId);
+    public function __construct($gradeNumber, $classLetter, $schoolId){
+        $this->gradeNumber = $gradeNumber;
         $this->classLetter = $classLetter;
-        $this->teacherEnroll = $teacherEnroll;
+        $this->schoolId = $schoolId;
     }
 
-    public function getTeacherEnroll() {
-        return $this->teacherEnroll;
-    }
+
     public function getClassLetter() {
         return $this->classLetter;
     }
@@ -32,10 +31,22 @@ class GradeClass extends Grade{
         if(!is_int($this->teacherEnroll) || !is_string($this->classLetter)) {
             $ok = false;
         }
+        else if(!is_int($this->schoolId) || $this->schoolId <= 0) {
+            $ok = false;
+        }
         else if(strlen($this->classLetter) > 1) {
             $ok = false;
         }
 
         return $ok;
     }
+
+    public function getGradeNumber(){
+        return $this->gradeNumber;
+    }
+
+    public function getSchoolId(){
+        return $this->schoolId;
+    }
+
 }

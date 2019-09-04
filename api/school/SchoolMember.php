@@ -11,16 +11,22 @@ class SchoolMember{
     private $enrollNumber;
     private $schoolId;
     private $type;
+    private $classId;
 
-    function __construct($name,$age, $gender, $enroll, $schoolId, $type) {
+
+    public function __construct($name, $age, $gender, $enrollNumber, $schoolId, $type, $classId){
         $this->name = $name;
         $this->age = $age;
         $this->gender = $gender;
-        $this->enrollNumber = $enroll;
+        $this->enrollNumber = $enrollNumber;
         $this->schoolId = $schoolId;
         $this->type = $type;
+        $this->classId = $classId;
     }
 
+    public function getClassId(){
+        return $this->classId;
+    }
     public function getName() {
         return $this->name;
     }
@@ -44,10 +50,10 @@ class SchoolMember{
                 return $ok;
             }
         }
-        $ints = [$this->enrollNumber, $this->schoolId, $this->age];
+        $ints = [$this->enrollNumber, $this->schoolId, $this->age, $this->classId];
         $strings = [$this->name, $this->gender, $this->type];
         foreach ($ints as $int) {
-            if(!is_int($int)|| $int < 0) {
+            if(!is_int($int)|| $int <= 0) {
                 $ok = false;
                 return $ok;
             }
@@ -61,4 +67,6 @@ class SchoolMember{
 
         return $ok;
     }
+
+
 }
