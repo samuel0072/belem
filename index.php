@@ -22,18 +22,11 @@ $router->post('/belem/school/',
     }
 );
 
-//cria uma classe
-$router->post('/belem/class/',
-    function ($request) {
-        $body = $request->getBody();
-        echo insert_class($body['teacherEnroll'], $body['letter'], $body['gradeNumber'], $body['schoolId']);
-    }
-);
 //cria uma serie
 $router->post('/belem/grade/',
     function($request) {
         $body = $request->getBody();
-        echo insert_grade($body['gradeNumber'], $body['schoolId']);
+        echo insert_grade($body['gradeNumber'], $body['schoolId'], $body['letter']);
     }
 );
 //cria um membro da escola
@@ -43,15 +36,6 @@ $router->post('/belem/schoolmember/',
         echo insert_member($body['name'],$body['age'], $body['gender'], $body['enroll'], $body['schoolid'], $body['type'], $body['class_id']);
     }
 );
-
-//insere um membro da escola em uma classe
-$router->post('/belem/classmember',
-    function($request) {
-        $body = $request->getBody();
-        echo insert_class_member($body["schoolmemberid"], $body["classid"]);
-    }
-);
-
 
 $router->post('/belem/test',
     function ($request) {
