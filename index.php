@@ -40,7 +40,7 @@ $router->post('/belem/grade/',
 $router->post('/belem/schoolmember/',
     function($request) {
         $body = $request->getBody();
-        echo insert_member($body['name'],$body['age'], $body['gender'], $body['enroll'], $body['schoolid'], $body['type']);
+        echo insert_member($body['name'],$body['age'], $body['gender'], $body['enroll'], $body['schoolid'], $body['type'], $body['class_id']);
     }
 );
 
