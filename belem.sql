@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 04, 2019 at 08:43 PM
+-- Generation Time: Sep 04, 2019 at 09:18 PM
 -- Server version: 10.3.14-MariaDB
 -- PHP Version: 7.2.18
 
@@ -31,47 +31,11 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `answered_test`;
 CREATE TABLE IF NOT EXISTS `answered_test` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `classmember_id` int(11) DEFAULT NULL,
   `test_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `classmember`
---
-
-DROP TABLE IF EXISTS `classmember`;
-CREATE TABLE IF NOT EXISTS `classmember` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schoolmember` int(11) NOT NULL,
-  `classid` int(11) NOT NULL,
+  `schoolmember_enroll` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `schoolmember` (`schoolmember`),
-  KEY `classid` (`classid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `grade`
---
-
-DROP TABLE IF EXISTS `grade`;
-CREATE TABLE IF NOT EXISTS `grade` (
-  `gradeNumber` int(11) NOT NULL,
-  `schoolId` int(11) NOT NULL,
-  PRIMARY KEY (`gradeNumber`),
-  KEY `schoolId` (`schoolId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `grade`
---
-
-INSERT INTO `grade` (`gradeNumber`, `schoolId`) VALUES
-(3, 1);
+  KEY `schoolmember_enroll` (`schoolmember_enroll`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -106,8 +70,8 @@ CREATE TABLE IF NOT EXISTS `question` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `test_id` int(11) NOT NULL,
   `correct_answer` varchar(1) DEFAULT NULL,
-  `number` int(11) DEFAULT NULL,
   `topic_id` int(11) DEFAULT NULL,
+  `number` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `test_id` (`test_id`),
   KEY `topic_id` (`topic_id`)
@@ -162,8 +126,10 @@ CREATE TABLE IF NOT EXISTS `schoolmember` (
   `gender` enum('masculino','feminino') DEFAULT NULL,
   `type` enum('aluno','professor') DEFAULT NULL,
   `schoolid` int(11) NOT NULL,
+  `class_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`enrollnumber`),
-  KEY `schoolid` (`schoolid`)
+  KEY `schoolid` (`schoolid`),
+  KEY `class_id` (`class_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -233,29 +199,11 @@ CREATE TABLE IF NOT EXISTS `topic` (
 --
 
 --
--- Constraints for table `classmember`
---
-ALTER TABLE `classmember`
-  ADD CONSTRAINT `classmember_ibfk_1` FOREIGN KEY (`schoolmember`) REFERENCES `schoolmember` (`enrollnumber`),
-  ADD CONSTRAINT `classmember_ibfk_2` FOREIGN KEY (`classid`) REFERENCES `gradeclass` (`id`);
-
---
--- Constraints for table `grade`
---
-ALTER TABLE `grade`
-  ADD CONSTRAINT `grade_ibfk_1` FOREIGN KEY (`schoolId`) REFERENCES `school` (`id`);
-
---
--- Constraints for table `gradeclass`
---
-ALTER TABLE `gradeclass`
-  ADD CONSTRAINT `GradeClass_ibfk_1` FOREIGN KEY (`gradeNumber`) REFERENCES `grade` (`gradeNumber`);
-
---
 -- Constraints for table `schoolmember`
 --
 ALTER TABLE `schoolmember`
-  ADD CONSTRAINT `schoolmember_ibfk_1` FOREIGN KEY (`schoolid`) REFERENCES `school` (`id`);
+  ADD CONSTRAINT `schoolmember_ibfk_1` FOREIGN KEY (`schoolid`) REFERENCES `school` (`id`),
+  ADD CONSTRAINT `schoolmember_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `gradeclass` (`id`);
 
 --
 -- Constraints for table `topic`
