@@ -12,6 +12,30 @@ class Question
     private $number;
 
 
+    public function getTestId()
+    {
+        return $this->test_id;
+    }
+
+
+    public function getCorrectAnswer()
+    {
+        return $this->correct_answer;
+    }
+
+
+    public function getTopicId()
+    {
+        return $this->topic_id;
+    }
+
+
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+
     public function __construct($test_id, $correct_answer, $topic_id, $number)
     {
         $this->test_id = $test_id;

@@ -1,8 +1,8 @@
 <?php
 
-include_once __DIR__ . '/api/routes/Router.php';
-include_once __DIR__ . '/api/routes/IRequest.php';
-include_once __DIR__ . '/api/routes/Request.php';
+include_once __DIR__ . '/api/router/Router.php';
+include_once __DIR__ . '/api/router/IRequest.php';
+include_once __DIR__ . '/api/router/Request.php';
 
 include_once __DIR__ . '/api/resources/schoolmember.php';
 include_once __DIR__ . '/api/resources/school.php';
