@@ -12,7 +12,7 @@ use \routes\Request as Request;
 
 $router = new Router(new Request);
 
-header("Content-Type: application/json");
+header("Content-Type: application/json; charset=UTF-8");
 
 //cria uma escola
 $router->post('/belem/school/',
@@ -36,13 +36,13 @@ $router->post('/belem/schoolmember/',
         echo insert_member($body['name'],$body['age'], $body['gender'], $body['enroll'], $body['schoolid'], $body['type'], $body['class_id']);
     }
 );
-/*
+
 $router->post('/belem/test',
     function ($request) {
         $body = $request->getBody();
-        echo insert_test($body['date'], $body['class_id'], $body['subject_id']);
+        echo insert_test($body['class_id'],$body['date'],  $body['subject_id'], $body['nick']);
     }
-);*/
+);
 
 //retorna todos os estudantes de uma classe
 $router->get('/belem/class/students',
