@@ -7,12 +7,8 @@ function insert_ans_Test($enroll_number, $test_id, $answers){
 
     prepare();
     global $queryBuilder, $db, $response;
-    
-    echo var_dump([$enroll_number, $test_id, $answers]);
 
     $ans_test = new Ans_Test((int)$enroll_number, (int)$test_id, $answers);
-
-   // echo var_dump($ans_test);
 
     $queryBuilder->insert_into('answered_test', ['test_id', 'schoolmember_enroll'])->values(2);
     $stm = $db->prepare($queryBuilder->get_query());
