@@ -21,8 +21,7 @@ function insert_test($class_id, $date, $subject_id, $nick = "sem titulo")
     return json_encode($response);
 }
 
-function update_test($test_id, $class_id, $date, $subject_id, $nick, $status)
-{
+function update_test($test_id, $class_id, $date, $subject_id, $nick, $status){
     prepare();
     global $queryBuilder, $db, $response;
     $test = new Test((int)$class_id, (string)$date, (int)$subject_id, (string)$nick, (string)$status);
@@ -36,6 +35,23 @@ function update_test($test_id, $class_id, $date, $subject_id, $nick, $status)
         $response->ok(["Prova atualizada"]);
     } else {
         $response->error(["verifique os dados informados"]);
+    }
+    return json_encode($response);
+}
+
+function set_test_status($test_id, $status) {
+    prepare();
+    global $queryBuilder, $db, $response;
+    $queryBuilder->update('test')
+        ->set(['status'], ['?'])
+        ->where("id=?");
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param("si", $status, $test_id);
+    if($stm->execute()) {
+        $response->ok("Estado mudado");
+    }
+    else {
+        $response->error("Verifique os dados inseridos");
     }
     return json_encode($response);
 }

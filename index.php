@@ -56,6 +56,11 @@ try {
             $body = $request->getBody();
             echo update_test($body["test_id"], $body["class_id"], $body["date"], $body["subject_id"], $body["nick"], $body["status"]);
         });
+    $router->post('/belem/test/change_status',
+        function($request) {
+            $body = $request->getBody();
+            echo set_test_status($body["test_id"], $body["status"]);
+    });
 
     $router->post('/belem/question',
         function($request) {
@@ -75,6 +80,7 @@ try {
             echo delete_question($body["question_id"]);
         }
     );
+
 
 
 
