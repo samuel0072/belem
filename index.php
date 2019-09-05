@@ -48,7 +48,16 @@ $router->post('/belem/test',
         echo insert_test($body['class_id'],$body['date'],  $body['subject_id'], $body['nick']);
     }
 );
+$router->post('/belem/test/update',
+    function($request) {
+        $body = $request->getBody();
+        echo update_test($body["test_id"], $body["class_id"], $body["date"], $body["subject_id"], $body["nick"]);
+});
 
+
+$router->get('/belem/schools/', function ($request) {
+   echo get_schools();
+});
 //retorna todos os estudantes de uma classe
 $router->get('/belem/class/students',
     function($request) {

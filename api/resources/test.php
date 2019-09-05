@@ -8,7 +8,7 @@ function insert_test($class_id, $date, $subject_id, $nick = "sem titulo") {
     prepare();
     global $queryBuilder, $db, $response;
     $test = new Test((int)$class_id, (string)$date, (int)$subject_id, (string)$nick);
-    $queryBuilder->insert_into('test', ['class_id', 'date', 'subject_id', 'nick'])->values(4);
+    $queryBuilder->insert_into('test', ['class_id', 'dt', 'subject_id', 'nick'])->values(4);
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("isis", $class_id, $date, $subject_id, $nick);
 
@@ -26,7 +26,7 @@ function update_test($test_id, $class_id, $date, $subject_id, $nick) {
     global $queryBuilder, $db, $response;
     $test = new Test((int)$class_id, (string)$date, (int)$subject_id, (string)$nick);
     $queryBuilder->update('test')
-        ->set(['class_id', 'date', 'subject_id', 'nick'], ['?', '?', '?', '?'])
+        ->set(['class_id', 'dt', 'subject_id', 'nick'], ['?', '?', '?', '?'])
         ->where("id = ?");
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("isisi",$class_id, $date, $subject_id, $nick, $test_id);

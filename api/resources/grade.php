@@ -13,9 +13,7 @@ function insert_class($classLetter, $gradeNumber, $schoolId) {
     $class = new GradeClass((int)$gradeNumber, (string)$classLetter, (int)$schoolId);
 
     $queryBuilder->insert_into('gradeclass', ['gradeNumber', 'classLetter', 'school_id'])->values(3);
-    //echo $queryBuilder->get_query();
     $stm = $db->prepare($queryBuilder->get_query());
-    echo $db->get_error();
     $stm->bind_param("isi", $gradeNumber, $classLetter, $schoolId);
 
     if($class->isOkay() && $stm->execute()) {
@@ -72,14 +70,10 @@ function get_grade_class($gradeNumber){
     return json_encode($response);
 }
 
-function get_class_student($studentId) {
-    return find_by_criteria("schoolmember", $studentId, 'classmember', 'i');
-}
-
 function delete_school_member($enrollNumber) {
     global $response, $db, $queryBuilder;
     prepare();
-    $queryBuilder->delete('schoolmember', 'schoolmember=?');
+    $queryBuilder->delete('schoolmember', 'enrollnumber=?');
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param('i', $enrollNumber);
 

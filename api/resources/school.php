@@ -36,3 +36,18 @@ function get_school($id) {
         return json_encode($response);
     }
 }
+
+function get_schools() {
+    prepare();
+    global $response, $queryBuilder, $db;
+    $queryBuilder->clear();
+    $queryBuilder->select('*')->from('school');
+    if($db->query($queryBuilder->get_query())) {
+        $response->ok($db->fetch_all());
+        return json_encode($response);
+    }
+    else {
+        $response->error([$db->get_error(),$queryBuilder->get_query() ]);
+        return json_encode($response);
+    }
+}
