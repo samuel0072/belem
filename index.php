@@ -63,9 +63,23 @@ try {
             echo insert_question($body["test_id"], $body["correct_answer"], $body["topic_id"], $body["number"], $body["nick"]);
         }
     );
+    $router->post('/belem/question/update',
+        function($request) {
+            $body = $request->getBody();
+            echo update_question($body["question_id"], $body["test_id"], $body["correct_answer"], $body["topic_id"], $body["number"], $body["nick"], $body["dificult"]);
+        }
+    );
+    $router->post('/belem/question/delete',
+        function($request) {
+            $body = $request->getBody();
+            echo delete_question($body["question_id"]);
+        }
+    );
+
+
 
     //cadastrar, atualizar e excluir a resolucao de um aluno
-    $router->post('/belem/answered_test', 
+    $router->post('/belem/answered_test',
         function($request){
             $body = $request->getBody();
             $json = file_get_contents('php://input');
