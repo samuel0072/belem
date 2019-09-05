@@ -2,9 +2,10 @@
 
 use api\School\Test;
 
-include_once __DIR__.'/../util/prepare.php';
+include_once __DIR__ . '/../util/prepare.php';
 
-function insert_test($class_id, $date, $subject_id, $nick = "sem titulo") {
+function insert_test($class_id, $date, $subject_id, $nick = "sem titulo")
+{
     prepare();
     global $queryBuilder, $db, $response;
     $test = new Test((int)$class_id, (string)$date, (int)$subject_id, (string)$nick);
@@ -12,29 +13,28 @@ function insert_test($class_id, $date, $subject_id, $nick = "sem titulo") {
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("isis", $class_id, $date, $subject_id, $nick);
 
-    if($test->isOkay() && $stm->execute()) {
+    if ($test->isOkay() && $stm->execute()) {
         $response->ok($db->get_last_insert_id());
-    }
-    else {
-        $response->error(['verifique os dados informados', $db->get_error() ? $db->get_error():'']);
+    } else {
+        $response->error(['verifique os dados informados', $db->get_error() ? $db->get_error() : '']);
     }
     return json_encode($response);
 }
 
-function update_test($test_id, $class_id, $date, $subject_id, $nick) {
+function update_test($test_id, $class_id, $date, $subject_id, $nick, $status)
+{
     prepare();
     global $queryBuilder, $db, $response;
-    $test = new Test((int)$class_id, (string)$date, (int)$subject_id, (string)$nick);
+    $test = new Test((int)$class_id, (string)$date, (int)$subject_id, (string)$nick, $status);
     $queryBuilder->update('test')
-        ->set(['class_id', 'dt', 'subject_id', 'nick'], ['?', '?', '?', '?'])
+        ->set(['class_id', 'dt', 'subject_id', 'nick', 'status'], ['?', '?', '?', '?' ,'?'])
         ->where("id = ?");
     $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param("isisi",$class_id, $date, $subject_id, $nick, $test_id);
+    $stm->bind_param("isisis", $class_id, $date, $subject_id, $nick, $test_id, $status);
 
-    if($test->isOkay() && $stm->execute()) {
+    if ($test->isOkay() && $stm->execute()) {
         $response->ok(["Prova atualizada"]);
-    }
-    else {
+    } else {
         $response->error(["verifique os dados informados"]);
     }
     return json_encode($response);

@@ -1,14 +1,14 @@
 <?php
-
+include_once __DIR__ . '/../school/Question.php';
 use api\School\Question;
 
-function insert_question($test_id, $correct_answer, $topic_id, $number) {
+function insert_question($test_id, $correct_answer, $topic_id, $number, $nick) {
     prepare();
     global $queryBuilder, $db, $response;
-    $question = new Question((int)$test_id, (int)$correct_answer, (int)$topic_id, (int)$number);
-    $queryBuilder->insert_into('question', ['test_id', 'correct_answer', 'topic_id', 'number'])->values(4);
+    $question = new Question((int)$test_id, (int)$correct_answer, (int)$topic_id, (int)$number, $nick);
+    $queryBuilder->insert_into('question', ['test_id', 'correct_answer', 'topic_id', 'number', 'nick'])->values(5);
     $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param("isii", $test_id, $correct_answer, $topic_id, $number);
+    $stm->bind_param("isiis", $test_id, $correct_answer, $topic_id, $number, $nick);
 
     if($question->isOkay() && $stm->execute()) {
         $response->ok($db->get_last_insert_id());
@@ -19,12 +19,12 @@ function insert_question($test_id, $correct_answer, $topic_id, $number) {
     return json_encode($response);
 }
 
-function update_question($question_id, $test_id, $correct_answer, $topic_id, $number, $dificult) {
+function update_question($question_id, $test_id, $correct_answer, $topic_id, $number,$nick, $dificult) {
     prepare();
     global $queryBuilder, $db, $response;
-    $question = new Question($test_id, $correct_answer, $topic_id, $number, $dificult);
+    $question = new Question($test_id, $correct_answer, $topic_id, $number, $nick, $dificult);
     $queryBuilder->update('test')
-        ->set(['test_id', 'correct_answer', 'topic_id', 'number', 'dificult'], ['?', '?', '?', '?', '?'])
+        ->set(['test_id', 'correct_answer', 'topic_id', 'number', 'dificult', 'nick'], ['?', '?', '?', '?', '?', '?'])
         ->where("id = ?");
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("isisis",$test_id, $correct_answer, $topic_id, $number, $question_id, $dificult);
