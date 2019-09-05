@@ -30,7 +30,7 @@ class Ans_Test{
     public function isOkay(){
         $ok = true;
 
-        foreach ($this as $key => $value) {
+        foreach ($this->map_questions as $key => $value) {
             if($value == null) {
                 $ok = false;
                 return $ok;
