@@ -74,6 +74,7 @@ try {
             echo update_question($body["question_id"], $body["test_id"], $body["correct_answer"], $body["topic_id"], $body["number"], $body["nick"], $body["dificult"]);
         }
     );
+
     $router->post('/belem/question/delete',
         function($request) {
             $body = $request->getBody();
@@ -81,10 +82,7 @@ try {
         }
     );
 
-
-
-
-    //cadastrar, atualizar e excluir a resolucao de um aluno
+    //cadastrar a resolucao de um aluno
     $router->post('/belem/answered_test',
         function($request){
             $body = $request->getBody();
@@ -93,13 +91,20 @@ try {
             echo insert_ans_Test($var->sch_enroll, $var->test_id, $var->questions);
         }
     );
-    
+    //atualizar a resolucao de um aluno
     $router->post('/belem/answered_test/update', 
         function($request){
             $body = $request->getBody();
             $json = file_get_contents('php://input');
             $var = json_decode($json);
-            echo insert_ans_Test($var->sch_enroll, $var->test_id, $var->questions);
+            echo update_ans_Test($var->ans_test_id, $var->answers);
+        }
+    );
+    //excluir a resolucao de um aluno
+    $router->post('/belem/answered_test/delete', 
+        function($request){
+            $body = $request->getBody();
+            echo delete_ans_Test($body['answered_test_id']);
         }
     );
 

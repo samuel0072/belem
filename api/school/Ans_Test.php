@@ -4,9 +4,9 @@ namespace api\School;
 
 class Ans_Test{
 
-    public $enroll_number;
-    public $test_id;
-    public $map_questions = array();
+    private $enroll_number;
+    private $test_id;
+    private $map_questions = array();
 
     public function __construct($enroll_number, $test_id, $map_questions)
     {
