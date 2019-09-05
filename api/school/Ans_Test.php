@@ -4,9 +4,16 @@ namespace api\School;
 
 class Ans_Test{
 
-    private $enroll_number;
-    private $test_id;
-    private $map_questions = array();
+    public $enroll_number;
+    public $test_id;
+    public $map_questions = array();
+
+    public function __construct($enroll_number, $test_id, $map_questions)
+    {
+        $this->enroll_number = $enroll_number;
+        $this->test_id = $test_id;
+        $this->map_questions = $map_questions;
+    }
 
     public function setEnroll_Number($enroll_number){
         $this->enroll_number = $enroll_number;
