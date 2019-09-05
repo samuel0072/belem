@@ -52,7 +52,7 @@ try {
     $router->post('/belem/test/update',
         function($request) {
             $body = $request->getBody();
-            echo update_test($body["test_id"], $body["class_id"], $body["date"], $body["subject_id"], $body["nick"]);
+            echo update_test($body["test_id"], $body["class_id"], $body["date"], $body["subject_id"], $body["nick"], $body["status"]);
         });
 
     $router->post('/belem/question',
