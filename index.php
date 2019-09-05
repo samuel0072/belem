@@ -11,6 +11,8 @@ include_once __DIR__ . '/api/resources/school.php';
 include_once __DIR__ . '/api/resources/grade.php';
 include_once __DIR__ . '/api/resources/test.php';
 include_once __DIR__ . '/api/resources/question.php';
+include_once __DIR__ . '/api/resources/ans_test.php';
+
 
 use routes\Router as Router;
 use routes\Request as Request;
@@ -67,7 +69,8 @@ try {
         function($request){
             $body = $request->getBody();
             $var = json_decode($body["answered_test"]);
-            echo insert_ans_Test($var.sch_enroll, $var.test_id, $var.questions);
+            echo var_dump($var);
+            //echo insert_ans_Test($var->sch_enroll, $var->test_id, $var->questions);
         }
     );
 
