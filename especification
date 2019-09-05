@@ -1,0 +1,14 @@
+Itens das especificações:
+
+-   1 Cadastrar uma prova no sistema e associar a uma turma
+-   2 Cadastrar questões e associar a uma prova e a um descritor
+-   3 Cadastrar a resolução de um aluno de uma turma a uma prova
+-   4 Marcar uma prova como aplicada e corrigida, ou seja, todos os alunos tiveram suas resoluções cadastradas no sistema
+-   5 Dada uma prova aplicada e corrigida o sistema deve gerar um relatorio da situação geral da prova:
+    -   5.1 Deve calcular a pontuação de cada aluno.
+    -   5.2 Deve gerar um resumo da situação geral da prova.
+    -   5.3 Dada uma questão da prova, deve informar a frequência de  alunos, do total que fizeram a prova, que acetaram esta questão.
+    -   5.4 Dada uma questão da prova, deve informar a frequência de cada alternativa marcada pelos alunos.
+    -   5.5 Deve informar as frequências das pontuações dos alunos na prova.
+-   6 Após o processamento do item 5, o usuário deve poder classificar uma questão como fácil, médio ou difícil
+-   7 Deve desfazer o item 4 e consequentemente nao exibir mais os resultados do item 5 e do item 6
