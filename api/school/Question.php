@@ -13,7 +13,7 @@ class Question
     private $dificult;
     private $nick;
 
-    public function __construct($test_id, $correct_answer, $topic_id, $number, $dificult, $nick)
+    public function __construct($test_id, $correct_answer, $topic_id, $number,  $nick, $dificult = '')
     {
         $this->test_id = $test_id;
         $this->correct_answer = $correct_answer;
@@ -44,13 +44,14 @@ class Question
     }
 
     public function isOkay() {
-        $ok = false;
+        $ok = true;
         foreach ($this as $key => $value) {
             if($value == null) {
                 $ok = false;
                 break;
             }
         }
+        return $ok;
 
     }
 

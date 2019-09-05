@@ -58,7 +58,7 @@ try {
     $router->post('/belem/question',
         function($request) {
             $body = $request->getBody();
-            echo insert_question($body["test_id"], $body["correct_answer"], $body["topic_id"], $body["number"]);
+            echo insert_question($body["test_id"], $body["correct_answer"], $body["topic_id"], $body["number"], $body["nick"]);
         }
     );
 
