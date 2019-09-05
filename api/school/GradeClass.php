@@ -28,7 +28,7 @@ class GradeClass{
                 return $ok;
             }
         }
-        if(!is_int($this->teacherEnroll) || !is_string($this->classLetter)) {
+        if(!is_string($this->classLetter)) {
             $ok = false;
         }
         else if(!is_int($this->schoolId) || $this->schoolId <= 0) {

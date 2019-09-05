@@ -13,7 +13,7 @@ function insert_School($name){
     $queryBuilder->insert_into('school', ['name'])->values(1);
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("s",$name);
-    if($stm->execute() && $school->isOkay())  {
+    if( $school->isOkay() && $stm->execute() )  {
         return get_school($db->get_last_insert_id());
     }
     else {

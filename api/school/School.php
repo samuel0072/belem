@@ -22,5 +22,6 @@ class School{
         if($this->name == null || !is_string($this->name)) {
             $ok = false;
         }
+        return $ok;
     }
 }

@@ -7,7 +7,7 @@ include_once __DIR__.'/../util/prepare.php';
 function insert_test($class_id, $date, $subject_id, $nick = "sem titulo") {
     prepare();
     global $queryBuilder, $db, $response;
-    $test = new Test($class_id, $date, $subject_id, $nick);
+    $test = new Test((int)$class_id, (string)$date, (int)$subject_id, (string)$nick);
     $queryBuilder->insert_into('test', ['class_id', 'date', 'subject_id', 'nick'])->values(4);
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("isis", $class_id, $date, $subject_id, $nick);
@@ -24,7 +24,7 @@ function insert_test($class_id, $date, $subject_id, $nick = "sem titulo") {
 function update_test($test_id, $class_id, $date, $subject_id, $nick) {
     prepare();
     global $queryBuilder, $db, $response;
-    $test = new Test($class_id, $date, $subject_id, $nick);
+    $test = new Test((int)$class_id, (string)$date, (int)$subject_id, (string)$nick);
     $queryBuilder->update('test')
         ->set(['class_id', 'date', 'subject_id', 'nick'], ['?', '?', '?', '?'])
         ->where("id = ?");

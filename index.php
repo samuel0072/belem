@@ -6,13 +6,18 @@ include_once __DIR__ . '/api/router/Request.php';
 
 include_once __DIR__ . '/api/resources/schoolmember.php';
 include_once __DIR__ . '/api/resources/school.php';
+include_once __DIR__ . '/api/resources/grade.php';
+include_once __DIR__ . '/api/resources/test.php';
+include_once __DIR__ . '/api/resources/question.php';
 
+use http\Header;
 use \routes\Router as Router;
 use \routes\Request as Request;
 
 $router = new Router(new Request);
 
-header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: application/json");
+header("charset=utf-8");
 
 //cria uma escola
 $router->post('/belem/school/',
@@ -23,10 +28,10 @@ $router->post('/belem/school/',
 );
 
 //cria uma serie
-$router->post('/belem/grade/',
+$router->post('/belem/class/',
     function($request) {
         $body = $request->getBody();
-        echo insert_grade($body['gradeNumber'], $body['schoolId'], $body['letter']);
+        echo insert_class($body['letter'], $body['gradeNumber'], $body['schoolId']);
     }
 );
 //cria um membro da escola

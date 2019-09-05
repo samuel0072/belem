@@ -5,19 +5,20 @@ include_once __DIR__.'/../school/GradeClass.php';
 include_once __DIR__.'/../school/Test.php';
 
 use \api\School\GradeClass as GradeClass;
-use \api\School\Test as Test;
 
 
-function insert_class($teacherEnroll,$letter, $gradeNumber, $schoolId) {
+function insert_class($classLetter, $gradeNumber, $schoolId) {
     global $response, $db, $queryBuilder;
     prepare();
-    $class = new GradeClass($gradeNumber, $letter, $schoolId);
+    $class = new GradeClass((int)$gradeNumber, (string)$classLetter, (int)$schoolId);
 
-    $queryBuilder->insert_into('gradeclass', ['gradeNumber, teacherEnroll, classLetter'])->values(3);
+    $queryBuilder->insert_into('gradeclass', ['gradeNumber', 'classLetter', 'school_id'])->values(3);
+    //echo $queryBuilder->get_query();
     $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param("iis", $gradeNumber, $teacherEnroll, $letter);
+    echo $db->get_error();
+    $stm->bind_param("isi", $gradeNumber, $classLetter, $schoolId);
 
-    if($stm->execute() && $class->isOkay()) {
+    if($class->isOkay() && $stm->execute()) {
         $response->ok($class);
     }
     else {
