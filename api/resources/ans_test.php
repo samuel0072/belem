@@ -6,7 +6,8 @@ function insert_ans_Test($enroll_number, $test_id, $answers){
 
     prepare();
     global $queryBuilder, $db, $response;
-    $ans_test;
+    $ans_test = new Ans_Test($enroll_number, $test_id, $answers);
+    //$queryBuilder->insert_into('answered_test', ['e']);
 
 }
 
