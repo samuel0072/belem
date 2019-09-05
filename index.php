@@ -18,8 +18,8 @@ use util\Response;
 
 $router = new Router(new Request);
 
-header("Content-Type: application/json");
-header("charset=utf-8");
+header("Content-Type: application/json; charset=utf-8");
+
 try {
     $router->post('/belem/school/',
         function($request) {
@@ -83,9 +83,12 @@ try {
     );
 }
 catch(Exception $exception) {
-    header();
+    header("Status Code: 500 Internal Server Error");
     $response = new Response();
     $response->error("ops, ocorreu um erro interno");
     echo json_encode($response);
+}
+finally {
+    header("Status Code: 200 ok");
 }
 
