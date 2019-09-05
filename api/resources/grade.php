@@ -26,25 +26,6 @@ function insert_class($teacherEnroll,$letter, $gradeNumber, $schoolId) {
     return json_encode($response);
 }
 
-
-function insert_test($dt, $subject_id, $class_id){
-    prepare();
-    global $queryBuilder, $db, $response;
-
-    $test = new Test((int)$class_id, $dt, (int)$subject_id);
-    $queryBuilder->insert_into('test', ['class_id', 'dt', 'subject_id'])->values(3);
-    $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param("isi", $class_id, $dt, $subject_id);
-
-    if($test->isOkay() && $stm->execute() ){
-
-        $response->ok([$db->get_last_insert_id()]);
-    }else{
-        $response->error([$db->get_error(), "Verificar os dados inseridos!"]);
-    }
-    return json_encode($response);
-}
-
 function find_by_criteria($critName, $critValue, $table, $type) {
     global $response, $db, $queryBuilder;
     prepare();

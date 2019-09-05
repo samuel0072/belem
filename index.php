@@ -36,13 +36,13 @@ $router->post('/belem/schoolmember/',
         echo insert_member($body['name'],$body['age'], $body['gender'], $body['enroll'], $body['schoolid'], $body['type'], $body['class_id']);
     }
 );
-
+/*
 $router->post('/belem/test',
     function ($request) {
         $body = $request->getBody();
         echo insert_test($body['date'], $body['class_id'], $body['subject_id']);
     }
-);
+);*/
 
 //retorna todos os estudantes de uma classe
 $router->get('/belem/class/students',

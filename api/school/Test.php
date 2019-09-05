@@ -7,12 +7,15 @@ class Test{
     private $class_id;
     private $date;
     private $subject_id;
+    private $nick;
 
-    function __construct($class_id , $date, $subject_id ){
+    public function __construct($class_id, $date, $subject_id, $nick){
         $this->class_id = $class_id;
         $this->date = $date;
         $this->subject_id = $subject_id;
+        $this->nick = $nick;
     }
+
 
     public function getDate(){
         return $this->date;
@@ -39,7 +42,7 @@ class Test{
         
         if($this->date == null){ // TODO: Formatation Check..
             $ok = false;
-        } 
+        }
 
         return $ok;
     }
