@@ -1,6 +1,6 @@
 Itens das especificações:
 
--   1 Cadastrar, atualizar e excluir uma prova no sistema e associar a uma turma
+-   1 Cadastrar e atualizar uma prova no sistema e associar a uma turma
 -   2 Cadastrar, atualizar e excluir questões e associar a uma prova e a um descritor
 -   3 Cadastrar, atualizar e excluir a resolução de um aluno de uma turma a uma prova
 -   4 Marcar uma prova como aplicada e corrigida, ou seja, todos os alunos tiveram suas resoluções cadastradas no sistema

@@ -32,7 +32,7 @@ function update_test($test_id, $class_id, $date, $subject_id, $nick) {
     $stm->bind_param("isisi",$class_id, $date, $subject_id, $nick, $test_id);
 
     if($test->isOkay() && $stm->execute()) {
-        $response->ok(["Teste atualizado"]);
+        $response->ok(["Prova atualizada"]);
     }
     else {
         $response->error(["verifique os dados informados"]);
