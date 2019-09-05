@@ -83,6 +83,7 @@ try {
     );
 }
 catch(Exception $exception) {
+    header();
     $response = new Response();
     $response->error("ops, ocorreu um erro interno");
     echo json_encode($response);
