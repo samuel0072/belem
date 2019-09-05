@@ -73,6 +73,16 @@ try {
             echo insert_ans_Test($var->sch_enroll, $var->test_id, $var->questions);
         }
     );
+    
+    $router->post('/belem/answered_test/update', 
+        function($request){
+            $body = $request->getBody();
+            $json = file_get_contents('php://input');
+            $var = json_decode($json);
+            echo insert_ans_Test($var->sch_enroll, $var->test_id, $var->questions);
+        }
+    );
+
 
     $router->get('/belem/schools/', function () {
         echo get_schools();
