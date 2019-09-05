@@ -17,6 +17,6 @@ class Ans_Test{
     }
 
     public function setQuestion($id, $answer){
-        $this->map_questions[$id] = $answer;
+        $this->map_questions['$id'] = $answer;
     }
 }
