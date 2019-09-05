@@ -10,7 +10,7 @@ class Test{
     private $nick;
     private $status;
 
-    public function __construct($class_id, $date, $subject_id, $nick, $status){
+    public function __construct($class_id, $date, $subject_id, $nick, $status= "inprogress"){
         $this->class_id = $class_id;
         $this->date = $date;
         $this->subject_id = $subject_id;
