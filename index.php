@@ -88,7 +88,4 @@ catch(Exception $exception) {
     $response->error("ops, ocorreu um erro interno");
     echo json_encode($response);
 }
-finally {
-    header("Status Code: 200 ok");
-}
 
