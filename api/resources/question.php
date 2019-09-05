@@ -45,7 +45,6 @@ function delete_question($question_id) {
     $queryBuilder->delete('question', ' id = ?');
 
     $stm = $db->prepare($queryBuilder->get_query());
-    //echo $db->get_error();
     $stm->bind_param("i", $question_id);
     if($stm->execute()) {
         $response->ok("Questao deletada");
