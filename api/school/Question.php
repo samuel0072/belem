@@ -47,12 +47,12 @@ class Question
         $ok = true;
         foreach ($this as $key => $value) {
             if($value == null) {
+                echo $value;
                 $ok = false;
                 break;
             }
         }
         return $ok;
-
     }
 
 }

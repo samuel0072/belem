@@ -25,7 +25,7 @@ function update_test($test_id, $class_id, $date, $subject_id, $nick, $status)
 {
     prepare();
     global $queryBuilder, $db, $response;
-    $test = new Test((int)$class_id, (string)$date, (int)$subject_id, (string)$nick, $status);
+    $test = new Test((int)$class_id, (string)$date, (int)$subject_id, (string)$nick, (string)$status);
     $queryBuilder->update('test')
         ->set(['class_id', 'dt', 'subject_id', 'nick', 'status'], ['?', '?', '?', '?' ,'?'])
         ->where("id = ?");
