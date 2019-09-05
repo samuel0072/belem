@@ -8,14 +8,16 @@ class Test{
     private $date;
     private $subject_id;
     private $nick;
+    private $status;
 
-    public function __construct($class_id, $date, $subject_id, $nick){
+    public function __construct($class_id, $date, $subject_id, $nick, $status)
+    {
         $this->class_id = $class_id;
         $this->date = $date;
         $this->subject_id = $subject_id;
         $this->nick = $nick;
+        $this->status = $status;
     }
-
 
     public function getDate(){
         return $this->date;

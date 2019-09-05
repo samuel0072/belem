@@ -12,8 +12,7 @@ class Question
     private $number;
     private $dificult;
 
-    public function __construct($test_id, $correct_answer, $topic_id, $number, $dificult = null)
-    {
+    public function __construct($test_id, $correct_answer, $topic_id, $number, $dificult = null){
         $this->test_id = $test_id;
         $this->correct_answer = $correct_answer;
         $this->topic_id = $topic_id;
@@ -22,26 +21,22 @@ class Question
     }
 
 
-    public function getTestId()
-    {
+    public function getTestId(){
         return $this->test_id;
     }
 
 
-    public function getCorrectAnswer()
-    {
+    public function getCorrectAnswer(){
         return $this->correct_answer;
     }
 
 
-    public function getTopicId()
-    {
+    public function getTopicId(){
         return $this->topic_id;
     }
 
 
-    public function getNumber()
-    {
+    public function getNumber(){
         return $this->number;
     }
 
