@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 05, 2019 at 01:56 PM
+-- Generation Time: Sep 05, 2019 at 06:43 PM
 -- Server version: 10.3.14-MariaDB
 -- PHP Version: 7.2.18
 
@@ -49,10 +49,17 @@ CREATE TABLE IF NOT EXISTS `gradeclass` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `classLetter` varchar(1) DEFAULT NULL,
   `gradeNumber` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `school_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_gradeclass_01` (`school_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `gradeclass`
+--
 
+INSERT INTO `gradeclass` (`id`, `classLetter`, `gradeNumber`, `school_id`) VALUES
+(2, 'A', 3, 4);
 
 -- --------------------------------------------------------
 
@@ -67,6 +74,8 @@ CREATE TABLE IF NOT EXISTS `question` (
   `correct_answer` varchar(1) DEFAULT NULL,
   `topic_id` int(11) DEFAULT NULL,
   `number` int(11) DEFAULT NULL,
+  `dificult` enum('f','m','d') DEFAULT NULL,
+  `nick` varchar(300) DEFAULT 'sem titulo',
   PRIMARY KEY (`id`),
   KEY `test_id` (`test_id`),
   KEY `topic_id` (`topic_id`)
@@ -98,12 +107,15 @@ CREATE TABLE IF NOT EXISTS `school` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `school`
 --
 
+INSERT INTO `school` (`id`, `name`) VALUES
+(3, 'UFAL'),
+(4, 'ic');
 
 -- --------------------------------------------------------
 
@@ -158,16 +170,19 @@ CREATE TABLE IF NOT EXISTS `test` (
   `dt` date NOT NULL,
   `class_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
-  `nick` varchar(300) DEFAULT NULL,
+  `nick` varchar(300) DEFAULT 'sem titulo',
+  `status` enum('ready','inprogress') DEFAULT 'inprogress',
   PRIMARY KEY (`id`),
   KEY `class_id` (`class_id`),
   KEY `subject_id` (`subject_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `test`
 --
 
+INSERT INTO `test` (`id`, `dt`, `class_id`, `subject_id`, `nick`, `status`) VALUES
+(21, '2019-12-18', 2, 1, 'testing2', 'inprogress');
 
 -- --------------------------------------------------------
 
@@ -180,15 +195,26 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) NOT NULL,
   `subject_id` int(11) NOT NULL,
-  `dificult` enum('f','m','d') DEFAULT NULL,
-  `test_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `subject_id` (`subject_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `topic`
+--
+
+INSERT INTO `topic` (`id`, `name`, `subject_id`) VALUES
+(1, 'd1', 2);
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `gradeclass`
+--
+ALTER TABLE `gradeclass`
+  ADD CONSTRAINT `FK_gradeclass_01` FOREIGN KEY (`school_id`) REFERENCES `school` (`id`);
 
 --
 -- Constraints for table `schoolmember`
