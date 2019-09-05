@@ -63,11 +63,13 @@ try {
     );
 
     //cadastrar, atualizar e excluir a resolucao de um aluno
-    $router->post('/belem/answered_test'){
+    $router->post('/belem/answered_test', 
         function($request){
             $body = $request->getBody();
+            $var = json_decode($body[""]); //TODO:
+            //echo insert_ans_Test($var.e)
         }
-    }
+    );
 
     $router->get('/belem/schools/', function () {
         echo get_schools();
