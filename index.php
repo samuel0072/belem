@@ -3,6 +3,8 @@
 include_once __DIR__ . '/api/router/Router.php';
 include_once __DIR__ . '/api/router/IRequest.php';
 include_once __DIR__ . '/api/router/Request.php';
+include_once __DIR__ . '/api/util/Response.php';
+
 
 include_once __DIR__ . '/api/resources/schoolmember.php';
 include_once __DIR__ . '/api/resources/school.php';
@@ -12,6 +14,7 @@ include_once __DIR__ . '/api/resources/question.php';
 
 use routes\Router as Router;
 use routes\Request as Request;
+use util\Response;
 
 $router = new Router(new Request);
 
@@ -71,6 +74,8 @@ try {
     );
 }
 catch(Exception $exception) {
-    $response = new
+    $response = new Response();
+    $response->error("ops, ocorreu um erro interno");
+    echo json_encode($response);
 }
 

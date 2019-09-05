@@ -5,7 +5,7 @@ namespace api\School;
 
 
 class Topic{
-    $name;
-    $subject_id;
-    
+    private $name;
+    private $subject_id;
+
 }
