@@ -5,7 +5,7 @@ use api\School\Question;
 function insert_question($test_id, $correct_answer, $topic_id, $number) {
     prepare();
     global $queryBuilder, $db, $response;
-    $question = new Question($test_id, $correct_answer, $topic_id, $number);
+    $question = new Question((int)$test_id, (int)$correct_answer, (int)$topic_id, (int)$number);
     $queryBuilder->insert_into('question', ['test_id', 'correct_answer', 'topic_id', 'number'])->values(4);
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("isii", $test_id, $correct_answer, $topic_id, $number);
@@ -19,15 +19,15 @@ function insert_question($test_id, $correct_answer, $topic_id, $number) {
     return json_encode($response);
 }
 
-function update_question($question_id, $test_id, $correct_answer, $topic_id, $number) {
+function update_question($question_id, $test_id, $correct_answer, $topic_id, $number, $dificult) {
     prepare();
     global $queryBuilder, $db, $response;
-    $question = new Question($test_id, $correct_answer, $topic_id, $number);
+    $question = new Question($test_id, $correct_answer, $topic_id, $number, $dificult);
     $queryBuilder->update('test')
-        ->set(['test_id', 'correct_answer', 'topic_id', 'number'], ['?', '?', '?', '?'])
+        ->set(['test_id', 'correct_answer', 'topic_id', 'number', 'dificult'], ['?', '?', '?', '?', '?'])
         ->where("id = ?");
     $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param("isisi",$test_id, $correct_answer, $topic_id, $number, $question_id);
+    $stm->bind_param("isisis",$test_id, $correct_answer, $topic_id, $number, $question_id, $dificult);
 
     if($question->isOkay() && $stm->execute()) {
         $response->ok(["Questao atualizada"]);

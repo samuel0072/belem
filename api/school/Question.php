@@ -10,6 +10,16 @@ class Question
     private $correct_answer;
     private $topic_id;
     private $number;
+    private $dificult;
+
+    public function __construct($test_id, $correct_answer, $topic_id, $number, $dificult = null)
+    {
+        $this->test_id = $test_id;
+        $this->correct_answer = $correct_answer;
+        $this->topic_id = $topic_id;
+        $this->number = $number;
+        $this->dificult = $dificult;
+    }
 
 
     public function getTestId()
@@ -35,13 +45,15 @@ class Question
         return $this->number;
     }
 
+    public function isOkay() {
+        $ok = false;
+        foreach ($this as $key => $value) {
+            if($value == null) {
+                $ok = false;
+                break;
+            }
+        }
 
-    public function __construct($test_id, $correct_answer, $topic_id, $number)
-    {
-        $this->test_id = $test_id;
-        $this->correct_answer = $correct_answer;
-        $this->topic_id = $topic_id;
-        $this->number = $number;
     }
 
 }
