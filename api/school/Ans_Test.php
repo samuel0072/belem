@@ -19,4 +19,23 @@ class Ans_Test{
     public function setQuestion($id, $answer){
         $this->map_questions['$id'] = $answer;
     }
+
+    public function isOkay(){
+        $ok = true;
+
+        foreach ($this as $key => $value) {
+            if($value == null) {
+                $ok = false;
+                return $ok;
+            }
+        }
+
+        if(!is_int($this->enroll_number) || !is_int($this->test_id)){
+            $ok = false;
+        }else if($this->enroll_number <= 0 || $this->test_id <= 0){
+            $ok = false;
+        }
+
+        return $ok;
+    }
 }

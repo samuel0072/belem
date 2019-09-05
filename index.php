@@ -66,8 +66,8 @@ try {
     $router->post('/belem/answered_test', 
         function($request){
             $body = $request->getBody();
-            //$var = json_decode($body[""]); //TODO:
-            //echo insert_ans_Test($var.sch_enroll, $var.test_id, $var.questions);
+            $var = json_decode($body["answered_test"]);
+            echo insert_ans_Test($var.sch_enroll, $var.test_id, $var.questions);
         }
     );
 
