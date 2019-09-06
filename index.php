@@ -40,7 +40,6 @@ try {
         }
     );
 
-//cria uma serie
     $router->post('/belem/class/',
         function($request) {
             $body = $request->getBody();
