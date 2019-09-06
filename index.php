@@ -34,14 +34,15 @@ try {
     $router->post('/belem/class/',
         function($request) {
             $body = $request->getBody();
-            echo insert_class($body['letter'], $body['gradeNumber'], $body['schoolId']);
+            echo insert_class($body['letter'], $body['grade_number'], $body['school_id']);
         }
     );
+
 //cria um membro da escola
     $router->post('/belem/schoolmember/',
         function($request) {
             $body = $request->getBody();
-            echo insert_member($body['name'],$body['age'], $body['gender'], $body['enroll'], $body['schoolid'], $body['type'], $body['class_id']);
+            echo insert_member($body['name'],$body['age'], $body['gender'], $body['enroll'], $body['school_id'], $body['type'], $body['class_id']);
         }
     );
 
@@ -112,11 +113,17 @@ try {
     $router->get('/belem/schools/', function () {
         echo get_schools();
     });
-//retorna todos os estudantes de uma classe
+    //retorna todos os estudantes de uma classe
     $router->get('/belem/class/students',
         function($request) {
             $params = $request->getURLParams();
-            echo get_class_students($params["schoolId"], $params["classId"]);
+            echo get_class_students($params["class_id"]);
+        }
+    );
+    $router->get('/belem/classes',
+        function($request) {
+            $params = $request->getURLParams();
+            echo get_all_classes($params["school_id"]);
         }
     );
 }

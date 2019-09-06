@@ -17,7 +17,7 @@ function insert_class($classLetter, $gradeNumber, $schoolId) {
     $stm->bind_param("isi", $gradeNumber, $classLetter, $schoolId);
 
     if($class->isOkay() && $stm->execute()) {
-        $response->ok($class);
+        $response->ok($db->get_last_insert_id());
     }
     else {
         $response->error([$db->get_error(), "verificar os dados inseridos"]);
@@ -41,16 +41,22 @@ function find_by_criteria($critName, $critValue, $table, $type) {
     return json_encode($response);
 }
 
-function get_class_students($schoolId, $classId) {
+function get_class_students($classId) {
     global $response, $queryBuilder, $db;
     prepare();
-    $queryBuilder->select("C.*")->from("school A, schoolmember C, classmember D")
-        ->where("A.id = $schoolId")
-        ->where("D.classid = $classId")
-        ->where("D.schoolmember = C.enrollnumber")
-        ->where("C.type='aluno'");
-    if($db->query($queryBuilder->get_query())) {
-        $response->ok($db->fetch_all());
+    $queryBuilder->select(["C.*"])->from("schoolmember C")
+        ->where("C.class_id=?");
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param("i", $classId);
+    if($stm->execute()) {
+        $students = array();
+        $stm->bind_result($enroll_number, $name, $age, $gender, $type, $school_id, $class_id);
+        while($stm->fetch()) {
+            $string = '{"enroll_number":'.$enroll_number.' ,"name":"'. $name.'","age":'.$age.', "gender":"'.$gender.'", "type":"'.$type.'", "school_id":'.$school_id.', "class_id":'.$class_id.'}';
+            $students[] = json_decode($string);
+        }
+        $response->ok($students);
+        $stm->close();
     }
     else{
         $response->error([$db->get_error(), $queryBuilder->get_query()]);
@@ -58,31 +64,25 @@ function get_class_students($schoolId, $classId) {
     return json_encode($response);
 }
 
-function get_grade_class($gradeNumber){
-    prepare();
-    global $queryBuilder, $db, $response;
-    $queryBuilder->select(['*'])->from('Gradeclass')->where("gradeNumber = $gradeNumber");
-    if ($db->query($queryBuilder->get_query())) {
-        $response->ok($db->fetch_all());
-    } else {
-        $response->error([$db->get_error(), $queryBuilder->get_query()]);
-    }
-    return json_encode($response);
-}
-
-function delete_school_member($enrollNumber) {
+function get_all_classes($school_id) {
     global $response, $db, $queryBuilder;
     prepare();
-    $queryBuilder->delete('schoolmember', 'enrollnumber=?');
+    $queryBuilder->select(["*"])->from("gradeclass")->where("school_id = ?");
     $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param('i', $enrollNumber);
-
+    $stm->bind_param("i", $school_id);
+    echo $db->get_error();
     if($stm->execute()) {
-        $response->ok([$db->fetch_all()]);
+        $classes = array();
+        $stm->bind_result($id, $classLetter, $gradeNumber, $school_id2);
+        while($stm->fetch()) {
+            $string = '{"id":'.$id.' ,"grade_number":'. $gradeNumber.',"class_letter":"'.$classLetter.'"}';
+            $classes[] = json_decode($string);
+        }
+        $response->ok($classes);
+        $stm->close();
     }
     else {
-        $response->error([$db->get_error(), "Ocorreu um erro ao deletar. Verificar se as informacoes estao corretas"]);
+        $response->error($db->get_error());
     }
     return json_encode($response);
-
 }

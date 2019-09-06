@@ -8,13 +8,13 @@ function insert_member($name,$age, $gender, $enroll, $schoolid, $type, $class_id
     prepare();
 
     global $response, $queryBuilder, $db;
-    $member= new SchoolMember($name,$age, $gender, $enroll, $schoolid, $type);
+    $member= new SchoolMember($name,(int)$age, $gender, (int)$enroll, (int)$schoolid, $type, (int)$class_id);
 
-    $queryBuilder->insert_into('schoolmember', ['name','age','gender','enrollnumber','schoolid', 'type', 'class_is'])
-        ->values(6);
+    $queryBuilder->insert_into('schoolmember', ['name','age','gender','enrollnumber','schoolid', 'type', 'class_id'])
+        ->values(7);
 
     $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param("sisiisi",$name, $age, $gender, $enroll, $schoolid, $class_id);
+    $stm->bind_param("sisiisi",$name, $age, $gender, $enroll, $schoolid,$type, $class_id);
 
     if($member->isOkay() && $stm->execute())  {
         return get_member($enroll);

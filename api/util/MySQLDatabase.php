@@ -35,6 +35,7 @@ class MySQLDatabase extends Database{
     }
 
     function fetch_assoc(){
+
         return $this->result->fetch_assoc();
     }
 
