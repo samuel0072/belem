@@ -100,7 +100,7 @@ function get_test_status($test_id){
             $response->ok(json_decode('{"status": "'.$status.'"}'));
         }
         $stm->close();
-        
+
     }else{
         $response->error($db->get_error());
     }
@@ -112,6 +112,6 @@ function correct_test($test_id){
     global $queryBuilder, $db, $response;
 
     if(get_test_status($test_id)){
-        
+        $ans_test = get_ans_test($test_id);
     }
 }

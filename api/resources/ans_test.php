@@ -89,7 +89,7 @@ function get_ans_test($test_id){
     global $queryBuilder, $db, $response;
 
     $queryBuilder
-        ->select(['id', 'schoolmember_enroll'])
+        ->select('*')
         ->from('answered_test')
         ->where('test_id = ? and done = ?');
 
@@ -97,16 +97,22 @@ function get_ans_test($test_id){
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("ii", $test_id, $var);
 
-    if($stm->execute()){
-        $stm->bind_result($id, $schoolmember_enroll);
+    $response->error($db->get_error());
 
-        if($stm->fetch()){
-            $string = '{ "id":'.$id.',"schoolmember_enroll":'.$schoolmember_enroll.' }';
-            $ans_test = json_decode($string);
+    if($stm->execute()){
+        $stm->bind_result($id, $test_id, $schoolmember_enroll, $score, $done);
+
+        while($stm->fetch()){
+            $string = '{ 
+                "id":'.$id.',
+                "test_id":'.$test_id.',
+                "schoolmember_enroll":'.$schoolmember_enroll.',
+                "score":'.$score.',
+                "done":'.$done.'
+            }';
+            $ans_test[] = json_decode($string);
             $response->ok($ans_test);
-        }else{
-            $response->error($db->get_error());
         }
     }
-    return json_encode($response);
+    return json_encode($response->object);
 }
