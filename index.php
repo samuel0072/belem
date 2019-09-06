@@ -40,7 +40,6 @@ try {
         }
     );
 
-//cria uma serie
     $router->post('/belem/class/',
         function($request) {
             $body = $request->getBody();
@@ -106,8 +105,7 @@ try {
 
     //cadastrar a resolucao de um aluno
     $router->post('/belem/answered_test',
-        function($request){
-            $body = $request->getBody();
+        function(){
             $json = file_get_contents('php://input');
             $var = json_decode($json);
             echo insert_ans_Test($var->schoolmember_enroll, $var->test_id, $var->questions);
@@ -115,8 +113,7 @@ try {
     );
     //atualizar a resolucao de um aluno
     $router->post('/belem/answered_test/update', 
-        function($request){
-            $body = $request->getBody();
+        function(){
             $json = file_get_contents('php://input');
             $var = json_decode($json);
             echo update_ans_Test($var->ans_test_id, $var->answers);
@@ -159,6 +156,13 @@ try {
         function ($request) {
             $params = $request->getURLParams();
             echo get_tests_by_class($params["class_id"]);
+        }
+    );
+
+    $router->get('/belem/test/questions',
+        function($request) {
+            $params = $request->getURLparams();
+            echo get_questions_by_test($params["test_id"]);
         }
     );
 }

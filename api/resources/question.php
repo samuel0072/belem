@@ -55,3 +55,29 @@ function delete_question($question_id) {
     }
     return json_encode($response);
 }
+
+
+function get_questions_by_test($test_id) {
+    prepare();
+    global $queryBuilder, $db, $response;
+
+    $queryBuilder->select(["*"])
+        ->from("question")
+        ->where("test_id= ?");
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param("i", $test_id);
+    if($stm->execute()) {
+        $questions = array();
+        $stm->bind_result($id, $test_id, $correct_answer, $topic_id, $number, $dificult, $nick, $option_quant);
+        while($stm->fetch()) {
+            $string = '{"id":'.$id.' ,"test_id":'. $test_id.',"correct_answer":"'.$correct_answer.'", "topic_id":'.$topic_id.',"number":'.$number.', "dificult":"'.$dificult.'", "nick":"'.$nick.'", "option_quant":'.$option_quant.'}';
+            $questions[] = json_decode($string);
+        }
+        $response->ok($questions);
+        $stm->close();
+    }
+    else {
+        $response->error("Verifique os dados informados");
+    }
+    return json_encode($response);
+}
