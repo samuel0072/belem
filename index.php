@@ -73,6 +73,14 @@ try {
             echo set_test_status($body["test_id"], $body["status"]);
     });
 
+    $router->post('/belem/test/correct',
+        function($request) {
+            $body = $request->getBody();
+            $json = file_get_contents('php://input');
+            $var = json_decode($json);
+            echo get_test_status($var->test_id);
+    });
+
     $router->post('/belem/question',
         function($request) {
             $body = $request->getBody();
@@ -82,7 +90,7 @@ try {
     $router->post('/belem/question/update',
         function($request) {
             $body = $request->getBody();
-            echo update_question($body["question_id"], $body["test_id"], $body["correct_answer"], $body["topic_id"], $body["number"], $body["nick"], $body["option_quant"],$body["dificult"]);
+            echo update_question($body["question_id"], $body["test_id"], $body["correct_answer"], $body["topic_id"], $body["number"], $body["nick"], $body["option_quant"], $body["dificult"]);
         }
     );
 

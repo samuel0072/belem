@@ -1,8 +1,6 @@
 <?php
 
-
 namespace api\School;
-
 
 class GradeClass{
     private $gradeNumber;

@@ -79,3 +79,38 @@ function get_tests_by_class($class_id) {
     }
     return json_encode($response);
 }
+
+function get_test_status($test_id){
+
+    prepare();
+    global $queryBuilder, $db, $response;
+    
+    $queryBuilder
+        ->select('status')
+        ->from('test')
+        ->where("id = ?");
+
+    $stm = $db->prepare($queryBuilder->get_query());    
+    $stm->bind_param("i", $test_id);
+    
+    if($stm->execute()){
+
+        $stm->bind_result($status);
+        if($stm->fetch()){
+            $response->ok(json_decode('{"status": "'.$status.'"}'));
+        }
+
+    }else{
+        $response->error($db->get_error());
+    }
+    return $response == "inprogress" ? json_encode($response) : json_encode($response);
+}
+
+function correct_test($test_id){
+    prepare();
+    global $queryBuilder, $db, $response;
+
+    if(get_test_status($test_id)){
+
+    }
+}

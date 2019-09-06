@@ -6,6 +6,7 @@ abstract class Database{
     protected $db_connection;
 
     public function __construct(){
+        
     }
 
     public function get_db_connection(){
