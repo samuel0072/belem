@@ -89,7 +89,7 @@ function get_ans_test($test_id){
     global $queryBuilder, $db, $response;
 
     $queryBuilder
-        ->select('*')
+        ->select(['*'])
         ->from('answered_test')
         ->where('test_id = ? and done = ?');
 

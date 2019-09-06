@@ -74,6 +74,14 @@ try {
             echo set_test_status($body["test_id"], $body["status"]);
         }
     );
+    $router->post('/belem/test/get', 
+        function($request){
+            $body = $request->getBody();
+            $json = file_get_contents('php://input');
+            $var = json_decode($json);
+            echo get_test_byID($var->test_id);
+        }
+    );
 
     $router->post('/belem/test/correct',
         function($request) {

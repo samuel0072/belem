@@ -107,11 +107,42 @@ function get_test_status($test_id){
     return $response->object->status == "inprogress";
 }
 
-function correct_test($test_id){
+function get_test_byID($test_id){
+
+    prepare();
+    global $queryBuilder, $db, $response;
+    
+    $queryBuilder
+        ->select(['id', 'status'])
+        ->from('test')
+        ->where("id = ?");
+
+    $stm = $db->prepare($queryBuilder->get_query());    
+    $stm->bind_param("i", $test_id);
+    
+    if($stm->execute()){
+
+        $stm->bind_result($id, $status);
+
+        if($stm->fetch()){
+            $test = json_decode('{"id",'.$id.' "status": "'.$status.'"}');
+            $response->ok($test);
+        }
+
+    }else{
+        $response->error($db->get_error());
+    }
+    return json_encode($response);
+}
+
+function correct_test($test_id, $class_id){
     prepare();
     global $queryBuilder, $db, $response;
 
     if(get_test_status($test_id)){
+        $test = get_tests_by_class($class_id);
         $ans_test = get_ans_test($test_id);
+
+
     }
 }
