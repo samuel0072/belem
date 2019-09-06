@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 05, 2019 at 06:43 PM
+-- Generation Time: Sep 06, 2019 at 06:16 PM
 -- Server version: 10.3.14-MariaDB
 -- PHP Version: 7.2.18
 
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `answered_test` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `test_id` int(11) DEFAULT NULL,
   `schoolmember_enroll` int(11) DEFAULT NULL,
+  `score` int(11) DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `schoolmember_enroll` (`schoolmember_enroll`),
   KEY `test_id` (`test_id`)
@@ -52,14 +53,17 @@ CREATE TABLE IF NOT EXISTS `gradeclass` (
   `school_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_gradeclass_01` (`school_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gradeclass`
 --
 
 INSERT INTO `gradeclass` (`id`, `classLetter`, `gradeNumber`, `school_id`) VALUES
-(2, 'A', 3, 4);
+(2, 'A', 3, 4),
+(3, 'A', 1, 5),
+(4, 'B', 1, 5),
+(5, 'C', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -71,11 +75,12 @@ DROP TABLE IF EXISTS `question`;
 CREATE TABLE IF NOT EXISTS `question` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `test_id` int(11) NOT NULL,
-  `correct_answer` varchar(1) DEFAULT NULL,
+  `correct_answer` int(11) DEFAULT NULL,
   `topic_id` int(11) DEFAULT NULL,
   `number` int(11) DEFAULT NULL,
   `dificult` enum('f','m','d') DEFAULT NULL,
   `nick` varchar(300) DEFAULT 'sem titulo',
+  `option_quant` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `test_id` (`test_id`),
   KEY `topic_id` (`topic_id`)
@@ -107,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `school` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `school`
@@ -115,7 +120,8 @@ CREATE TABLE IF NOT EXISTS `school` (
 
 INSERT INTO `school` (`id`, `name`) VALUES
 (3, 'UFAL'),
-(4, 'ic');
+(4, 'ic'),
+(5, 'ufal');
 
 -- --------------------------------------------------------
 
@@ -136,6 +142,18 @@ CREATE TABLE IF NOT EXISTS `schoolmember` (
   KEY `schoolid` (`schoolid`),
   KEY `class_id` (`class_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `schoolmember`
+--
+
+INSERT INTO `schoolmember` (`enrollnumber`, `name`, `age`, `gender`, `type`, `schoolid`, `class_id`) VALUES
+(1, 'Samuel', 20, 'masculino', 'aluno', 5, 4),
+(10, 'Valerio', 20, 'masculino', 'aluno', 5, 3),
+(11, 'Jhonnye', 19, 'masculino', 'aluno', 5, 4),
+(101, 'Hugo', 20, 'masculino', 'aluno', 5, 5),
+(111, 'Caio', 20, 'masculino', 'aluno', 5, 5),
+(190, 'Algusto', 20, 'masculino', 'aluno', 5, 3);
 
 -- --------------------------------------------------------
 
@@ -175,14 +193,16 @@ CREATE TABLE IF NOT EXISTS `test` (
   PRIMARY KEY (`id`),
   KEY `class_id` (`class_id`),
   KEY `subject_id` (`subject_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `test`
 --
 
 INSERT INTO `test` (`id`, `dt`, `class_id`, `subject_id`, `nick`, `status`) VALUES
-(21, '2019-12-18', 2, 1, 'testing2', 'inprogress');
+(21, '2019-12-18', 2, 1, 'testing2', 'inprogress'),
+(22, '2019-09-06', 4, 1, 'prova1', 'inprogress'),
+(23, '2019-09-06', 4, 1, 'prova1', 'inprogress');
 
 -- --------------------------------------------------------
 

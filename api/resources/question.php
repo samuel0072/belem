@@ -5,10 +5,10 @@ use api\School\Question;
 function insert_question($test_id, $correct_answer, $topic_id, $number, $nick, $option_quant) {
     prepare();
     global $queryBuilder, $db, $response;
-    $question = new Question((int)$test_id, $correct_answer, (int)$topic_id, (int)$number, $nick);
+    $question = new Question((int)$test_id, $correct_answer, (int)$topic_id, (int)$number, $nick, (int)$option_quant);
     $queryBuilder->insert_into('question', ['test_id', 'correct_answer', 'topic_id', 'number', 'nick', 'option_quant'])->values(6);
     $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param("isiisi", $test_id, $correct_answer, $topic_id, $number, $nick, $option_quant);
+    $stm->bind_param("iiiisi", $test_id, $correct_answer, $topic_id, $number, $nick, $option_quant);
 
     if($question->isOkay() && $stm->execute()) {
         $response->ok($db->get_last_insert_id());
@@ -19,16 +19,16 @@ function insert_question($test_id, $correct_answer, $topic_id, $number, $nick, $
     return json_encode($response);
 }
 
-function update_question($question_id, $test_id, $correct_answer, $topic_id, $number,$nick, $dificult) {
+function update_question($question_id, $test_id, $correct_answer, $topic_id, $number,$nick, $option_quant, $dificult) {
     prepare();
     global $queryBuilder, $db, $response;
-    $question = new Question($test_id, $correct_answer, $topic_id, $number, $nick, $dificult);
+    $question = new Question($test_id, $correct_answer, $topic_id, $number, $nick,$option_quant, $dificult);
     $queryBuilder->update('question')
-        ->set(['test_id', 'correct_answer', 'topic_id', 'number', 'dificult', 'nick'], ['?', '?', '?', '?', '?', '?'])
+        ->set(['test_id', 'correct_answer', 'topic_id', 'number', 'dificult', 'nick', 'option_quant'], ['?', '?', '?', '?', '?', '?', '?'])
         ->where("id = ?");
     $stm = $db->prepare($queryBuilder->get_query());
 
-    $stm->bind_param("isiissi",$test_id, $correct_answer, $topic_id, $number, $dificult, $nick, $question_id);
+    $stm->bind_param("isiissii",$test_id, $correct_answer, $topic_id, $number, $dificult, $nick, $option_quant,$question_id);
 
     if($question->isOkay() && $stm->execute()) {
         $response->ok(["Questao atualizada"]);
