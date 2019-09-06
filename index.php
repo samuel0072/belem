@@ -23,7 +23,7 @@ $router = new Router(new Request);
 header("Content-Type: application/json; charset=utf-8");
 
 function customError($errno, $errstr) {
-    header("Status Code: 400 Bad Request");
+    header("Status Code: 501 Not Implemented");
     $response = new Response();
     $response->error([$errno, $errstr]);
     echo json_encode($response);
@@ -76,7 +76,7 @@ try {
     $router->post('/belem/question',
         function($request) {
             $body = $request->getBody();
-            echo insert_question($body["test_id"], $body["correct_answer"], $body["topic_id"], $body["number"], $body["nick"]);
+            echo insert_question($body["test_id"], $body["correct_answer"], $body["topic_id"], $body["number"], $body["nick"], $body["option_quant"]);
         }
     );
     $router->post('/belem/question/update',
@@ -144,7 +144,7 @@ try {
     );
 }
 catch(Exception $exception) {
-    header("Status Code: 500 Internal Server Error");
+    header("Status Code: 501 Not Implemented");
     $response = new Response();
     $response->error("ops, ocorreu um erro interno");
     echo json_encode($response);

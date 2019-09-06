@@ -2,13 +2,13 @@
 include_once __DIR__ . '/../school/Question.php';
 use api\School\Question;
 
-function insert_question($test_id, $correct_answer, $topic_id, $number, $nick) {
+function insert_question($test_id, $correct_answer, $topic_id, $number, $nick, $option_quant) {
     prepare();
     global $queryBuilder, $db, $response;
     $question = new Question((int)$test_id, $correct_answer, (int)$topic_id, (int)$number, $nick);
-    $queryBuilder->insert_into('question', ['test_id', 'correct_answer', 'topic_id', 'number', 'nick'])->values(5);
+    $queryBuilder->insert_into('question', ['test_id', 'correct_answer', 'topic_id', 'number', 'nick', 'option_quant'])->values(6);
     $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param("isiis", $test_id, $correct_answer, $topic_id, $number, $nick);
+    $stm->bind_param("isiisi", $test_id, $correct_answer, $topic_id, $number, $nick, $option_quant);
 
     if($question->isOkay() && $stm->execute()) {
         $response->ok($db->get_last_insert_id());
