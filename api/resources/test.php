@@ -99,11 +99,12 @@ function get_test_status($test_id){
         if($stm->fetch()){
             $response->ok(json_decode('{"status": "'.$status.'"}'));
         }
-
+        $stm->close();
+        
     }else{
         $response->error($db->get_error());
     }
-    return $response == "inprogress" ? json_encode($response) : json_encode($response);
+    return $response->object->status == "inprogress";
 }
 
 function correct_test($test_id){
@@ -111,6 +112,6 @@ function correct_test($test_id){
     global $queryBuilder, $db, $response;
 
     if(get_test_status($test_id)){
-
+        
     }
 }

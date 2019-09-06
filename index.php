@@ -30,7 +30,7 @@ function customError($errno, $errstr) {
     die();
 }
 
-set_error_handler("customError");
+//set_error_handler("customError");
 
 try {
     $router->post('/belem/school/',
@@ -59,19 +59,22 @@ try {
     $router->post('/belem/test',
         function ($request) {
             $body = $request->getBody();
-            echo insert_test($body['class_id'],$body['date'],  $body['subject_id'], $body['nick']);
+            echo insert_test($body['class_id'], $body['date'], $body['subject_id'], $body['nick']);
         }
     );
     $router->post('/belem/test/update',
         function($request) {
             $body = $request->getBody();
             echo update_test($body["test_id"], $body["class_id"], $body["date"], $body["subject_id"], $body["nick"], $body["status"]);
-        });
+        }
+    );
+
     $router->post('/belem/test/change_status',
         function($request) {
             $body = $request->getBody();
             echo set_test_status($body["test_id"], $body["status"]);
-    });
+        }
+    );
 
     $router->post('/belem/test/correct',
         function($request) {
@@ -107,7 +110,7 @@ try {
             $body = $request->getBody();
             $json = file_get_contents('php://input');
             $var = json_decode($json);
-            echo insert_ans_Test($var->sch_enroll, $var->test_id, $var->questions);
+            echo insert_ans_Test($var->schoolmember_enroll, $var->test_id, $var->questions);
         }
     );
     //atualizar a resolucao de um aluno
@@ -124,6 +127,14 @@ try {
         function($request){
             $body = $request->getBody();
             echo delete_ans_Test($body['answered_test_id']);
+        }
+    );
+    $router->post('/belem/answered_test/get', 
+        function($request){
+            $body = $request->getBody();
+            $json = file_get_contents('php://input');
+            $var = json_decode($json);
+            echo get_ans_test($var->test_id);
         }
     );
 
