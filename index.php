@@ -30,7 +30,7 @@ function customError($errno, $errstr) {
     die();
 }
 
-set_error_handler("customError");
+//set_error_handler("customError");
 
 try {
     $router->post('/belem/school/',
@@ -145,6 +145,13 @@ try {
         function ($request) {
             $params = $request->getURLParams();
             echo get_tests_by_class($params["class_id"]);
+        }
+    );
+
+    $router->get('/belem/test/questions',
+        function($request) {
+            $params = $request->getURLparams();
+            echo get_questions_by_test($params["test_id"]);
         }
     );
 }
