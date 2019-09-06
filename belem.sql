@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 06, 2019 at 06:16 PM
+-- Generation Time: Sep 06, 2019 at 06:18 PM
 -- Server version: 10.3.14-MariaDB
 -- PHP Version: 7.2.18
 
@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `answered_test` (
   `test_id` int(11) DEFAULT NULL,
   `schoolmember_enroll` int(11) DEFAULT NULL,
   `score` int(11) DEFAULT 0,
+  `done` binary(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `schoolmember_enroll` (`schoolmember_enroll`),
   KEY `test_id` (`test_id`)
