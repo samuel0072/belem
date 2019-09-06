@@ -1,7 +1,6 @@
 <?php
 
 namespace api\School;
-
 class Ans_Test{
 
     private $enroll_number;
