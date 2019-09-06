@@ -22,6 +22,16 @@ $router = new Router(new Request);
 
 header("Content-Type: application/json; charset=utf-8");
 
+function customError($errno, $errstr) {
+    header("Status Code: 400 Bad Request");
+    $response = new Response();
+    $response->error([$errno, $errstr]);
+    echo json_encode($response);
+    die();
+}
+
+set_error_handler("customError");
+
 try {
     $router->post('/belem/school/',
         function($request) {
@@ -124,6 +134,12 @@ try {
         function($request) {
             $params = $request->getURLParams();
             echo get_all_classes($params["school_id"]);
+        }
+    );
+    $router->get('/belem/test/class',
+        function ($request) {
+            $params = $request->getURLParams();
+            echo get_tests_by_class($params["class_id"]);
         }
     );
 }

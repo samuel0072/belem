@@ -55,3 +55,27 @@ function set_test_status($test_id, $status) {
     }
     return json_encode($response);
 }
+
+function get_tests_by_class($class_id) {
+    prepare();
+    global $queryBuilder, $db, $response;
+    $queryBuilder->select(["*"])->from("test")
+        ->where("class_id = ?");
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param("i", $class_id);
+
+    if($stm->execute()) {
+        $test = array();
+        $stm->bind_result($id, $dt, $class_id, $subject_id, $nick, $status);
+        while($stm->fetch()) {
+            $string = '{"id":'.$id.' ,"date":"'. $dt.'","class_id":'.$class_id.', "subject_id":'.$subject_id.', "nick":"'.$nick.'", "status":"'.$status.'", "class_id":'.$class_id.'}';
+            $test[] = json_decode($string);
+        }
+        $response->ok($test);
+        $stm->close();
+    }
+    else {
+        $response->error($db->get_error());
+    }
+    return json_encode($response);
+}
