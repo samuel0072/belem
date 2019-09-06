@@ -82,7 +82,7 @@ try {
     $router->post('/belem/question/update',
         function($request) {
             $body = $request->getBody();
-            echo update_question($body["question_id"], $body["test_id"], $body["correct_answer"], $body["topic_id"], $body["number"], $body["nick"], $body["dificult"]);
+            echo update_question($body["question_id"], $body["test_id"], $body["correct_answer"], $body["topic_id"], $body["number"], $body["nick"], $body["option_quant"],$body["dificult"]);
         }
     );
 
@@ -95,8 +95,7 @@ try {
 
     //cadastrar a resolucao de um aluno
     $router->post('/belem/answered_test',
-        function($request){
-            $body = $request->getBody();
+        function(){
             $json = file_get_contents('php://input');
             $var = json_decode($json);
             echo insert_ans_Test($var->sch_enroll, $var->test_id, $var->questions);
@@ -104,8 +103,7 @@ try {
     );
     //atualizar a resolucao de um aluno
     $router->post('/belem/answered_test/update', 
-        function($request){
-            $body = $request->getBody();
+        function(){
             $json = file_get_contents('php://input');
             $var = json_decode($json);
             echo update_ans_Test($var->ans_test_id, $var->answers);
