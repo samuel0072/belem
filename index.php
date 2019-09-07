@@ -1,8 +1,8 @@
 <?php
 
-include_once __DIR__ . '/api/router/Router.php';
-include_once __DIR__ . '/api/router/IRequest.php';
-include_once __DIR__ . '/api/router/Request.php';
+include_once __DIR__ . '/api/router_implementation/Router.php';
+include_once __DIR__ . '/api/router_implementation/IRequest.php';
+include_once __DIR__ . '/api/router_implementation/Request.php';
 include_once __DIR__ . '/api/util/Response.php';
 
 use routes\Router as Router;
@@ -31,7 +31,6 @@ try {
     include_once __DIR__ . '/api/routes/school.php';
     include_once __DIR__ . '/api/routes/schoolmember.php';
     include_once __DIR__ . '/api/routes/test.php';
-
 
 }
 catch(Exception $exception) {
