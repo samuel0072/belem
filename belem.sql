@@ -106,7 +106,7 @@ CREATE TABLE `question_answered_test` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `school`
+-- Table structure for table `model`
 --
 
 CREATE TABLE `school` (
@@ -115,7 +115,7 @@ CREATE TABLE `school` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `school`
+-- Dumping data for table `model`
 --
 
 INSERT INTO `school` (`id`, `name`) VALUES
@@ -248,7 +248,7 @@ ALTER TABLE `question_answered_test`
   ADD KEY `question_id` (`question_id`);
 
 --
--- Indexes for table `school`
+-- Indexes for table `model`
 --
 ALTER TABLE `school`
   ADD PRIMARY KEY (`id`);
@@ -305,7 +305,7 @@ ALTER TABLE `question`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `school`
+-- AUTO_INCREMENT for table `model`
 --
 ALTER TABLE `school`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
