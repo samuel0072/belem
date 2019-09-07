@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__.'/../util/prepare.php';
-include_once __DIR__.'/../school/SchoolMember.php';
+include_once __DIR__ . '/../model/SchoolMember.php';
 
 use api\School\SchoolMember as SchoolMember;
 

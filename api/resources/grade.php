@@ -1,8 +1,8 @@
 <?php
 
 include_once __DIR__.'/../util/prepare.php';
-include_once __DIR__.'/../school/GradeClass.php';
-include_once __DIR__.'/../school/Test.php';
+include_once __DIR__ . '/../model/GradeClass.php';
+include_once __DIR__ . '/../model/Test.php';
 
 use \api\School\GradeClass as GradeClass;
 

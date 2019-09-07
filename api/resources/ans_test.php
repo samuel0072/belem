@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/../school/Ans_Test.php';
+include_once __DIR__ . '/../model/Ans_Test.php';
 include_once __DIR__.'/../util/queries.php';
 use api\School\Ans_Test as Ans_Test;
 
