@@ -23,6 +23,7 @@ $router->post('/belem/answered_test/delete/',
         echo delete_ans_Test($body['answered_test_id']);
     }
 );
+//retorna um answered_test pelo id
 $router->get('/belem/answered_test/',
     function($request) {
         $params= $request->getURLparams();
