@@ -23,11 +23,3 @@ $router->post('/belem/answered_test/delete',
         echo delete_ans_Test($body['answered_test_id']);
     }
 );
-$router->post('/belem/answered_test/get',
-    function($request){
-        $body = $request->getBody();
-        $json = file_get_contents('php://input');
-        $var = json_decode($json);
-        echo get_ans_test($var->test_id);
-    }
-);
