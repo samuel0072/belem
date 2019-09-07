@@ -3,6 +3,7 @@
 use api\School\Test;
 
 include_once __DIR__ . '/../util/prepare.php';
+include_once __DIR__.'/ans_test.php';
 
 function insert_test($class_id, $date, $subject_id, $nick = "sem titulo")
 {
