@@ -65,8 +65,10 @@ function get_questions_by_test($test_id) {
     $queryBuilder->select(["*"])
         ->from("question")
         ->where("test_id= ?");
+
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("i", $test_id);
+
     if($stm->execute()) {
         $questions = array();
         $stm->bind_result($id, $test_id, $correct_answer, $topic_id, $number, $dificult, $nick, $option_quant);
@@ -75,6 +77,32 @@ function get_questions_by_test($test_id) {
             $questions[] = json_decode($string);
         }
         $response->ok($questions);
+        $stm->close();
+    }
+    else {
+        $response->error("Verifique os dados informados");
+    }
+    return json_encode($response);
+}
+
+function get_questions_by_ans_test($ans_test_id){
+    prepare();
+    global $queryBuilder, $db, $response;
+
+    $queryBuilder->select(["*"])
+        ->from("question_answered_test")
+        ->where("answered_test_id= ?");
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param("i", $ans_test_id);
+
+    if($stm->execute()) {
+        $question_answered_test = array();
+        $stm->bind_result($answered_test_id, $question_id, $option_choosed);
+        while($stm->fetch()) {
+            $string = '{"answered_test_id":'.$answered_test_id.' ,"question_id":'. $question_id.',"option_choosed":"'.$option_choosed.'" }';
+            $question_answered_test[] = json_decode($string);
+        }
+        $response->ok($question_answered_test);
         $stm->close();
     }
     else {

@@ -2,9 +2,11 @@
 function find_by_criteria($critName, $critValue, $table, $type, $columns) {
     global $response, $db, $queryBuilder;
     prepare();
+    
     $queryBuilder->select(["*"])->from($table)->where(" $critName = ?");
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param($type, $critValue);
+
     if($stm->execute()) {
         $result = array();
         foreach($columns as $key => $value) {

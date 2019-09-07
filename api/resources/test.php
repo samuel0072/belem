@@ -102,8 +102,6 @@ function get_test_status($test_id){
         $stm->bind_result($status);
         $stm->fetch();
         $stm->close();
-
-
     }
     return $status;
 }
@@ -143,7 +141,7 @@ function correct_test($test_id, $class_id){
     if(get_test_status($test_id) == "ready"){
         $test = get_tests_by_class($class_id);
         $ans_test = get_ans_test($test_id);
-
+        
 
     }
 }
