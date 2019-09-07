@@ -28,3 +28,10 @@ $router->get('/belem/question',
         echo get_question_by_id($params["question_id"]);
     }
 );
+
+$router->get('/belem/question/resume',
+    function($request) {
+        $params = $request->getURLParams();
+        echo get_question_resume($params["question_id"]);
+    }
+);

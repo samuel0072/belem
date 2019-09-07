@@ -122,3 +122,4 @@ function get_ans_test_by_id($ans_test_id) {
     return find_by_criteria("id", $ans_test_id, "answered_test", "i",
         [0=>"id", 1=>"test_id", 2=>"schoolmember_enroll", 3=>"score", 4=>"done"]);
 }
+

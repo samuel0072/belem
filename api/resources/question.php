@@ -1,6 +1,7 @@
 <?php
 
 include_once __DIR__ . '/../school/Question.php';
+include_once __DIR__.'/test.php';
 use api\School\Question;
 
 function insert_question($test_id, $correct_answer, $topic_id, $number, $nick, $option_quant) {
@@ -101,6 +102,38 @@ function get_question_by_id($question_id) {
     }
     else {
         $response->error("Verifique os dados inseridos");
+    }
+    return json_encode($response);
+}
+
+//retorna quantos alunos marcaram cada alternativa de uma questao
+function get_question_resume($question_id) {
+    prepare();
+    global $queryBuilder, $db, $response;
+    $response->error("Verifique as informacoes inseridas");
+
+    $queryBuilder->select(["test_id"])->from("question")->where("id = ?");
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param("i", $question_id);
+
+    if($stm->execute()) {
+        $stm->bind_result($test_id);
+        if($stm->fetch()) {
+            $test_ok = get_test_status($test_id);
+            if($test_ok) {
+                $queryBuilder->clear();
+                $queryBuilder->select(["option_choosed", "COUNT(answered_test_id)"])
+                    ->from("question_answered_test")
+                    ->where("question_id = $question_id")
+                    ->group_by("option_choosed");
+
+
+                if($db->query($queryBuilder->get_query())) {
+                    $options = $db->fetch_all();
+                    $response->ok($options);
+                }
+            }
+        }
     }
     return json_encode($response);
 }
