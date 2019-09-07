@@ -57,7 +57,6 @@ function delete_question($question_id) {
     return json_encode($response);
 }
 
-
 function get_questions_by_test($test_id) {
     prepare();
     global $queryBuilder, $db, $response;

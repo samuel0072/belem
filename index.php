@@ -21,7 +21,7 @@ function customError($errno, $errstr) {
     die();
 }
 
-set_error_handler("customError");
+//set_error_handler("customError");
 
 try {
 

@@ -2,6 +2,8 @@
 
 include_once __DIR__ . '/../model/Ans_Test.php';
 include_once __DIR__.'/../util/queries.php';
+include_once __DIR__.'/test.php';
+
 use api\School\Ans_Test as Ans_Test;
 
 function insert_ans_Test($schoolmember_enroll, $test_id, $answers){
@@ -92,11 +94,10 @@ function get_ans_test($test_id){
     $queryBuilder
         ->select(['*'])
         ->from('answered_test')
-        ->where('test_id = ? and done = ?');
+        ->where('test_id = ?');
 
-    $var = 0;
     $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param("ii", $test_id, $var);
+    $stm->bind_param("i", $test_id);
 
     $response->error($db->get_error());
 
@@ -115,10 +116,66 @@ function get_ans_test($test_id){
             $response->ok($ans_test);
         }
     }
-    return json_encode($response->object);
+    return json_encode($response);
 }
 
 function get_ans_test_by_id($ans_test_id) {
     return find_by_criteria("id", $ans_test_id, "answered_test", "i",
         [0=>"id", 1=>"test_id", 2=>"schoolmember_enroll", 3=>"score", 4=>"done"]);
+}
+
+function set_score($ans_test_id, $score){
+
+    prepare();
+    global $queryBuilder, $db, $response;
+
+    $queryBuilder->update('answered_test')
+        ->set(['score', 'done'], ['?', '1'])
+        ->where('id = ?');
+
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param("ii", $score, $ans_test_id);
+
+    if($stm->execute()){
+        $response->ok();
+    }else{
+        $response->error($db->get_error());
+    }
+    return json_encode($response);
+}
+
+// calcula o score e salva no banco
+function correct_ans_Test($test_id){ 
+    prepare();
+    global $response;
+
+    if(get_test_status($test_id) == "ready"){
+        $questions = json_decode(get_questions_by_test($test_id)); // Pegar as questoes referentes ao test
+        $questions = $questions->object;
+
+        for($i = 0; $i < count($questions); $i++){
+            $correct_answer[$questions[$i]->id] = $questions[$i]->correct_answer;
+        }  
+
+        $ans_test = json_decode(get_ans_test($test_id)); // pegar os testes respondidos de todos os alunos
+        $ans_test = $ans_test->object;
+        
+        foreach ($ans_test as $var){
+            $score = 0;
+            $ans_questions = json_decode(get_questions_by_ans_test($var->id)); // pega todas as questoes respondida pelo aluno var->id   
+            $ans_questions = $ans_questions->object;
+
+            foreach ($ans_questions as $ans_question){
+                if($correct_answer[$ans_question->question_id] == $ans_question->option_choosed){
+                    $score++;
+                }
+            }
+            set_score($var->id, $score);
+        }
+        $response->ok();
+    }else{
+        $response->error();
+    }
+
+    return json_encode($response);
 }

@@ -1,6 +1,7 @@
 <?php
 
 include_once __DIR__ . '/../resources/ans_test.php';
+
 $router->post('/belem/answered_test/',
     function(){
         $json = file_get_contents('php://input');
@@ -28,5 +29,12 @@ $router->get('/belem/answered_test/',
     function($request) {
         $params= $request->getURLparams();
         echo get_ans_test_by_id($params["ans_test_id"]);
+    }
+);
+
+$router->post('/belem/answered_test/correct',
+    function($request){
+        $body = $request->getBody();
+        echo correct_ans_Test($body['test_id']);
     }
 );

@@ -16,11 +16,11 @@ class Response
     }
     function error($object = []){
         $this->error = true;
-        $this->object[] = $object;
+        $this->object = $object;
     }
     function ok($object =[]) {
         $this->error = false;
-        $this->object[] = $object;
+        $this->object = $object;
     }
 
 }

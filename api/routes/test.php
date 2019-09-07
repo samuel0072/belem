@@ -58,3 +58,10 @@ $router->get('/belem/test/answered_tests/',
         echo get_ans_test($params["test_id"]);
     }
 );
+
+$router->get('/belem/test/summary/',
+    function($request){
+        $params = $request->getURLParams();
+        echo summary($params["test_id"]);
+    }
+);

@@ -5,8 +5,7 @@ use api\School\Test;
 include_once __DIR__ . '/../util/prepare.php';
 include_once __DIR__.'/ans_test.php';
 
-function insert_test($class_id, $date, $subject_id, $nick = "sem titulo")
-{
+function insert_test($class_id, $date, $subject_id, $nick = "sem titulo"){
     prepare();
     global $queryBuilder, $db, $response;
     $test = new Test((int)$class_id, (string)$date, (int)$subject_id, (string)$nick);
@@ -124,7 +123,7 @@ function get_test_byID($test_id){
         $stm->bind_result($id, $status);
 
         if($stm->fetch()){
-            $test = json_decode('{"id",'.$id.' "status": "'.$status.'"}');
+            $test = json_decode('{"id":'.$id.', "status": "'.$status.'"}');
             $response->ok($test);
         }
 
@@ -134,14 +133,29 @@ function get_test_byID($test_id){
     return json_encode($response);
 }
 
-function correct_test($test_id, $class_id){
+function summary($test_id){
     prepare();
-    global $queryBuilder, $db, $response;
+    global $response;
 
-    if(get_test_status($test_id) == "ready"){
-        $test = get_tests_by_class($class_id);
-        $ans_test = get_ans_test($test_id);
-        
+    $questions = json_decode(get_questions_by_test($test_id));
+    $questions= $questions->object;
 
+    $size = count($questions);
+
+    $ans_test = json_decode(get_ans_test($test_id)); // pegar os testes respondidos de todos os alunos
+    $ans_test = $ans_test->object;
+    $response->error();
+
+    $hit = 0;
+    
+    foreach($ans_test as $answer){
+        if($answer->score == $size){
+            $hit++;
+        }
     }
+
+    $string = '{ "hit": '.$hit.' }';
+    $response->ok(json_decode($string));
+
+    return json_encode($response);
 }
