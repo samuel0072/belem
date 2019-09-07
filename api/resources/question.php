@@ -119,11 +119,11 @@ function get_question_resume($question_id) {
     if($stm->execute()) {
         $stm->bind_result($test_id);
         if($stm->fetch()) {
-            echo $test_id;
-            $test_ok = get_test_status($test_id) == "ready";
-            if($test_ok) {
+            $test_ok = get_test_status($test_id);
+
+            if($test_ok === "ready") {
                 $queryBuilder->clear();
-                $queryBuilder->select(["option_choosed", "COUNT(answered_test_id)"])
+                $queryBuilder->select(["option_choosed", "COUNT(answered_test_id) as quantity"])
                     ->from("question_answered_test")
                     ->where("question_id = $question_id")
                     ->group_by("option_choosed");
@@ -133,6 +133,9 @@ function get_question_resume($question_id) {
                     $options = $db->fetch_all();
                     $response->ok($options);
                 }
+            }
+            else {
+                $response->error("Verifique os dados inseridos");
             }
         }
     }

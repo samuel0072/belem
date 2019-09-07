@@ -84,6 +84,8 @@ function get_test_status($test_id){
 
     prepare();
     global $queryBuilder, $db, $response;
+
+    $queryBuilder->clear();
     
     $queryBuilder
         ->select('status')
@@ -100,9 +102,11 @@ function get_test_status($test_id){
         $stm->fetch();
         $stm->close();
 
+
     }else{
         $response->error($db->get_error());
     }
+    echo $status;
     return $status;
 }
 
