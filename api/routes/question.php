@@ -42,3 +42,10 @@ $router->post("/belem/question/set_dificult",
         echo set_dificult($body["question_id"], $body["dificult"]);
     }
 );
+
+$router->get("/belem/question/ans_test", 
+    function($request){
+        $body = $request->getURLParams();
+        echo get_questions_by_ans_test($body["ans_test_id"]);
+    }
+);
