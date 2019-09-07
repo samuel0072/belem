@@ -99,7 +99,7 @@ function get_questions_by_ans_test($ans_test_id){
         $question_answered_test = array();
         $stm->bind_result($answered_test_id, $question_id, $option_choosed);
         while($stm->fetch()) {
-            $string = '{"answered_test_id":'.$answered_test_id.' ,"question_id":'. $question_id.',"option_choosed":"'.$option_choosed.'" }';
+            $string = '{"answered_test_id":'.$answered_test_id.' ,"question_id":'. $question_id.',"option_choosed":'.$option_choosed.' }';
             $question_answered_test[] = json_decode($string);
         }
         $response->ok($question_answered_test);
