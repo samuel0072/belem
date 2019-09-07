@@ -35,3 +35,10 @@ $router->get('/belem/question/resume',
         echo get_question_resume($params["question_id"]);
     }
 );
+
+$router->post("/belem/question/set_dificult",
+    function($request) {
+        $body = $request->getBody();
+        echo set_dificult($body["question_id"], $body["dificult"]);
+    }
+);

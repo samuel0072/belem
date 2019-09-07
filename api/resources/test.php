@@ -83,7 +83,7 @@ function get_tests_by_class($class_id) {
 function get_test_status($test_id){
 
     prepare();
-    global $queryBuilder, $db, $response;
+    global $queryBuilder, $db;
 
     $queryBuilder->clear();
     
@@ -103,10 +103,7 @@ function get_test_status($test_id){
         $stm->close();
 
 
-    }else{
-        $response->error($db->get_error());
     }
-    echo $status;
     return $status;
 }
 

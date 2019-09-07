@@ -141,3 +141,34 @@ function get_question_resume($question_id) {
     }
     return json_encode($response);
 }
+
+function set_dificult($question_id, $dificult) {
+    prepare();
+    global $queryBuilder, $db, $response;
+
+    $queryBuilder->select(["test_id"])->from("question")->where("id = ?");
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param("i", $question_id);
+
+    if($stm->execute()) {
+        $stm->bind_result($test_id);
+        if ($stm->fetch()) {
+            $test_ok = get_test_status($test_id);
+
+            if ($test_ok === "ready") {
+                $queryBuilder->update("question")
+                    ->set(["dificult"], ["?"])
+                    ->where("id= ?");
+                $stm = $db->prepare($queryBuilder->get_query());
+                $stm->bind_param("si", $dificult, $question_id);
+                if($stm->execute()) {
+                    $response->ok("Questao atualizada");
+                }
+            }
+            else {
+                $response->error("Verifique os dados informados");
+            }
+        }
+    }
+    return json_encode($response);
+}
