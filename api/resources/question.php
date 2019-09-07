@@ -81,3 +81,26 @@ function get_questions_by_test($test_id) {
     }
     return json_encode($response);
 }
+
+function get_question_by_id($question_id) {
+    prepare();
+    global $queryBuilder, $db, $response;
+    $queryBuilder->select(["*"])->from("question")->where("id= ?");
+    $stm = $db->prepare($queryBuilder->get_query());
+    $stm->bind_param("i", $question_id);
+    if($stm->execute()) {
+        $stm->bind_result($id, $test_id, $correct_answer, $topic_id, $number, $dificult, $nick, $option_quant);
+        if($stm->fetch()) {
+            $string = '{"id":'.$id.' ,"test_id":'. $test_id.',"correct_answer":"'.$correct_answer.'", "topic_id":'.$topic_id.',"number":'.$number.', "dificult":"'.$dificult.'", "nick":"'.$nick.'", "option_quant":'.$option_quant.'}';
+            $response->ok(json_decode($string));
+        }
+        else {
+            $response->error("Nao foi encontrado registro");
+        }
+
+    }
+    else {
+        $response->error("Verifique os dados inseridos");
+    }
+    return json_encode($response);
+}
