@@ -25,22 +25,6 @@ function insert_class($classLetter, $gradeNumber, $schoolId) {
     return json_encode($response);
 }
 
-function find_by_criteria($critName, $critValue, $table, $type) {
-    global $response, $db, $queryBuilder;
-    prepare();
-    $queryBuilder->select(["*"])->from($table)->where("$critName = ?");
-    $stm = $db->prepare($queryBuilder->get_query());
-    $stm->bind_param($type, $critValue);
-    if($stm->execute()) {
-        $response->ok([$db->fetch_all()]);
-    }
-    else{
-        $response->error([$db->get_error(), "ops houve algum erro"]);
-    }
-
-    return json_encode($response);
-}
-
 function get_class_students($classId) {
     global $response, $queryBuilder, $db;
     prepare();

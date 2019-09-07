@@ -1,6 +1,7 @@
 <?php
 
 include_once __DIR__ . '/../school/Ans_Test.php';
+include_once __DIR__.'/../util/queries.php';
 use api\School\Ans_Test as Ans_Test;
 
 function insert_ans_Test($schoolmember_enroll, $test_id, $answers){
@@ -115,4 +116,9 @@ function get_ans_test($test_id){
         }
     }
     return json_encode($response->object);
+}
+
+function get_ans_test_by_id($ans_test_id) {
+    return find_by_criteria("id", $ans_test_id, "answered_test", "i",
+        [0=>"id", 1=>"test_id", 2=>"schoolmember_enroll", 3=>"score", 4=>"done"]);
 }

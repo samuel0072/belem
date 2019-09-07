@@ -1,7 +1,7 @@
 <?php
 
 include_once __DIR__ . '/../resources/ans_test.php';
-$router->post('/belem/answered_test',
+$router->post('/belem/answered_test/',
     function(){
         $json = file_get_contents('php://input');
         $var = json_decode($json);
@@ -9,7 +9,7 @@ $router->post('/belem/answered_test',
     }
 );
 //atualizar a resolucao de um aluno
-$router->post('/belem/answered_test/update',
+$router->post('/belem/answered_test/update/',
     function(){
         $json = file_get_contents('php://input');
         $var = json_decode($json);
@@ -17,9 +17,15 @@ $router->post('/belem/answered_test/update',
     }
 );
 //excluir a resolucao de um aluno
-$router->post('/belem/answered_test/delete',
+$router->post('/belem/answered_test/delete/',
     function($request){
         $body = $request->getBody();
         echo delete_ans_Test($body['answered_test_id']);
+    }
+);
+$router->get('/belem/answered_test/',
+    function($request) {
+        $params= $request->getURLparams();
+        echo get_ans_test_by_id($params["ans_test_id"]);
     }
 );
