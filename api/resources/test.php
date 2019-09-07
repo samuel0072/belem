@@ -92,19 +92,18 @@ function get_test_status($test_id){
 
     $stm = $db->prepare($queryBuilder->get_query());    
     $stm->bind_param("i", $test_id);
+    $status = "inprogress";
     
     if($stm->execute()){
 
         $stm->bind_result($status);
-        if($stm->fetch()){
-            $response->ok(json_decode('{"status": "'.$status.'"}'));
-        }
+        $stm->fetch();
         $stm->close();
 
     }else{
         $response->error($db->get_error());
     }
-    return $response->object->status == "inprogress";
+    return $status;
 }
 
 function get_test_byID($test_id){
@@ -139,7 +138,7 @@ function correct_test($test_id, $class_id){
     prepare();
     global $queryBuilder, $db, $response;
 
-    if(get_test_status($test_id)){
+    if(get_test_status($test_id) == "ready"){
         $test = get_tests_by_class($class_id);
         $ans_test = get_ans_test($test_id);
 

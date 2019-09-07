@@ -119,7 +119,8 @@ function get_question_resume($question_id) {
     if($stm->execute()) {
         $stm->bind_result($test_id);
         if($stm->fetch()) {
-            $test_ok = get_test_status($test_id);
+            echo $test_id;
+            $test_ok = get_test_status($test_id) == "ready";
             if($test_ok) {
                 $queryBuilder->clear();
                 $queryBuilder->select(["option_choosed", "COUNT(answered_test_id)"])
