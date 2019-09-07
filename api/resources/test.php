@@ -146,6 +146,7 @@ function summary($test_id){
     $ans_test = $ans_test->object;
     $response->error();
 
+    $made = count($ans_test);
     $hit = 0;
     
     foreach($ans_test as $answer){
@@ -154,7 +155,7 @@ function summary($test_id){
         }
     }
 
-    $string = '{ "hit": '.$hit.' }';
+    $string = '{ "hit": '.$hit.', "made": '.$made.'}';
     $response->ok(json_decode($string));
 
     return json_encode($response);
