@@ -25,12 +25,12 @@ function customError($errno, $errstr) {
 
 try {
 
-    include_once __DIR__ . '/api/routes/answered_test.php';
-    include_once __DIR__ . '/api/routes/gradeclass.php';
-    include_once __DIR__ . '/api/routes/question.php';
-    include_once __DIR__ . '/api/routes/school.php';
-    include_once __DIR__ . '/api/routes/schoolmember.php';
-    include_once __DIR__ . '/api/routes/test.php';
+    include_once __DIR__ . '/api/routes/controller/answered_test.php';
+    include_once __DIR__ . '/api/routes/controller/gradeclass.php';
+    include_once __DIR__ . '/api/routes/controller/question.php';
+    include_once __DIR__ . '/api/routes/controller/school.php';
+    include_once __DIR__ . '/api/routes/controller/schoolmember.php';
+    include_once __DIR__ . '/api/routes/controller/test.php';
 
 }
 catch(Exception $exception) {

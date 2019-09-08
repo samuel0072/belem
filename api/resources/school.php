@@ -10,7 +10,7 @@ function insert_School($name){
     prepare();
     global $response, $db, $queryBuilder;
     $school = new School($name);
-    $queryBuilder->insert_into('model', ['name'])->values(1);
+    $queryBuilder->insert_into('school', ['name'])->values(1);
     $stm = $db->prepare($queryBuilder->get_query());
     $stm->bind_param("s",$name);
     if( $school->isOkay() && $stm->execute() )  {
@@ -26,7 +26,7 @@ function get_school($id) {
     prepare();
     global $response, $queryBuilder, $db;
     $queryBuilder->clear();
-    $queryBuilder->select('*')->from('model')->where("id = $id");
+    $queryBuilder->select('*')->from('school')->where("id = $id");
     if($db->query($queryBuilder->get_query())) {
         $response->ok($db->fetch_all());
         return json_encode($response);
@@ -41,7 +41,7 @@ function get_schools() {
     prepare();
     global $response, $queryBuilder, $db;
     $queryBuilder->clear();
-    $queryBuilder->select('*')->from('model');
+    $queryBuilder->select('*')->from('school');
     if($db->query($queryBuilder->get_query())) {
         $response->ok($db->fetch_all());
         return json_encode($response);

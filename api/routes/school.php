@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../resources/school.php';
+include_once __DIR__ . '/../../resources/school.php';
 $router->post('/belem/model/',
     function($request) {
         $body = $request->getBody();
