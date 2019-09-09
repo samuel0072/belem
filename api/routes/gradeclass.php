@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../../resources/grade.php';
+include_once __DIR__ . '/../resources/grade.php';
 //cria uma classe
 $router->post('/belem/class/',
     function($request) {

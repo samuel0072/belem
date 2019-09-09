@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../../resources/schoolmember.php';
+include_once __DIR__ . '/../resources/schoolmember.php';
 $router->post('/belem/schoolmember/',
     function($request) {
         $body = $request->getBody();

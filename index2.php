@@ -11,7 +11,7 @@ use util\Response;
 
 $router = new Router(new Request);
 
-header("Content-Type: application/json; charset=utf-8");
+//header("Content-Type: application/json; charset=utf-8");
 
 function customError($errno, $errstr) {
     //header("Status Code: 501 Not Implemented");
@@ -21,16 +21,17 @@ function customError($errno, $errstr) {
     die();
 }
 
-//set_error_handler("customError");
+set_error_handler("customError");
 
 try {
 
-    include_once __DIR__ . '/api/routes/controller/answered_test.php';
-    include_once __DIR__ . '/api/routes/controller/gradeclass.php';
-    include_once __DIR__ . '/api/routes/controller/question.php';
-    include_once __DIR__ . '/api/routes/controller/school.php';
-    include_once __DIR__ . '/api/routes/controller/schoolmember.php';
-    include_once __DIR__ . '/api/routes/controller/test.php';
+    include_once __DIR__ . '/api/routes/answered_test.php';
+    include_once __DIR__ . '/api/routes/gradeclass.php';
+    include_once __DIR__ . '/api/routes/question.php';
+    include_once __DIR__ . '/api/routes/school.php';
+    include_once __DIR__ . '/api/routes/schoolmember.php';
+    include_once __DIR__ . '/api/routes/test.php';
+    include_once __DIR__ . '/views/routes/main.php';
 
 }
 catch(Exception $exception) {

@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../../resources/question.php';
+include_once __DIR__ . '/../resources/question.php';
 //cria uma questao
 $router->post('/belem/question',
     function($request) {

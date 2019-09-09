@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/../../resources/test.php';
+include_once __DIR__ . '/../resources/test.php';
 //cria uma prova
 $router->post('/belem/test',
     function ($request) {
