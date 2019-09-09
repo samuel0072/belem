@@ -15,6 +15,7 @@
     "ext-json": "*",
     "ext-mysqli": "*",
     "rbdwllr/reallysimplejwt": "^2.0",
-    "laravel/installer" : "*"
+    "laravel/installer" : "*",
+    "ext-pdo": "*"
   }
 }

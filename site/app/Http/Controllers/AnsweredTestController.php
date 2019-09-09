@@ -14,7 +14,8 @@ class AnsweredTestController extends Controller
      */
     public function index()
     {
-        //
+        $ans_Test = AnsweredTest::all();
+        return $ans_Test;
     }
 
     /**
@@ -24,7 +25,7 @@ class AnsweredTestController extends Controller
      */
     public function create()
     {
-        //
+        return view('');
     }
 
     /**

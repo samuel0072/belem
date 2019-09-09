@@ -12,6 +12,5 @@
 */
 
 Route::resource('/school', 'SchoolController');
-Route::resource('/school/{id}/class', 'GradeClassController');
-
-//Route::resource('/test', 'TestController');
+Route::resource('/answered_test', 'AnsweredTestController');
+Route::resource('/class/{id}/school_member', 'SchoolMemberController');
