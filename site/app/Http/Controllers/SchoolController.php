@@ -39,7 +39,7 @@ class SchoolController extends Controller
         $school = new School();
         $school->name = $request->name;
         $school->save();
-        redirect("/belem/site/school");
+        return $this->show($school);
     }
 
     /**
@@ -61,7 +61,7 @@ class SchoolController extends Controller
      */
     public function edit(School $school)
     {
-
+        return view("school.edit", compact('school'));
     }
 
     /**
@@ -73,7 +73,8 @@ class SchoolController extends Controller
      */
     public function update(Request $request, School $school)
     {
-        //
+       $school->update(\request("name"));
+        return redirect("/school/$school->id");
     }
 
     /**
@@ -85,5 +86,7 @@ class SchoolController extends Controller
     public function destroy(School $school)
     {
         //
+        $school->delete();
+        return redirect("/school");
     }
 }
