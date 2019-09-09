@@ -12,3 +12,6 @@
 */
 
 Route::resource('/school', 'SchoolController');
+Route::resource('/school/{id}/class', 'GradeClassController');
+
+//Route::resource('/test', 'TestController');

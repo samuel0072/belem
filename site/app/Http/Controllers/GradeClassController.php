@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\GradeClass;
+use App\School;
 use Illuminate\Http\Request;
 
 class GradeClassController extends Controller
@@ -20,11 +21,13 @@ class GradeClassController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param School $school
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $id = request("id");
+        return view("grade_class.create", compact('id'));
     }
 
     /**
@@ -33,9 +36,14 @@ class GradeClassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(School $school, Request $request)
     {
-        //
+        request()->validate([
+                "letter" => ["required", "max:1"],
+                "number" => ["required"]
+            ]);
+        $grade_class = new GradeClass();
+        $validate = validate(request());
     }
 
     /**
