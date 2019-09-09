@@ -24,7 +24,7 @@ class SchoolMemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('school_member.create');
     }
 
     /**

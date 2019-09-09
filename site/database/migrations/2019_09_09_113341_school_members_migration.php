@@ -15,11 +15,9 @@ class SchoolMembersMigration extends Migration
     {
         Schema::create('school_members', function (Blueprint $table) {
             $table->unsignedInteger("enroll");
-            $table->unsignedInteger("school_id");
             $table->unsignedInteger("grade_class_id");
             $table->string("name");
             $table->integer("age");
-            $table->enum("gender", ["m", "f"])->default(null);
             $table->enum("type", ["aluno", "professor"]);
             $table->timestamps();
         });
