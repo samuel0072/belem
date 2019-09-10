@@ -16,11 +16,9 @@ class SchoolMemberController extends Controller
 
     public function store(SchoolMemberRequest $request)
     {
-        $validated = $request->validate();
-        SchoolMember::create($validated);
-        return $validated;
+        $validated = $request->validated();
+        return SchoolMember::create($validated);
     }
-
 
     public function show(SchoolMember $schoolMember)
     {
@@ -29,11 +27,9 @@ class SchoolMemberController extends Controller
 
     public function update(SchoolMemberRequest $request, SchoolMember $schoolMember)
     {
-        $request->validate();
         $validated = $request->validated();
-        $schoolMember->update($request->input());
+        $schoolMember->update($validated);
         return $schoolMember;
-
     }
 
     public function destroy(SchoolMember $schoolMember)
@@ -42,5 +38,12 @@ class SchoolMemberController extends Controller
         return $this->index();
     }
 
+    /*public function edit(SchoolMember $schoolMember) {
+        return view("test.edit", compact('schoolMember'));
+    }
+
+    public function create() {
+        return view("test.create");
+    }*/
 
 }

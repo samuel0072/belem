@@ -2,7 +2,7 @@
 
 @section('title', 'school')
 @section('content')
-   <!-- todo div>
+   <div>
 
    </div>
 @endsection
