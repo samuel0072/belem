@@ -43,14 +43,19 @@ class TestController extends Controller
         $test->update();
     }
 
+    public function correct() {
+        return view("testing.test");
+    }
+
     public function correctAnsTests($testId) {
         $test = Test::find($testId);
-        $answeredTests = $test->answeredTest();
+        $answeredTests = $test->answeredTest;
         if($test->status == "ready") {
             foreach($answeredTests as $answeredTest) {
-                $questionAnswered = $answeredTest->questionAnsweredTests();
+                $questionAnswered = $answeredTest->questionAnsweredTests;
                 foreach ($questionAnswered as $questionAnswered) {
                     $question = Question::find($questionAnswered->id);
+                    echo $questionAnswered, "<br/>";
                     if($question->correct_answer == $questionAnswered->option_choosed) {
                         $answeredTest->score++;
                     }
