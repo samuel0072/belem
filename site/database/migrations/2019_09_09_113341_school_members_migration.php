@@ -14,6 +14,7 @@ class SchoolMembersMigration extends Migration
     public function up()
     {
         Schema::create('school_members', function (Blueprint $table) {
+            $table->increments("id");
             $table->unsignedInteger("enroll");
             $table->unsignedInteger("grade_class_id");
             $table->string("name");
