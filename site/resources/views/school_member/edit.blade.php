@@ -6,7 +6,7 @@
     <div>
         <h1 >Editar</h1>
         <div>
-            <form method="post" action="/belem/site/member/{{$school_member->id}}/edit"> //TODO: melhorar essa rota
+            <form method="post" action="/member/{{$school_member->id}}"> //TODO: melhorar essa rota
                 {{csrf_field()}}
                 {{method_field("PATCH")}}
                 <div>

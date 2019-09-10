@@ -6,7 +6,7 @@
     <div>
         <h1 >Editar</h1>
         <div>
-            <form method="post" action="/belem/site/school/{{$school->id}}">
+            <form method="post" action="/school/{{$school->id}}">
                 {{csrf_field()}}
                 {{method_field("PATCH")}}
                 <div>

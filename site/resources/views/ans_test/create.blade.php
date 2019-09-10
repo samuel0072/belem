@@ -3,7 +3,7 @@
 @section('title', 'Ans_test')
 
 @section('content')
-    <form method="post" action="/belem/site/answered_test"> //rotas
+    <form method="post" action="/answered_test"> //rotas
         <div>
             <label>
                 <input type="number" placeholder="Teste-ID" required name="test_id">

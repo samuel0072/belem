@@ -6,7 +6,7 @@ include_once __DIR__ . '/../model/Test.php';
 
 use \api\School\GradeClass as GradeClass;
 
-
+//todo:done
 function insert_class($classLetter, $gradeNumber, $schoolId) {
     global $response, $db, $queryBuilder;
     prepare();
@@ -24,7 +24,7 @@ function insert_class($classLetter, $gradeNumber, $schoolId) {
     }
     return json_encode($response);
 }
-
+//todo:done
 function get_class_students($classId) {
     global $response, $queryBuilder, $db;
     prepare();
@@ -47,7 +47,7 @@ function get_class_students($classId) {
     }
     return json_encode($response);
 }
-
+//todo:done
 function get_all_classes($school_id) {
     global $response, $db, $queryBuilder;
     prepare();

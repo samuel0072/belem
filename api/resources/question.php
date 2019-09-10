@@ -132,7 +132,7 @@ function get_question_by_id($question_id) {
     }
     return json_encode($response);
 }
-
+//todo:
 //retorna quantos alunos marcaram cada alternativa de uma questao
 function get_question_resume($question_id) {
     prepare();

@@ -3,7 +3,7 @@
 
 @section('content')
     <div>
-        <form method="post" action="/belem/site/question">
+        <form method="post" action="/question">
             {{csrf_field()}}
             <div>
                 <label>

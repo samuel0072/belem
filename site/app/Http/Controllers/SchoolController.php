@@ -44,4 +44,6 @@ class SchoolController extends Controller
         $school->delete();
         return $this->index();
     }
+
+
 }
