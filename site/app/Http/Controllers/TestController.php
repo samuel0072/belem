@@ -2,85 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TestRequest;
 use App\Test;
-use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $test = \App\Test::all();
+        $test = Test::all();
         return $test;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+
+    public function store(TestRequest $request)
     {
-        //
+        $validated = $request->validated();
+        return Test::create($validated);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
-     */
     public function show(Test $test)
     {
-        //
+        return $test;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Test $test)
+
+    public function update(TestRequest $request, Test $test)
     {
-        //
+        $validated = $request->validated();
+        $test->update($validated);
+        return $test;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Test $test)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Test $test)
     {
-        //
+        $test->update();
     }
 }

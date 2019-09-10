@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\QuestionAnsweredTest;
-use Illuminate\Http\Request;
 use App\Http\Requests\QuestAnsTestRequest;
 
 class QuestionAnsweredTestController extends Controller
