@@ -23,7 +23,6 @@ class QuestionsMigration extends Migration
             $table->integer("option_quant");
             $table->enum("dificult", ["f", "m", "d"])->default(null);
             $table->timestamps();
-            //
         });
     }
 
@@ -34,8 +33,6 @@ class QuestionsMigration extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('questions');
     }
 }

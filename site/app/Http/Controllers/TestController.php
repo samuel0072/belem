@@ -14,7 +14,8 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+        $test = \App\Test::all();
+        return $test;
     }
 
     /**

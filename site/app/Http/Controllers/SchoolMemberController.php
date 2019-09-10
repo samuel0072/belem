@@ -2,84 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SchoolMemberRequest;
 use App\SchoolMember;
-use Illuminate\Http\Request;
 
 class SchoolMemberController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $member = SchoolMember::all();
+        return $member;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(SchoolMemberRequest $request)
     {
-        return view('school_member.create');
+        $validated = $request->validated();
+        return SchoolMember::create($validated);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\SchoolMember  $schoolMember
-     * @return \Illuminate\Http\Response
-     */
     public function show(SchoolMember $schoolMember)
     {
-        //
+        return $schoolMember;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\SchoolMember  $schoolMember
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SchoolMember $schoolMember)
+    public function update(SchoolMemberRequest $request, SchoolMember $schoolMember)
     {
-        //
+        $validated = $request->validated();
+        $schoolMember->update($validated);
+        return $schoolMember;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SchoolMember  $schoolMember
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, SchoolMember $schoolMember)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\SchoolMember  $schoolMember
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(SchoolMember $schoolMember)
     {
-        //
+        $schoolMember->delete();
+        return $this->index();
     }
+
+    /*public function edit(SchoolMember $schoolMember) {
+        return view("test.edit", compact('schoolMember'));
+    }
+
+    public function create() {
+        return view("test.create");
+    }*/
+
 }

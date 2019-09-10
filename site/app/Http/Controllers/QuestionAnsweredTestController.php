@@ -4,82 +4,37 @@ namespace App\Http\Controllers;
 
 use App\QuestionAnsweredTest;
 use Illuminate\Http\Request;
+use App\Http\Requests\QuestAnsTestRequest;
 
 class QuestionAnsweredTestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $record = QuestionAnsweredTest::all();
+        return $record;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(QuestAnsTestRequest $request)
     {
-        //
+        $validated = $request->validated();
+        return QuestionAnsweredTest::create($validated);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\QuestionAnsweredTest  $questionAnsweredTest
-     * @return \Illuminate\Http\Response
-     */
     public function show(QuestionAnsweredTest $questionAnsweredTest)
     {
-        //
+        return $questionAnsweredTest;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\QuestionAnsweredTest  $questionAnsweredTest
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(QuestionAnsweredTest $questionAnsweredTest)
+    public function update(QuestAnsTestRequest $request, QuestionAnsweredTest $questionAnsweredTest)
     {
-        //
+        $validated = $request->validated();
+        $questionAnsweredTest->update($validated);
+        return $questionAnsweredTest;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\QuestionAnsweredTest  $questionAnsweredTest
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, QuestionAnsweredTest $questionAnsweredTest)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\QuestionAnsweredTest  $questionAnsweredTest
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(QuestionAnsweredTest $questionAnsweredTest)
     {
-        //
+        $questionAnsweredTest->delete();
     }
 }

@@ -18,7 +18,7 @@ class Testmigration extends Migration
             $table->unsignedInteger("grade_class_id");
             $table->unsignedInteger("subject_id");
             $table->string("nick")->default("Prova sem titulo");
-            $table->enum("status", ["ready", "inprogress"])->default("ready");
+            $table->enum("status", ["ready", "inprogress"])->default("inprogress");
             $table->timestamps();
         });
     }

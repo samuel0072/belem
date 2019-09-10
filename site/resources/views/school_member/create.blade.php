@@ -18,6 +18,7 @@
             </div>
 
             <select name="type">
+                <option value="Select" disabled>Select</option>
                 <option value="aluno">Aluno</option>
                 <option value="professor">Professor</option>
             </select>

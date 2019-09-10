@@ -16,7 +16,7 @@ class AnsweredTestsMigration extends Migration
         Schema::create('answered_tests', function (Blueprint $table) {
             $table->increments("id");
             $table->unsignedInteger("test_id");
-            $table->unsignedInteger("school_member_enroll");
+            $table->unsignedInteger("school_member_id");
             $table->integer("score")->default(0);
             $table->boolean("done")->default(false);
             $table->timestamps();
@@ -31,8 +31,6 @@ class AnsweredTestsMigration extends Migration
      */
     public function down()
     {
-        Schema::table('answered_tests', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('answered_tests');
     }
 }

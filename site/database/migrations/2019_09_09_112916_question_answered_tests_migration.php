@@ -14,6 +14,7 @@ class QuestionAnsweredTestsMigration extends Migration
     public function up()
     {
         Schema::create('question_answered_tests', function (Blueprint $table) {
+            $table->increments("id");
             $table->unsignedInteger("answered_test_id");
             $table->unsignedInteger("question_id");
             $table->integer("option_choosed");
