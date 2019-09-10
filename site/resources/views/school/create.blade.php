@@ -6,7 +6,9 @@
         <form method="post" action="/belem/site/school">
             {{csrf_field()}}
             <div>
-                <input type = "text" placeholder="nome da escola" required name ="name">
+                <label>
+                    <input placeholder="nome da escola" required name ="name">
+                </label>
             </div>
             <div>
                 <button type = "submit">Criar esta escola</button>

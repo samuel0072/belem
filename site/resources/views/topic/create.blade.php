@@ -7,14 +7,14 @@
             {{csrf_field()}}
             <div>
                 <label>
-                    <input placeholder="Nome do teste" name ="name">
+                    <input placeholder="Nome do tópico" name ="name">
                 </label>
                 <label>
-                    <input type="number" placeholder="Subject ID" required name="subject_id">
+                    <input placeholder="Descrição" name="description">
                 </label>
             </div>
             <div>
-                <button type = "submit">Cadastrar teste</button>
+                <button type = "submit">Cadastrar tópico</button>
             </div>
         </form>
     </div>

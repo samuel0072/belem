@@ -10,14 +10,22 @@
                 {{csrf_field()}}
                 {{method_field("PATCH")}}
                 <div>
-                    <input name="enroll" value="{{$school_member->enroll}}">
-                    <input name="name" value="{{$school_member->name}}">
-                    <input name="age" value="{{$school_member->age}}">
+                    <label>
+                        <input type="number" name="enroll" value="{{$school_member->enroll}}">
+                    </label>
+                    <label>
+                        <input name="name" value="{{$school_member->name}}">
+                    </label>
+                    <label>
+                        <input type="number" name="age" value="{{$school_member->age}}">
+                    </label>
 
-                    <select name="type">
-                        <option value="professor">Professor</option>
-                        <option value="aluno">Aluno</option>
-                    </select>
+                    <label>
+                        <select name="type">
+                            <option value="professor">Professor</option>
+                            <option value="aluno">Aluno</option>
+                        </select>
+                    </label>
                 </div>
 
                 <div>

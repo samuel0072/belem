@@ -1,46 +1,43 @@
 @extends("layouts.layout")
 
-@section('title', 'Atualizar os dados')
+@section(   'title', 'Atualizar os dados')
 
 @section('content')
     <div>
         <h1 >Editar</h1>
         <div>
-            <form method="post" action="/belem/site/test/{{$id}}">
+            <form method="post" action="/belem/site/answered_test/{{$id}}">
                 {{csrf_field()}}
                 {{method_field("PATCH")}}
                 <div>
                     <label>
-                        <input name = "nick" placeholder="{{$test->nick}}" value = "{{$test->nick}}">
+                        <input type="number" name = "subject_id" required value = "{{$answeredTest->test_id}}">
                     </label>
                 </div>
 
                 <div>
                     <label>
-                        <input type="number" name = "subject_id" placeholder="Subject Id" value = "{{$test->subject_id}}">
+                        <input type="number" value="{{$answeredTest->schoolmember_id}}" required name="schoolmember_id">
                     </label>
                 </div>
 
                 <div>
                     <label>
-                        <input type="number" name = "class_id" placeholder="Class Id" value = "{{$test->class_id}}">
+                        <input name = "score" type="number" placeholder="score">
                     </label>
                 </div>
 
                 <div>
                     <label>
-                        <select name = "status">
-                            <option value="ready">Ready</option>
-                            <option value="inprogress">In Progress</option>
-                        </select>
+                        <input name = "done" type="number" placeholder="done" >
                     </label>
                 </div>
+
                 <button type = "submit">Salvar</button>
             </form>
         </div>
-
         <div>
-            <form method="post" action="/belem/site/test/{{$test->id}}">
+            <form method="post" action="/belem/site/answered_test/{{$answeredTest->id}}">
                 {{csrf_field()}}
                 {{method_field("DELETE")}}
                 <div>

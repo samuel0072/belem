@@ -22,7 +22,7 @@
 
     <div class="student-tests">
         <ul>
-            @foreach($student->tests as $test)
+            @foreach($student->answered_tests as $test)
                 <li>
                     {{$test->nick}}
                     {{$test->subject_id}}

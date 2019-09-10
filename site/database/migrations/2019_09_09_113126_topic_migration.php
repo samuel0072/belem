@@ -16,9 +16,9 @@ class TopicMigration extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->increments("id");
             $table->unsignedInteger("subject_id");
-            $table->string("name");
+            $table->string('description')->default('Sem descricao');
+            $table->string("name")->default('Sem nome');
             $table->timestamps();
-
             //
         });
     }

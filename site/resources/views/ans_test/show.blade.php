@@ -9,8 +9,8 @@
 @section('content')
 
     <div>
-        <h1>{{$test->nick}}</h1>
-        <h3>{{$test->subject_id}}</h3>
+        <h1>{{$ans_test->subject_id}}</h1>
+        <h3>{{$ans_test->schoolmember_id}}</h3>
     </div>
 
     <div class="navigator-route">
@@ -18,14 +18,11 @@
     </div>
 
     <div class="student-acess">
-        @foreach($test->questions as $question)
+        @foreach($ans_test->questions as $question)
             <ul>
                 <li>
-                    {{$question->nick}}
-                    {{$question->topic_id}}
-                    {{$question->number}}
-                    {{$question->correct_answer}}
-                    {{$question->dificult}}
+                    {{$question->question_id}}
+                    {{$question->option_choosed}}
                 </li>
             </ul>
         @endforeach
