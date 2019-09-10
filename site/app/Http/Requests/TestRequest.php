@@ -13,7 +13,7 @@ class TestRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class TestRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "grade_class_id" => ["required", "numeric"],
+            "subject_id" => ["required", "numeric"],
+            "nick" => ["sometimes", "required", "min:2", "max:255"],
+            "status" => ["sometimes", "required", "min:5", "max:10"]
         ];
     }
 }

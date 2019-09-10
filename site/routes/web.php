@@ -16,3 +16,5 @@ Route::resource('/answered_test', 'AnsweredTestController');
 Route::resource('/school_member', 'SchoolMemberController');
 Route::resource('/grade_class', 'GradeClassController');
 Route::resource('/question_answered_test', 'QuestionAnsweredTestController');
+Route::resource('/test', 'TestController');
+

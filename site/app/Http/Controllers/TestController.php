@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TestRequest;
 use App\Test;
-use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
@@ -15,38 +15,30 @@ class TestController extends Controller
     }
 
 
-    public function create()
+
+    public function store(TestRequest $request)
     {
-
-    }
-
-
-    public function store(Request $request)
-    {
-
+        $validated = $request->validated();
+        return Test::create($validated);
     }
 
 
     public function show(Test $test)
     {
-
+        return $test;
     }
 
 
-    public function edit(Test $test)
+    public function update(TestRequest $request, Test $test)
     {
-
-    }
-
-
-    public function update(Request $request, Test $test)
-    {
-
+        $validated = $request->validated();
+        $test->update($validated);
+        return $test;
     }
 
 
     public function destroy(Test $test)
     {
-
+        $test->update();
     }
 }
