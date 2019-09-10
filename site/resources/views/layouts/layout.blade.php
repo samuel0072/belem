@@ -4,12 +4,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.9.7/d3.min.js"></script>
 
-    <div class="header-container">
-        @yield('logo')
-        <button onclick="redirect('home')">Home</button>
-        <button>Contacts</button>
-        <button>Follow</button>
-    </div>
+
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -27,7 +22,15 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/js/mdb.min.js"></script>
 
 </head>
-<body>
+<body class="card">
+    <header >
+        <div class="btn-group btn-group-toggle">
+            @yield('logo')
+            <button class = "btn btn-primary ">Home</button>
+            <button class = "btn">Contacts</button>
+            <button class = "btn">Follow</button>
+        </div>
+    </header>
     <div class="container">
         @yield('content')
     </div>
