@@ -3,7 +3,7 @@
 
 @section('content')
     <div>
-        <form method="post" action="/belem/site/school_member">
+        <form method="post" action="/belem/site/class/{{$id}}/school_member">
             {{csrf_field()}}
             <div>
                 <input type = "number" placeholder="Nº de matrícula" required name ="enroll">
@@ -19,8 +19,8 @@
 
             <select name="type">
                 <option value="Select" disabled>Select</option>
-                <option value="professor">Professor</option>
                 <option value="aluno">Aluno</option>
+                <option value="professor">Professor</option>
             </select>
 
             <div>
