@@ -12,9 +12,8 @@
             </div>
 
             <div>
-                <label>
+                <label for="test_id">Test_id</label>
                     <input type = "number" placeholder="Id do teste" required name ="test_id">
-                </label>
             </div>
 
             <div>

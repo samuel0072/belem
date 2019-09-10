@@ -6,7 +6,7 @@
 
     <div class="header-container">
         @yield('logo')
-        <button>Home</button>
+        <button onclick="redirect('home')">Home</button>
         <button>Contacts</button>
         <button>Follow</button>
     </div>

@@ -3,7 +3,7 @@
 
 @section('content')
     <div>
-        <form method="post" action="/class/{{$id}}/school_member">
+        <form method="post" action="/school_member">
             {{csrf_field()}}
             <div>
                 <label>
@@ -20,6 +20,12 @@
             <div>
                 <label>
                     <input type = "number" placeholder="Idade" required name ="age">
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <input type = "number" placeholder="Class ID" required name ="grade_class_id">
                 </label>
             </div>
 

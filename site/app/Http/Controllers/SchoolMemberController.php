@@ -38,12 +38,12 @@ class SchoolMemberController extends Controller
         return $this->index();
     }
 
-    /*public function edit(SchoolMember $schoolMember) {
-        return view("test.edit", compact('schoolMember'));
+    public function edit(SchoolMember $schoolMember) {
+        return view("school_member.edit", compact('schoolMember'));
     }
 
     public function create() {
-        return view("test.create");
-    }*/
+        return view("school_member.create");
+    }
 
 }

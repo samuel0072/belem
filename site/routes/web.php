@@ -20,4 +20,6 @@ Route::resource('/test', 'TestController');
 Route::resource('/answered_test', 'AnsweredTestController');
 Route::post('/test/{id}/correct', 'TestController@correctAnsTests');
 Route::get('/test/{id}/correct', 'TestController@correct');
-Route::get('/');
+Route::get('/redirect/home', function() {
+    redirect('/home');
+});

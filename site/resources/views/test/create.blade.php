@@ -2,15 +2,15 @@
 @section('title', 'CRIAR')
 
 @section('content')
-    <div>
+    <div class = "form-group">
         <form method="post" action="/class/{{$id}}/tests">
             {{csrf_field()}}
             <div>
                 <label>
-                    <input placeholder="Nome do teste" name ="name">
+                    <input placeholder="Nome do teste" name ="name" class = "form-control">
                 </label>
                 <label>
-                    <input type="number" placeholder="Subject ID" required name="subject_id">
+                    <input type="number" placeholder="Subject ID" required name="subject_id" >
                 </label>
             </div>
             <div>

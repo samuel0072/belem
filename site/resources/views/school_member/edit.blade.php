@@ -5,22 +5,22 @@
 @section('content')
     <div>
         <h1 >Editar</h1>
-        <div>
-            <form method="post" action="/member/{{$school_member->id}}"> //TODO: melhorar essa rota
+        <div class = "form-group">
+            <form method="post" action="/school_member/{{$schoolMember->id}}"> //TODO: melhorar essa rota
                 {{csrf_field()}}
                 {{method_field("PATCH")}}
                 <div>
                     <label>
-                        <input type="number" name="enroll" value="{{$school_member->enroll}}">
+                        <input type="number" name="enroll" value="{{$schoolMember->enroll}}" class="form-control">
                     </label>
                     <label>
-                        <input name="name" value="{{$school_member->name}}">
+                        <input name="name" value="{{$schoolMember->name}}">
                     </label>
                     <label>
-                        <input type="number" name="age" value="{{$school_member->age}}">
+                        <input type="number" name="age" value="{{$schoolMember->age}}" class="form-control">
                     </label>
 
-                    <label>
+                    <label class="form-control">
                         <select name="type">
                             <option value="professor">Professor</option>
                             <option value="aluno">Aluno</option>
@@ -29,13 +29,13 @@
                 </div>
 
                 <div>
-                    <button type = "submit">Salvar dados</button>
+                    <button type = "submit" class="form-control">Salvar dados</button>
                 </div>
             </form>
         </div>
 
         <div>
-            <form method="post" action="/belem/site/member/{{$school_member->id}}/edit">
+            <form method="post" action="/school_member/{{$schoolMember->id}}">
                 {{csrf_field()}}
                 {{method_field("DELETE")}}
                 <div>
