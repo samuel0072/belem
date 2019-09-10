@@ -15,8 +15,6 @@ class TestController extends Controller
         return $test;
     }
 
-
-
     public function store(TestRequest $request)
     {
         $validated = $request->validated();
