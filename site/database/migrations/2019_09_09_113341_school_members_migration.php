@@ -31,6 +31,6 @@ class SchoolMembersMigration extends Migration
      */
     public function down()
     {
-        Schema::drop('school_members');
+        Schema::dropIfExists('school_members');
     }
 }

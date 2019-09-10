@@ -3,84 +3,46 @@
 namespace App\Http\Controllers;
 
 use App\AnsweredTest;
-use Illuminate\Http\Request;
+use App\Http\Requests\AnsTestRequest;
 
 class AnsweredTestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $ans_Test = AnsweredTest::all();
         return $ans_Test;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(AnsTestRequest $request)
     {
-        return view('');
+        $validated = $request->validated();
+        return AnsweredTest::create($validated);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\AnsweredTest  $answeredTest
-     * @return \Illuminate\Http\Response
-     */
     public function show(AnsweredTest $answeredTest)
     {
-        //
+        return $answeredTest;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\AnsweredTest  $answeredTest
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AnsweredTest $answeredTest)
+    public function update(AnsTestRequest $request, AnsweredTest $answeredTest)
     {
-        //
+        $validated = $request->validated();
+        $answeredTest->update($validated);
+        return $answeredTest;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AnsweredTest  $answeredTest
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, AnsweredTest $answeredTest)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\AnsweredTest  $answeredTest
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(AnsweredTest $answeredTest)
     {
-        //
+        $answeredTest->delete();
+        return $this->index();
     }
+    /*public function edit(AnsweredTest $answeredTest)
+    {
+        return view("test.edit", compact('answeredTest'));
+    }
+    public function create()
+    {
+        return view("test.create");
+    }*/
 }

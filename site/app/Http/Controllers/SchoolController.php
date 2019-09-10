@@ -32,17 +32,16 @@ class SchoolController extends Controller
 
     public function update(Request $request, School $school)
     {
-        $request->validate([
+        $validated = $request->validate([
             "name" => ["required", "min:2", "max:255"]
         ]);
-        $school->update(\request("name"));
-        return redirect("/school/$school->id");
+        $school->update($validated);
+        return $school;
     }
 
     public function destroy(School $school)
     {
-        //
         $school->delete();
-        return redirect("/school");
+        return $this->index();
     }
 }

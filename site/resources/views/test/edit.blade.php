@@ -6,35 +6,31 @@
     <div>
         <h1 >Editar</h1>
         <div>
-            <form method="post" action="/belem/site/school_member/{{$schoolMember->id}}">
+            <form method="post" action="/belem/site/answered_test/{{$answeredTest->id}}">
                 {{csrf_field()}}
                 {{method_field("PATCH")}}
                 <div>
-                    <input name = "name" value = "{{$schoolMember->name}}">
+                    <input name = "test_id" placeholder="test_id" value = "{{$answeredTest->test_id}}">
                 </div>
                 <div>
-                    <input name = "age" required type="numeric" value = "{{$schoolMember->age}}">
+                    <input name = "school_member_id" type="numeric" placeholder="school_member_id" value = "{{$answeredTest->school_member_id}}">
                 </div>
                 <div>
-                    <input name="enroll" type="numeric" value = "{{$schoolMember->enroll}}">
+                    <input name = "score" type="numeric" placeholder="score">
                 </div>
                 <div>
-                    <input name="type" type="text" value = "{{$schoolMember->type}}">
+                    <input name = "done" type="numeric" placeholder="done" >
                 </div>
-                <div>
-                    <input name="grade_class_id" type="numeric" value = "{{$schoolMember->grade_class_id}}">
-                </div>
-                <div>
-                    <button type = "submit">Salvar dados</button>
-                </div>
+                <button type = "submit">Salvar</button>
+        </div>
             </form>
         </div>
         <div>
-            <form method="post" action="/belem/site/school_member/{{$schoolMember->id}}">
+            <form method="post" action="/belem/site/answered_test/{{$answeredTest->id}}">
                 {{csrf_field()}}
                 {{method_field("DELETE")}}
                 <div>
-                    <button type="submit">Excluir alun</button>
+                    <button type="submit">Excluir</button>
                 </div>
             </form>
         </div>
