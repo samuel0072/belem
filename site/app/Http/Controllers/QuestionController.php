@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuestionRequest;
 use App\Question;
-use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
@@ -14,7 +14,7 @@ class QuestionController extends Controller
         return $questions;
     }
 
-    public function store(Request $request)
+    public function store(QuestionRequest $request)
     {
         $validated = $request->validated();
         return Question::create($validated);
@@ -26,7 +26,7 @@ class QuestionController extends Controller
         return $question;
     }
 
-    public function update(Request $request, Question $question)
+    public function update(QuestionRequest $request, Question $question)
     {
         $validated = $request->validated();
         $question->update($validated);
@@ -35,6 +35,6 @@ class QuestionController extends Controller
 
     public function destroy(Question $question)
     {
-
+        $question->delete();
     }
 }
