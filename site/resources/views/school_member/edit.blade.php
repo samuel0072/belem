@@ -14,14 +14,14 @@
                         <input type="number" name="enroll" value="{{$schoolMember->enroll}}" class="form-control">
                     </label>
                     <label>
-                        <input name="name" value="{{$schoolMember->name}}">
+                        <input class="form-control" name="name" value="{{$schoolMember->name}}">
                     </label>
                     <label>
                         <input type="number" name="age" value="{{$schoolMember->age}}" class="form-control">
                     </label>
 
-                    <label class="form-control">
-                        <select name="type">
+                    <label>
+                        <select class="browser-default custom-select" name="type">
                             <option value="professor">Professor</option>
                             <option value="aluno">Aluno</option>
                         </select>
@@ -29,17 +29,17 @@
                 </div>
 
                 <div>
-                    <button type = "submit" class="form-control">Salvar dados</button>
+                    <button class="btn btn-primary" type = "submit" class="form-control">Salvar dados</button>
                 </div>
             </form>
         </div>
 
-        <div>
-            <form method="post" action="/school_member/{{$schoolMember->id}}">
+        <div class="form-group">
+            <form  method="post" action="/school_member/{{$schoolMember->id}}">
                 {{csrf_field()}}
                 {{method_field("DELETE")}}
                 <div>
-                    <button type="submit">Excluir Aluno</button>
+                    <button class="btn btn-primary" type="submit">Excluir Aluno</button>
                 </div>
             </form>
         </div>

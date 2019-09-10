@@ -10,11 +10,11 @@
                     <input placeholder="Nome do teste" name ="name" class = "form-control">
                 </label>
                 <label>
-                    <input type="number" placeholder="Subject ID" required name="subject_id" >
+                    <input class = "form-control" type="number" placeholder="Subject ID" required name="subject_id" >
                 </label>
             </div>
             <div>
-                <button type = "submit">Cadastrar teste</button>
+                <button type = "submit" class="btn btn-primary">Cadastrar teste</button>
             </div>
         </form>
     </div>

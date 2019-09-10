@@ -5,25 +5,25 @@
 @section('content')
    <div class="main-container">
        <img src="{{$student->image}}">
-       <footer>
+       <footer class="page-footer font-small blue pt-4">
            <strong>{{$student->name}}</strong>
            <div class="student-info">
-               <ul>
-                   <li>{{$student->school}}</li>
-                   <li>{{$student->enroll}}</li>
-                   <li>{{$student->score}}</li>
-                   <li>{{$student->class}}</li>
-                   <li>{{$student->age}}</li>
+               <ul class="list-group">
+                   <li class="list-group-item active">{{$student->school}}</li>
+                   <li class="list-group-item">{{$student->enroll}}</li>
+                   <li class="list-group-item">{{$student->score}}</li>
+                   <li class="list-group-item">{{$student->class}}</li>
+                   <li class="list-group-item">{{$student->age}}</li>
                </ul>
            </div>
        </footer>
 
    </div>
 
-    <div class="student-tests">
-        <ul>
+    <div>
+        <ul class="list-group">
             @foreach($student->answered_tests as $test)
-                <li>
+                <li class="list-group-item active">
                     {{$test->nick}}
                     {{$test->subject_id}}
                     {{$test->score}}

@@ -11,19 +11,19 @@
                 {{method_field("PATCH")}}
                 <div>
                     <label>
-                        <input name = "nick" placeholder="{{$test->nick}}" value = "{{$test->nick}}">
+                        <input class = "form-control" name = "nick" placeholder="{{$test->nick}}" value = "{{$test->nick}}">
                     </label>
                 </div>
 
                 <div>
                     <label>
-                        <input type="number" name = "subject_id" placeholder="Subject Id" value = "{{$test->subject_id}}">
+                        <input class = "form-control" type="number" name = "subject_id" placeholder="Subject Id" value = "{{$test->subject_id}}">
                     </label>
                 </div>
 
                 <div>
                     <label>
-                        <input type="number" name = "class_id" placeholder="Class Id" value = "{{$test->class_id}}">
+                        <input class = "form-control" type="number" name = "class_id" placeholder="Class Id" value = "{{$test->class_id}}">
                     </label>
                 </div>
 
