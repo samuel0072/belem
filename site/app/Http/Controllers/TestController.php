@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TestRequest;
+use App\Question;
 use App\Test;
 
 class TestController extends Controller
@@ -40,5 +41,23 @@ class TestController extends Controller
     public function destroy(Test $test)
     {
         $test->update();
+    }
+
+    public function correctAnsTests($testId) {
+        $test = Test::find($testId);
+        $answeredTests = $test->answeredTest();
+        if($test->status == "ready") {
+            foreach($answeredTests as $answeredTest) {
+                $questionAnswered = $answeredTest->questionAnsweredTests();
+                foreach ($questionAnswered as $questionAnswered) {
+                    $question = Question::find($questionAnswered->id);
+                    if($question->correct_answer == $questionAnswered->option_choosed) {
+                        $answeredTest->score++;
+                    }
+                }
+                $answeredTest->done = true;
+                $answeredTest->update();
+            }
+        }
     }
 }

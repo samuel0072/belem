@@ -5,7 +5,7 @@ include_once __DIR__.'/../util/queries.php';
 include_once __DIR__.'/test.php';
 
 use api\School\Ans_Test as Ans_Test;
-
+//todo:done
 function insert_ans_Test($schoolmember_enroll, $test_id, $answers){
 
     prepare();
@@ -36,7 +36,7 @@ function insert_ans_Test($schoolmember_enroll, $test_id, $answers){
 
     return json_encode($response);
 }
-
+//todo:done
 function update_ans_Test($answered_test_id, $answers){
     prepare();
     global $queryBuilder, $db, $response;
@@ -60,6 +60,7 @@ function update_ans_Test($answered_test_id, $answers){
     return json_encode($response);
 }
 
+//todo:done
 function delete_ans_Test($answered_test_id){
     prepare();
     global $queryBuilder, $db, $response;
@@ -86,7 +87,7 @@ function delete_ans_Test($answered_test_id){
 
     return json_encode($response);
 }
-
+//todo:done
 function get_ans_test($test_id){
     prepare();
     global $queryBuilder, $db, $response;
@@ -118,12 +119,12 @@ function get_ans_test($test_id){
     }
     return json_encode($response);
 }
-
+//todo:done
 function get_ans_test_by_id($ans_test_id) {
     return find_by_criteria("id", $ans_test_id, "answered_test", "i",
         [0=>"id", 1=>"test_id", 2=>"schoolmember_enroll", 3=>"score", 4=>"done"]);
 }
-
+//todo:done
 function set_score($ans_test_id, $score){
 
     prepare();

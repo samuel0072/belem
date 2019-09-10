@@ -7,4 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Test extends Model
 {
     protected $guarded =["id"];
+
+    public function answeredTest() {
+        return $this->hasMany(AnsweredTest::class);
+    }
+
+    public function questions() {
+        return $this->hasMany(Question::class);
+    }
 }
