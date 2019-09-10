@@ -53,10 +53,11 @@ class TestController extends Controller
         if($test->status == "ready") {
             foreach($answeredTests as $answeredTest) {
                 $questionAnswered = $answeredTest->questionAnsweredTests;
+
                 foreach ($questionAnswered as $questionAnswered) {
-                    $question = Question::find($questionAnswered->id);
-                    echo $questionAnswered, "<br/>";
-                    if($question->correct_answer == $questionAnswered->option_choosed) {
+                    $question = Question::find($questionAnswered->question_id);
+
+                    if(($question->correct_answer == $questionAnswered->option_choosed) && !$answeredTest->done) {
                         $answeredTest->score++;
                     }
                 }
