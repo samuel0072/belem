@@ -13,13 +13,15 @@
 
 Route::resource('/school', 'SchoolController');
 Route::resource('/answered_test', 'AnsweredTestController');
-Route::resource('/school_member', 'SchoolMemberController');
+Route::resource('/schoolmember', 'SchoolMemberController');
 Route::resource('/grade_class', 'GradeClassController');
-Route::resource('/question_answered_test', 'QuestionAnsweredTestController');
+Route::resource('/question', 'QuestionController');
 Route::resource('/test', 'TestController');
+Route::resource('/question_answered_test', 'QuestionAnsweredTestController');
 Route::resource('/answered_test', 'AnsweredTestController');
+
 Route::post('/test/{id}/correct', 'TestController@correctAnsTests');
 Route::get('/test/{id}/correct', 'TestController@correct');
 Route::get('/redirect/home', function() {
-    redirect('/home');
+    redirect('/school');
 });

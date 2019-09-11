@@ -21,11 +21,13 @@ class TestController extends Controller
         return Test::create($validated);
     }
 
+    public function create(){
+        return view('test.create');
+    }
 
     public function show(Test $test)
     {
-        $questions = null; //TODO
-        return view('test.show', compact('test'), compact('questions'));
+        return view('test.edit', compact('test'));
     }
 
 
@@ -35,7 +37,6 @@ class TestController extends Controller
         $test->update($validated);
         return $test;
     }
-
 
     public function destroy(Test $test)
     {

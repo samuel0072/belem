@@ -12,7 +12,11 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::all();
-        return view('question.show');
+        return view('question.show', compact('questions'));
+    }
+
+    public function create(){
+        return view('question.create');
     }
 
     public function store(QuestionRequest $request)

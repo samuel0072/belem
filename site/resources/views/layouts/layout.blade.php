@@ -24,12 +24,17 @@
 </head>
 <body class="card">
     <header >
-        <div class="btn-group btn-group-toggle">
-            @yield('logo')
-            <button class = "btn btn-primary ">Home</button>
-            <button class = "btn">Contacts</button>
-            <button class = "btn">Follow</button>
-        </div>
+        <ul class="list-group">
+            <li class="list-group-item grey">
+                <div class="btn-group btn-group-toggle">
+                    @yield('logo')
+                    <button class = "btn btn-primary ">Home</button>
+                    <button class = "btn btn-white">Contacts</button>
+                    <button class = "btn btn-white">Follow</button>
+                </div>
+            </li>
+        </ul>
+
     </header>
     <div class="container">
         @yield('content')

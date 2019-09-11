@@ -3,13 +3,13 @@
 @section('title', 'school')
 
 @section('logo')
-    <img class="logo" src="{{$school->logo}}" />
+{{--    <img class="logo" src="{{$school->logo}}" />--}}
 @endsection
 
 @section('content')
 
     <div>
-        <h1>{{$test->nick}}</h1>
+        <h1>{{$test->nick}}: {{$test->id}}</h1>
         <h3>{{$test->subject_id}}</h3>
     </div>
 

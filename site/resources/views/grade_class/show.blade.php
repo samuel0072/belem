@@ -5,17 +5,14 @@
 @section('content')
 
    <div class="class-acess">
-       @foreach($gradeClasses as $class)
-           <ul class="list-group">
-               <li>
-                   {{$class->number}}
-                   {{$class->grade}}
-                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                       <button class="btn btn-primary">Students</button>
-                       <button class="btn btn-secondary">Tests</button>
-                   </div>
+       <ul class="list-group">
+           @foreach($gradeClasses as $class)
+               <li class="list-group-item font-weight-bolder text-center active">{{$class->grade_number}}{{$class->class_letter}}</li>
+               <li class="list-group-item font-weight-bolder btn-group btn-group-toggle">
+                   <button class="btn btn-primary">Students</button>
+                   <button class="btn btn-secondary">Tests</button>
                </li>
-           </ul>
-       @endforeach
+           @endforeach
+       </ul>
    </div>
 @endsection

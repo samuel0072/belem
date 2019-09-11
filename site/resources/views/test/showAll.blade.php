@@ -1,19 +1,23 @@
 @extends("layouts.layout")
 
-@section('title', 'school')
+@section('title', 'Test')
 
 @section('logo')
-    <img class="logo" src="{{$school->logo}}" />
+{{--    <img class="logo" src="{{$school->logo}}" />--}}
 @endsection
 
 @section('content')
     <div class="student-acess">
         @foreach($tests as $test)
-            <ul>
-                <li>
+            <ul class="list-group">
+                <li class="list-group-item">
                     <div>
-                        <h1>{{$test->nick}}</h1>
-                        <h3>{{$test->subject_id}}</h3>
+                        <ul class="list-group">
+                            <li class="list-group-item active"><h1>{{$test->nick}}: {{$test->id}}</h1></li>
+                            <li class="list-group-item"><h3>ID do assunto: {{$test->subject_id}}</h3></li>
+                        </ul>
+
+
                     </div>
                     <button class="btn btn-primary">Students</button>
                 </li>

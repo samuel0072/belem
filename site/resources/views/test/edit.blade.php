@@ -4,47 +4,47 @@
 
 @section('content')
     <div>
-        <h1 >Editar</h1>
+        <h1 class="h1-responsive">Editar</h1>
         <div>
-            <form method="post" action="/test/{{$id}}">
+            <form class="form-group" method="post" action="/test/{{$test->id}}">
                 {{csrf_field()}}
                 {{method_field("PATCH")}}
                 <div>
                     <label>
-                        <input class = "form-control" name = "nick" placeholder="{{$test->nick}}" value = "{{$test->nick}}">
+                        <input class = "form-control" name = "nick" value = "{{$test->nick}}">
                     </label>
                 </div>
 
                 <div>
                     <label>
-                        <input class = "form-control" type="number" name = "subject_id" placeholder="Subject Id" value = "{{$test->subject_id}}">
+                        <input class = "form-control" type="number" name = "subject_id" value = "{{$test->subject_id}}">
                     </label>
                 </div>
 
                 <div>
                     <label>
-                        <input class = "form-control" type="number" name = "class_id" placeholder="Class Id" value = "{{$test->class_id}}">
+                        <input class = "form-control" type="number" name = "grade_class_id"  value = "{{$test->grade_class_id}}">
                     </label>
                 </div>
 
                 <div>
                     <label>
-                        <select name = "status">
+                        <select class="browser-default custom-select" name = "status">
                             <option value="ready">Ready</option>
                             <option value="inprogress">In Progress</option>
                         </select>
                     </label>
                 </div>
-                <button type = "submit">Salvar</button>
+                <button class="btn btn-primary" type = "submit">Salvar</button>
             </form>
         </div>
 
         <div>
-            <form method="post" action="/belem/site/test/{{$test->id}}">
+            <form class="form-group" method="post" action="test/{{$test->id}}">
                 {{csrf_field()}}
                 {{method_field("DELETE")}}
                 <div>
-                    <button type="submit">Excluir</button>
+                    <button class="btn btn-teal" type="submit">Excluir</button>
                 </div>
             </form>
         </div>
