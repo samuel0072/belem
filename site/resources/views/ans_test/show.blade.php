@@ -1,6 +1,6 @@
 @extends("layouts.layout")
 
-@section('title', 'school')
+@section('title', 'Ans_Test')
 
 @section('logo')
     <img class="logo" src="{{$school->logo}}" />
@@ -19,7 +19,7 @@
 
     <div class="student-acess">
         @foreach($ans_test->questions as $question)
-            <ul>
+            <ul class="list-group">
                 <li>
                     {{$question->question_id}}
                     {{$question->option_choosed}}
