@@ -15,10 +15,10 @@
                     <div>
 {{--                        <img class="school-image" src="{{$school->image}}">--}}
                         <ul class="list-group">
-                            <li class="list-group-item active"><h1>{{$school->name}}</h1></li>
+                            <a href="/school/{{$school->id}}" class="list-group-item active"><h1>{{$school->name}}</h1></a>
                             <li class="list-group-item text-dark" ><h3>{{$school->description}}</h3></li>
                         </ul>
-                        <button class="btn btn-mdb-color">Class</button>
+                        <a href='/grade_class' class="btn btn-mdb-color">Class</a>
                     </div>
                 </li>
             @endforeach

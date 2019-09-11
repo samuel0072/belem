@@ -28,7 +28,7 @@
             <li class="list-group-item grey">
                 <div class="btn-group btn-group-toggle">
                     @yield('logo')
-                    <button class = "btn btn-primary ">Home</button>
+                    <a href = "/school" class = "btn btn-primary ">Home</a>
                     <button class = "btn btn-white">Contacts</button>
                     <button class = "btn btn-white">Follow</button>
                 </div>

@@ -6,23 +6,28 @@
     <div>
         <h1 >Editar</h1>
         <div>
-            <form method="post" action="/school/{{$school->id}}">
+            <form class="form-group" method="post" action="/school/{{$school->id}}">
                 {{csrf_field()}}
                 {{method_field("PATCH")}}
                 <div>
-                    <input name = "name" value = "{{$school->name}}">
+                    <input class="form-control" name = "name" value="{{$school->name}}">
                 </div>
+
                 <div>
-                    <button type = "submit">Salvar dados</button>
+                    <input class="form-control" name = "description" value="{{$school->description}}">
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" type = "submit">Salvar dados</button>
                 </div>
             </form>
         </div>
         <div>
-            <form method="post" action="/belem/site/school/{{$school->id}}">
+            <form class="form-group"  method="post" action="school/{{$school->id}}">
                 {{csrf_field()}}
                 {{method_field("DELETE")}}
                 <div>
-                    <button type="submit">Excluir escola</button>
+                    <button class="btn btn-teal" type="submit">Excluir escola</button>
                 </div>
             </form>
         </div>

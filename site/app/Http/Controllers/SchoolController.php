@@ -30,7 +30,7 @@ class SchoolController extends Controller
 
     public function show(School $school)
     {
-        return $school;
+        return view('school.edit', compact('school'));
     }
 
     public function update(Request $request, School $school)
