@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
 use App\Question;
+use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
 {
@@ -36,5 +37,14 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         $question->delete();
+    }
+
+    public function optionCount($id) {
+        $question = Question::findOrFail($id);
+        $test = Test::findOrFail($question->test_id);
+
+        if($test->status == "ready") {
+            $results = DB::selectRaw
+        }
     }
 }
