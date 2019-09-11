@@ -1,19 +1,19 @@
 @extends('layouts.layout')
 
-@section('title', 'Ans_test')
+@section('title', 'Criar')
 
 @section('content')
     <form method="post" action="/answered_test"> //rotas
         <div>
-            <label>
-                <input type="number" placeholder="Teste-ID" required name="test_id">
-            </label>
+            <label for="test_id">Id do teste</label>
+            <input type="number" placeholder="Teste-ID" required name="test_id">
+
         </div>
 
         <div>
-            <label>
-                <input type="number" placeholder="School Member ID" required name="schoolmember_id">
-            </label>
+            <label for="schoolmember_id">School Member Id</label>
+            <input type="number" placeholder="School Member ID" required name="schoolmember_id">
+
         </div>
 
         <div>

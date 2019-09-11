@@ -23,7 +23,7 @@ class GradeClassController extends Controller
 
     public function show(GradeClass $gradeClass)
     {
-        return $gradeClass;
+        return view('grade_class.show');
     }
 
 

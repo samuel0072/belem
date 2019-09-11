@@ -1,6 +1,6 @@
 @extends("layouts.layout")
 
-@section('title', 'school')
+@section('title', 'schoolmember')
 
 @section('content')
    <div class="main-container">
@@ -24,10 +24,10 @@
         <ul class="list-group">
             @foreach($student->answered_tests as $test)
                 <li class="list-group-item active">
-                    {{$test->nick}}
-                    {{$test->subject_id}}
-                    {{$test->score}}
-                    {{$test->status}}
+                    <div>{{$test->nick}}</div>
+                    <div>{{$test->subject_id}}</div>
+                    <div>{{$test->score}}</div>
+                    <div>{{$test->status}}</div>
                 </li>
             @endforeach
         </ul>

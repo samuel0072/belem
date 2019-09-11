@@ -36,12 +36,14 @@ class AnsweredTestController extends Controller
         $answeredTest->delete();
         return $this->index();
     }
-    /*public function edit(AnsweredTest $answeredTest)
+
+    public function edit(AnsweredTest $answeredTest)
     {
-        return view("test.edit", compact('answeredTest'));
+        return view("ans_test.edit", compact('answeredTest'));
     }
+
     public function create()
     {
-        return view("test.create");
-    }*/
+        return view("ans_test.create");
+    }
 }

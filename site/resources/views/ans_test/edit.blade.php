@@ -1,6 +1,6 @@
 @extends("layouts.layout")
 
-@section(   'title', 'Atualizar os dados')
+@section('title', 'Atualizar os dados')
 
 @section('content')
     <div>
