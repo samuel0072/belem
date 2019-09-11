@@ -6,12 +6,15 @@
         <form method="post" action="/school">
             {{csrf_field()}}
             <div>
-                <label>
-                    <input placeholder="nome da escola" required name ="name">
-                </label>
+                <input class = "form-control" placeholder="nome da escola" required name ="name">
             </div>
+
             <div>
-                <button type = "submit">Criar esta escola</button>
+                <input class = "form-control" placeholder="descricao da escola" name ="description">
+            </div>
+
+            <div>
+                <button class="btn btn-primary" type = "submit">Criar esta escola</button>
             </div>
         </form>
     </div>

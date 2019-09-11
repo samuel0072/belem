@@ -10,8 +10,8 @@ class SchoolMemberController extends Controller
 
     public function index()
     {
-        $member = SchoolMember::all();
-        return $member;
+        $students = SchoolMember::all();
+        return view('school_member.showAll', compact('students'));
     }
 
     public function store(SchoolMemberRequest $request)

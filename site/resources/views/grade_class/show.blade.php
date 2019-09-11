@@ -5,7 +5,7 @@
 @section('content')
 
    <div class="class-acess">
-       @foreach($classes as $class)
+       @foreach($gradeClasses as $class)
            <ul class="list-group">
                <li>
                    {{$class->number}}

@@ -10,10 +10,13 @@ class SchoolController extends Controller
 
     public function index()
     {
-        $school = School::all();
-        return $school;
+        $schools = School::all();
+        return view('school.show' , compact('schools'));
     }
 
+    public function create(){
+        return view('school.create');
+    }
 
     public function store(Request $request)
     {
@@ -44,6 +47,5 @@ class SchoolController extends Controller
         $school->delete();
         return $this->index();
     }
-
 
 }

@@ -21,9 +21,10 @@ class GradeClassController extends Controller
     }
 
 
-    public function show(GradeClass $gradeClass)
+    public function show()
     {
-        return view('grade_class.show');
+        $gradeClasses = $this->index();
+        return view('grade_class.show', compact('gradeClasses'));
     }
 
 

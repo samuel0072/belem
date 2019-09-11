@@ -12,7 +12,7 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::all();
-        return $questions;
+        return view('question.show');
     }
 
     public function store(QuestionRequest $request)
@@ -39,12 +39,12 @@ class QuestionController extends Controller
         $question->delete();
     }
 
-    public function optionCount($id) {
-        $question = Question::findOrFail($id);
-        $test = Test::findOrFail($question->test_id);
-
-        if($test->status == "ready") {
-            $results = DB::selectRaw
-        }
-    }
+//    public function optionCount($id) {
+//        $question = Question::findOrFail($id);
+//        $test = Test::findOrFail($question->test_id);
+//
+//        if($test->status == "ready") {
+//            $results = DB::selectRaw
+//        }
+//    }
 }

@@ -11,8 +11,8 @@ class TestController extends Controller
 
     public function index()
     {
-        $test = Test::all();
-        return $test;
+        $tests = Test::all();
+        return view('test.showAll', compact('tests'));
     }
 
     public function store(TestRequest $request)
@@ -24,7 +24,8 @@ class TestController extends Controller
 
     public function show(Test $test)
     {
-        return $test;
+        $questions = null; //TODO
+        return view('test.show', compact('test'), compact('questions'));
     }
 
 

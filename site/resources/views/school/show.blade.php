@@ -9,16 +9,16 @@
 @section('content')
 
     <div class="class-acess">
-        @foreach($schools as $school)
-            <ul class="list-group">
+        <ul class="list-group">
+            @foreach($schools as $school)
                 <li>
                     <div>
-                        <img class="school-image" src="{{$school->image}}">
+{{--                        <img class="school-image" src="{{$school->image}}">--}}
                         <h1>{{$school->name}}</h1>
                         <h3>{{$school->description}}</h3>
                     </div>
                 </li>
-            </ul>
-        @endforeach
+            @endforeach
+        </ul>
     </div>
 @endsection
