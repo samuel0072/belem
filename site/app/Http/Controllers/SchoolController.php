@@ -7,19 +7,15 @@ use Illuminate\Http\Request;
 
 class SchoolController extends Controller
 {
-
-    public function index()
-    {
+    /*
+     * Funções que retornam dados
+     * */
+    public function index(){
         $schools = School::all();
-        return view('school.show' , compact('schools'));
+        return $schools;
     }
 
-    public function create(){
-        return view('school.create');
-    }
-
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $validated = $request->validate([
             "name" => ["required", "min:2", "max:255"],
             "description" => ["required", "min:2", "max:255"]
@@ -28,14 +24,7 @@ class SchoolController extends Controller
         return $this->index();
     }
 
-
-    public function show(School $school)
-    {
-        return view('school.edit', compact('school'));
-    }
-
-    public function update(Request $request, School $school)
-    {
+    public function update(Request $request, School $school){
         $validated = $request->validate([
             "name" => ["required", "min:2", "max:255"]
         ]);
@@ -43,8 +32,7 @@ class SchoolController extends Controller
         return $school;
     }
 
-    public function destroy(School $school)
-    {
+    public function destroy(School $school){
         $school->delete();
         return $this->index();
     }
@@ -53,12 +41,33 @@ class SchoolController extends Controller
         $school = School::findOrFail($id);
         $gradeClasses = $school->gradeClasses;
 
-        return view("grade_class.show",compact('gradeClasses'));
+        return $gradeClasses;
 
+    }
+
+    /*
+     * Funções que retornam views
+     */
+    public function show(School $school) {
+        return view('school.edit', compact('school'));
     }
 
     public function edit(School $school) {
         return view('school.edit', compact('school'));
+    }
+
+    public function create(){
+        return view('school.create');
+    }
+
+    public function showAll() {
+        $schools = $this->index();
+        return view('school.show' , compact('schools'));
+    }
+
+    public function showClasses($id) {
+        $gradeClasses = $this->classes($id);
+        return view("grade_class.show",compact('gradeClasses'));
     }
 
 }

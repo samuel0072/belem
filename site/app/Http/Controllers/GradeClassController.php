@@ -33,4 +33,15 @@ class GradeClassController extends Controller
         $gradeClass->delete();
         return $this->index();
     }
+
+    public function classMembers($id) {
+        $class = GradeClass::findOrFail($id);
+        $students = $class->schoolMembers;
+        return $students;
+    }
+
+    public function showClassMembers($id) {
+        $students = $this->classMembers($id);
+        return view("school_member.showAll", compact('students'));
+    }
 }

@@ -47,7 +47,7 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                    <button class="btn btn-grey">Tests</button>
+                                    <a class="btn btn-grey" href="/schoolmember/{{$student->id}}/ans_tests">Tests</a>
                                 </div>
 
                             </div>

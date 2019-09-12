@@ -9,8 +9,8 @@
            @foreach($gradeClasses as $class)
                <li class="list-group-item font-weight-bolder text-center active">{{$class->grade_number}}{{$class->class_letter}}</li>
                <li class="list-group-item font-weight-bolder btn-group btn-group-toggle">
-                   <button class="btn btn-primary">Students</button>
-                   <button class="btn btn-secondary">Tests</button>
+                   <a class="btn btn-primary" href="/grade_class/{{$class->id}}/students">Students</a>
+                   <a class="btn btn-secondary">Tests</a>
                </li>
            @endforeach
        </ul>

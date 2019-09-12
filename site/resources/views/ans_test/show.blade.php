@@ -18,13 +18,20 @@
     </div>
 
     <div class="student-acess">
-        @foreach($ans_test->questions as $question)
-            <ul class="list-group">
-                <li>
-                    {{$question->question_id}}
-                    {{$question->option_choosed}}
-                </li>
-            </ul>
-        @endforeach
+        <table class="list-group">
+            <thead>
+            <td>Questão</td>
+            <td>Opção marcada</td>
+            </thead>
+            <tbody>
+            @foreach($answeredTest->questionAnsweredTests as $question)
+                <tr>
+                    <td>{{$question->question_id}}</td>
+                    <td>{{$question->option_choosed}}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+        </li>
     </div>
 @endsection

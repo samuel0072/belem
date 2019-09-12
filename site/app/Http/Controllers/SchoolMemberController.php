@@ -46,4 +46,16 @@ class SchoolMemberController extends Controller
         return view("school_member.create");
     }
 
+    public function answeredTests($id) {
+        $student = SchoolMember::findOrFail($id);
+        return $student->answeredTests;
+    }
+
+    public function showAnsweredTests($id) {
+        $answeredTests = $this->answeredTests($id);
+        $student = $this->show(SchoolMember::findOrFail($id));
+
+        return view('ans_test.showAll', compact(['answeredTests', 'student']));
+    }
+
 }

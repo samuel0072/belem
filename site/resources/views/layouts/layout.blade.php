@@ -1,6 +1,8 @@
 <html>
 <head>
     <title> @yield('title')</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.9.7/d3.min.js"></script>
 
@@ -28,7 +30,7 @@
             <li class="list-group-item grey">
                 <div class="btn-group btn-group-toggle">
                     @yield('logo')
-                    <a href = "/school" class = "btn btn-primary ">Home</a>
+                    <a href = "/" class = "btn btn-primary ">Home</a>
                     <button class = "btn btn-white">Contacts</button>
                     <button class = "btn btn-white">Follow</button>
                 </div>
