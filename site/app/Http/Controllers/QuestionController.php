@@ -43,12 +43,17 @@ class QuestionController extends Controller
         $question->delete();
     }
 
-//    public function optionCount($id) {
-//        $question = Question::findOrFail($id);
-//        $test = Test::findOrFail($question->test_id);
-//
-//        if($test->status == "ready") {
-//            $results = DB::selectRaw
-//        }
-//    }
+    public function optionCount($id) {
+        $question = Question::findOrFail($id);
+        $test = Test::findOrFail($question->test_id);
+
+        if($test->status == "ready") {
+            $results = DB::table('question_answered_tests')
+                ->selectRaw("option_choosed, COUNT(answered_test_id) as quantity")
+                ->whereRaw("question_id = $question->id")
+                ->groupBy("option_choosed")
+                ->get();
+            return $results;
+        }
+    }
 }

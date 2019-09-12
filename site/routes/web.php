@@ -27,6 +27,8 @@ Route::get('/test/{id}/correct', 'TestController@correct');
 
 Route::get('/school/{id}/classes', 'SchoolController@classes');
 
+Route::get('/question/{id}/option_count', 'QuestionController@optionCount');
+
 Route::get('/redirect/home', function() {
     return redirect('/school');
 });
