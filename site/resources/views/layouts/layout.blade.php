@@ -24,7 +24,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/js/mdb.min.js"></script>
 
 </head>
-<body class="card">
+<body>
     <header >
         <ul class="list-group">
             <li class="list-group-item grey">
@@ -36,7 +36,6 @@
                 </div>
             </li>
         </ul>
-
     </header>
     <div class="container">
         @yield('content')

@@ -4,58 +4,75 @@
 
 @section('content')
     <div>
-        <ul class="list-group">
-            @foreach($students as $student)
-                <li class="list-group-item active">
+        <div class="card">
+        @foreach($students as $student)
+                <div class="card">
                     <ul class="list-group">
                         <li class="list-group-item">
                             <div class="main-container ">
 
                                 <div class="student-info">
-                                    <div class="text-center black text-white">
+                                    <div class="text-center text-white list-group-item active">
                                         <strong>{{$student->name}}</strong>
                                     </div>
 
-                                    <ul class="list-group list-group-horizontal">
-                                        <li class="list-group-item text-dark">
-                                            <ul class="list-group">
-                                                <li class="list-group-item">ID</li>
-                                                <li class="list-group-item">{{$student->id}}</li>
-                                            </ul>
-                                        </li>
-                                        <li class="list-group-item text-dark">
+                                <!--ul class="list-group list-group-horizontal">
+                                    <li class="list-group-item text-dark">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">ID</li>
+                                            <li class="list-group-item">{{$student->id}}</li>
+                                        </ul>
+                                    </li>
+                                    <li class="list-group-item text-dark">
 
-                                            <ul class="list-group">
-                                                <li class="list-group-item">Nº da Matricula</li>
-                                                <li class="list-group-item">{{$student->enroll}}</li>
-                                            </ul>
-                                        </li>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">Nº da Matricula</li>
+                                            <li class="list-group-item">{{$student->enroll}}</li>
+                                        </ul>
+                                    </li>
 
-                                        <li class="list-group-item text-dark">
+                                    <li class="list-group-item text-dark">
 
-                                            <ul class="list-group">
-                                                <li class="list-group-item">ID da classe</li>
-                                                <li class="list-group-item">{{$student->grade_class_id}}</li>
-                                            </ul>
-                                        </li>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">ID da classe</li>
+                                            <li class="list-group-item">{{$student->grade_class_id}}</li>
+                                        </ul>
+                                    </li>
 
-                                        <li class="list-group-item text-dark">
+                                    <li class="list-group-item text-dark">
 
-                                            <ul class="list-group">
-                                                <li class="list-group-item">Idade</li>
-                                                <li class="list-group-item">{{$student->age}}</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">Idade</li>
+                                            <li class="list-group-item">{{$student->age}}</li>
+                                        </ul>
+                                    </li>
+                                </ul-->
+                                    <div class = "table-responsive">
+
+                                        <table class = "table">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nº da Matricula</th>
+                                                <th>ID da classe</th>
+                                                <th>Idade</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{$student->id}}</td>
+                                                <td>{{$student->enroll}}</td>
+                                                <td>{{$student->grade_class_id}}</td>
+                                                <td>{{$student->age}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                     <a class="btn btn-grey" href="/schoolmember/{{$student->id}}/ans_tests">Tests</a>
                                 </div>
-
                             </div>
                         </li>
                     </ul>
 
-                </li>
+                </div>
+
             @endforeach
-        </ul>
+        </div>
     </div>
 @endsection

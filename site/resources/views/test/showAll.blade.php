@@ -2,10 +2,6 @@
 
 @section('title', 'Test')
 
-@section('logo')
-{{--    <img class="logo" src="{{$school->logo}}" />--}}
-@endsection
-
 @section('content')
     <div class="student-acess">
         @foreach($tests as $test)
@@ -13,7 +9,7 @@
                 <li class="list-group-item">
                     <div>
                         <ul class="list-group">
-                            <li onclick="location.href = '/test/{{$test->id}}'" class="list-group-item active btn btn-sm text-capitalize" ><h1>{{$test->nick}}: {{$test->id}}</h1></li>
+                            <a href= '/test/{{$test->id}}' class="list-group-item active btn btn-sm text-capitalize" ><h1>{{$test->nick}}: {{$test->id}}</h1></a>
                             <li class="list-group-item"><h3>ID do assunto: {{$test->subject_id}}</h3></li>
                         </ul>
                     </div>

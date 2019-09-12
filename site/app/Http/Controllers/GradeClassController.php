@@ -40,8 +40,18 @@ class GradeClassController extends Controller
         return $students;
     }
 
+    public function tests($id) {
+        $class = GradeClass::findOrFail($id);
+        return $class->tests;
+    }
+
     public function showClassMembers($id) {
         $students = $this->classMembers($id);
         return view("school_member.showAll", compact('students'));
+    }
+
+    public function showTests($id) {
+        $tests = $this->tests($id);
+        return view("test.showAll", compact('tests'));
     }
 }

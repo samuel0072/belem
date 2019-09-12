@@ -22,6 +22,7 @@ Route::get('/schoolmember/{id}/ans_tests', 'SchoolMemberController@showAnsweredT
 
 Route::resource('/grade_class', 'GradeClassController');
 Route::get('/grade_class/{id}/students', 'GradeClassController@showClassMembers');
+Route::get('/grade_class/{id}/tests', 'GradeClassController@showTests');
 
 Route::resource('/question', 'QuestionController');
 Route::get('/question/{id}/option_count', 'QuestionController@optionCount');
