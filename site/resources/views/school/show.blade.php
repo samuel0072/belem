@@ -18,7 +18,8 @@
                             <a href="/school/{{$school->id}}" class="list-group-item active"><h1>{{$school->name}}</h1></a>
                             <li class="list-group-item text-dark" ><h3>{{$school->description}}</h3></li>
                         </ul>
-                        <a href='/grade_class' class="btn btn-mdb-color">Class</a>
+                        <a href='/school/{{$school->id}}/classes' class="btn btn-mdb-color">Classes</a>
+                        <a href='/school/{{$school->id}}/edit' class = "btn btn-mdb-color">Editar</a>
                     </div>
                 </li>
             @endforeach

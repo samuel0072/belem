@@ -21,10 +21,11 @@ class SchoolController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "name" => ["required", "min:2", "max:255"]
+            "name" => ["required", "min:2", "max:255"],
+            "description" => ["required", "min:2", "max:255"]
         ]);
         School::create($validated);
-        return $validated;
+        return $this->index();
     }
 
 
@@ -46,6 +47,18 @@ class SchoolController extends Controller
     {
         $school->delete();
         return $this->index();
+    }
+
+    public function classes($id) {
+        $school = School::findOrFail($id);
+        $gradeClasses = $school->gradeClasses;
+
+        return view("grade_class.show",compact('gradeClasses'));
+
+    }
+
+    public function edit(School $school) {
+        return view('school.edit', compact('school'));
     }
 
 }

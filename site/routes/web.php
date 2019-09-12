@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something terrible!
 |
 */
-
+Route::get('/', function() {
+    return redirect('/school');
+});
 Route::resource('/school', 'SchoolController');
 Route::resource('/answered_test', 'AnsweredTestController');
 Route::resource('/schoolmember', 'SchoolMemberController');
@@ -22,6 +24,9 @@ Route::resource('/answered_test', 'AnsweredTestController');
 
 Route::post('/test/{id}/correct', 'TestController@correctAnsTests');
 Route::get('/test/{id}/correct', 'TestController@correct');
+
+Route::get('/school/{id}/classes', 'SchoolController@classes');
+
 Route::get('/redirect/home', function() {
-    redirect('/school');
+    return redirect('/school');
 });

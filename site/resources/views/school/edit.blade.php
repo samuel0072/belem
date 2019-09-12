@@ -23,7 +23,7 @@
             </form>
         </div>
         <div>
-            <form class="form-group"  method="post" action="school/{{$school->id}}">
+            <form class="form-group"  method="post" action="/school/{{$school->id}}">
                 {{csrf_field()}}
                 {{method_field("DELETE")}}
                 <div>
