@@ -8,7 +8,10 @@
 
 @section('content')
 
-    <div class="class-acess">
+    <div class="class-acess" >
+        <div>
+            <a href="/school/create" class="btn btn-mdb-color">Adicionar</a>
+        </div>
         <ul class="list-group">
             @foreach($schools as $school)
                 <li class="list-group-item">
