@@ -13,7 +13,7 @@
                             <li class="list-group-item"><h3>ID do assunto: {{$test->subject_id}}</h3></li>
                         </ul>
                     </div>
-                    <button class="btn btn-primary">Students</button>
+                    <a class="btn btn-primary" href="/test/{{$test->id}}/students">Students</a>
                 </li>
             </ul>
         @endforeach

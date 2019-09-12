@@ -12,4 +12,11 @@ class AnsweredTest extends Model
         return $this->hasMany(QuestionAnsweredTest::class);
     }
 
+    /*
+     * Nao funciona O.O
+     * */
+    public function student() {
+        return  $this->belongsTo(SchoolMember::class);
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TestRequest;
 use App\Question;
+use App\SchoolMember;
 use App\Test;
 
 class TestController extends Controller
@@ -67,5 +68,21 @@ class TestController extends Controller
                 }
             }
         }
+    }
+
+    public function students($id) {
+        $test = Test::findOrFail($id);
+        $ans_tests = $test->answeredTest;
+        $students = [];
+        foreach ($ans_tests as $ans_test) {
+            $student = SchoolMember::findOrFail($ans_test->school_member_id);
+            $students[] = $student;
+        }
+        return $students;
+    }
+
+    public function showStudents($id) {
+        $students = $this->students($id);
+        return view("school_member.showAll", compact('students'));
     }
 }

@@ -30,6 +30,7 @@ Route::get('/question/{id}/option_count', 'QuestionController@optionCount');
 Route::resource('/test', 'TestController');
 Route::post('/test/{id}/correct', 'TestController@correctAnsTests');
 Route::get('/test/{id}/correct', 'TestController@correct');
+Route::get('/test/{id}/students', 'TestController@showStudents');
 
 Route::resource('/question_answered_test', 'QuestionAnsweredTestController');
 
