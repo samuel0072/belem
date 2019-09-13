@@ -17,17 +17,5 @@
 
     </div>
 
-    <div class="student-acess">
-        @foreach($test->questions as $question)
-            <ul>
-                <li>
-                    {{$question->nick}}
-                    {{$question->topic_id}}
-                    {{$question->number}}
-                    {{$question->correct_answer}}
-                    {{$question->dificult}}
-                </li>
-            </ul>
-        @endforeach
-    </div>
+
 @endsection

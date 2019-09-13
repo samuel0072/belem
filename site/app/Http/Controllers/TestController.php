@@ -28,7 +28,7 @@ class TestController extends Controller
 
     public function show(Test $test)
     {
-        return view('test.edit', compact('test'));
+        return view('test.show', compact('test'));
     }
 
 
@@ -44,8 +44,19 @@ class TestController extends Controller
         $test->update();
     }
 
-    public function correct() {
-        return view("testing.test");
+    public function answers($id) {
+        $test = Test::findOrFail($id);
+        return $test->answeredTest;
+    }
+
+    public function students($id) {
+        $ans_tests = $this->answers($id);
+        $students = [];
+        foreach ($ans_tests as $ans_test) {
+            $student = SchoolMember::findOrFail($ans_test->school_member_id);
+            $students[] = $student;
+        }
+        return $students;
     }
 
     public function correctAnsTests($testId) {
@@ -70,19 +81,20 @@ class TestController extends Controller
         }
     }
 
-    public function students($id) {
-        $test = Test::findOrFail($id);
-        $ans_tests = $test->answeredTest;
-        $students = [];
-        foreach ($ans_tests as $ans_test) {
-            $student = SchoolMember::findOrFail($ans_test->school_member_id);
-            $students[] = $student;
-        }
-        return $students;
+    public function correct() {
+        return view("testing.test");
     }
+
 
     public function showStudents($id) {
         $students = $this->students($id);
         return view("school_member.showAll", compact('students'));
     }
+
+    public function showAnswers($id) {
+        $answeredTests = $this->answers($id);
+        return view('ans_test.showAll', compact('answeredTests'));
+    }
+
+
 }

@@ -10,6 +10,10 @@
 | contains the "web" middleware group. Now create something terrible!
 |
 */
+/*
+ * /test/{id}/answers
+ * /answered_tests/{test_id}
+ * */
 
 Route::resource('/school', 'SchoolController');
 Route::get('/school/{id}/classes', 'SchoolController@showClasses');
@@ -31,6 +35,7 @@ Route::resource('/test', 'TestController');
 Route::post('/test/{id}/correct', 'TestController@correctAnsTests');
 Route::get('/test/{id}/correct', 'TestController@correct');
 Route::get('/test/{id}/students', 'TestController@showStudents');
+Route::get('/test/{id}/answers', 'TestController@showAnswers');
 
 Route::resource('/question_answered_test', 'QuestionAnsweredTestController');
 
