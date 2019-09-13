@@ -32,7 +32,7 @@
                     @yield('logo')
                     <a href = "/" class = "btn btn-primary ">Home</a>
                     <button class = "btn btn-white">Contacts</button>
-                    <button class = "btn btn-white">Follow</button>
+                    <button class = "btn btn-white" onclick="back()">Voltar</button>
                 </div>
             </li>
         </ul>
@@ -40,5 +40,10 @@
     <div class="container">
         @yield('content')
     </div>
+    <script>
+        function back() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>

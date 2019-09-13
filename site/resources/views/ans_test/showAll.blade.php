@@ -4,7 +4,6 @@
 
     <div class = 'card'>
         <div class = "card-body">
-
                     <div class = "table-responsive">
                         <table class="table">
                             <tr>
@@ -17,7 +16,7 @@
                             @foreach($answeredTests as $answeredTest)
                             <tr>
                                 <td>{{$answeredTest->school_member_id}}</td>
-                                <td>{{$answeredTest->test_id}}</td>
+                                <td><a href="/test/{{$answeredTest->test_id}}">{{$answeredTest->test_id}}</a></td>
                                 <td>{{$answeredTest->score}}</td>
                                 <td>{{$answeredTest->done == 1?'Sim':'Não'}}</td>
                                 <td>{{$answeredTest->updated_at}}</td>
@@ -25,9 +24,6 @@
                             @endforeach
                         </table>
                     </div>
-
         </div>
-
     </div>
-
 @endsection

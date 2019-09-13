@@ -20,9 +20,10 @@ class SchoolMemberController extends Controller
         return SchoolMember::create($validated);
     }
 
-    public function show(SchoolMember $schoolMember)
+    public function show($id)
     {
-        return $schoolMember;
+        $student = SchoolMember::findOrFail($id);
+        return view('school_member.show', compact('student'));
     }
 
     public function update(SchoolMemberRequest $request, SchoolMember $schoolMember)

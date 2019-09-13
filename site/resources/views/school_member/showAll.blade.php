@@ -10,45 +10,11 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <div class="main-container ">
-
                                 <div class="student-info">
                                     <div class="text-center text-white list-group-item active">
                                         <strong>{{$student->name}}</strong>
                                     </div>
-
-                                <!--ul class="list-group list-group-horizontal">
-                                    <li class="list-group-item text-dark">
-                                        <ul class="list-group">
-                                            <li class="list-group-item">ID</li>
-                                            <li class="list-group-item">{{$student->id}}</li>
-                                        </ul>
-                                    </li>
-                                    <li class="list-group-item text-dark">
-
-                                        <ul class="list-group">
-                                            <li class="list-group-item">Nº da Matricula</li>
-                                            <li class="list-group-item">{{$student->enroll}}</li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="list-group-item text-dark">
-
-                                        <ul class="list-group">
-                                            <li class="list-group-item">ID da classe</li>
-                                            <li class="list-group-item">{{$student->grade_class_id}}</li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="list-group-item text-dark">
-
-                                        <ul class="list-group">
-                                            <li class="list-group-item">Idade</li>
-                                            <li class="list-group-item">{{$student->age}}</li>
-                                        </ul>
-                                    </li>
-                                </ul-->
                                     <div class = "table-responsive">
-
                                         <table class = "table">
                                             <tr>
                                                 <th>ID</th>
@@ -64,14 +30,12 @@
                                             </tr>
                                         </table>
                                     </div>
-                                    <a class="btn btn-grey" href="/schoolmember/{{$student->id}}/ans_tests">Tests</a>
+                                    <a class="btn btn-grey" href="/schoolmember/{{$student->id}}">Exibir</a>
                                 </div>
                             </div>
                         </li>
                     </ul>
-
                 </div>
-
             @endforeach
         </div>
     </div>
