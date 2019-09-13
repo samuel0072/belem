@@ -13,7 +13,6 @@
                             <li class="list-group-item"><h3>ID do assunto: {{$test->subject_id}}</h3></li>
                         </ul>
                     </div>
-                    <a class="btn btn-primary" href="/test/{{$test->id}}/students">Alunos</a>
                     <a class="btn btn-primary" href="/test/{{$test->id}}/answers">Respostas</a>
                     <a class = "btn btn-warning">Editar</a>
                 </li>

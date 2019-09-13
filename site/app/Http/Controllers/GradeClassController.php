@@ -27,6 +27,9 @@ class GradeClassController extends Controller
         return $gradeClass;
     }
 
+    public function create(){
+        return view('grade_class.create');
+    }
 
     public function destroy(GradeClass $gradeClass)
     {

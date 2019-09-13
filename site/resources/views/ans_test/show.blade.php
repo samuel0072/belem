@@ -10,23 +10,24 @@
         <h3>{{$answeredTest->schoolmember_id}}</h3>
     </div>
 
-    <div class="navigator-route">
-
-    </div>
-
-    <div class="student-acess">
-        <table class="list-group">
-            <thead>
-            <td>Questão</td>
-            <td>Opção marcada</td>
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="bg-primary text-white">
+                <td >Questão</td>
+                <td>Opção marcada</td>
             </thead>
             <tbody>
-            @foreach($answeredTest->questionAnsweredTests as $question)
-                <tr>
-                    <td>{{$question->question_id}}</td>
-                    <td>{{chr($question->option_choosed+96)}}</td>
-                </tr>
-            @endforeach
+                    @foreach($answeredTest->questionAnsweredTests as $question)
+                        <tr>
+                            <td>{{$question->question_id}}</td>
+                            <td>
+                                <form class="form-inline">
+                                    <div class="form-group mx-sm-3 mb-2"><input class="form-control" name="option_choosed" value="{{chr($question->option_choosed+96)}}">
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
             </tbody>
         </table>
         </li>

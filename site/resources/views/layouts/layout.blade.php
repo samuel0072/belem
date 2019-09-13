@@ -14,6 +14,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/css/mdb.min.css" rel="stylesheet">
+    <!--W3 css -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
     <!-- Bootstrap tooltips -->
@@ -32,12 +34,13 @@
                     @yield('logo')
                     <a href = "/" class = "btn btn-primary ">Home</a>
                     <button class = "btn btn-white">Contacts</button>
-                    <button class = "btn btn-white" onclick="back()">Voltar</button>
+                    <button class = "btn btn-white" onclick="back()">Voltar(BETA)</button>
                 </div>
             </li>
         </ul>
     </header>
     <div class="container">
+        @yield('head-content')
         @yield('content')
     </div>
     <script>

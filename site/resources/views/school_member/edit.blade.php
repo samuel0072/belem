@@ -6,7 +6,7 @@
     <div>
         <h1 >Editar</h1>
         <div class = "form-group">
-            <form method="post" action="/school_member/{{$schoolMember->id}}"> //TODO: melhorar essa rota
+            <form method="post" action="/schoolmember/{{$schoolMember->id}}">
                 {{csrf_field()}}
                 {{method_field("PATCH")}}
                 <div>
@@ -26,6 +26,9 @@
                             <option value="aluno">Aluno</option>
                         </select>
                     </label>
+                    <div>
+                        <input name = "grade_class_id" value="{{$schoolMember->grade_class_id}}" type="hidden">
+                    </div>
                 </div>
 
                 <div>
@@ -35,11 +38,11 @@
         </div>
 
         <div class="form-group">
-            <form  method="post" action="/school_member/{{$schoolMember->id}}">
+            <form  method="post" action="/schoolmember/{{$schoolMember->id}}">
                 {{csrf_field()}}
                 {{method_field("DELETE")}}
                 <div>
-                    <button class="btn btn-primary" type="submit">Excluir Aluno</button>
+                    <button class="btn btn-danger" type="submit">Excluir Aluno</button>
                 </div>
             </form>
         </div>

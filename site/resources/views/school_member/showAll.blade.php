@@ -4,6 +4,7 @@
 
 @section('content')
     <div>
+        <a href="/schoolmember/create" class = "btn btn-teal">Adicionar</a>
         <div class="card">
         @foreach($students as $student)
                 <div class="card">

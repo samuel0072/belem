@@ -4,7 +4,7 @@
 
 @section('content')
     <div>
-        <div class="card float-left" >
+        <div class="card float-left">
             <strong class=" list-group-item active text-center">{{$student->name}}</strong>
             <div class="table-responsive">
                 <table class="table">
@@ -29,6 +29,7 @@
 
         </div>
         <div class = "card float-right">
+            <a href="/answered_test/create" class = "btn btn-teal">Adicionar</a>
             <h1 class = " list-group-item active text-center">Testes respondidos</h1>
             <div class = "table-responsive">
                 <table class="table">

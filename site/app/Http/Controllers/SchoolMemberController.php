@@ -26,20 +26,23 @@ class SchoolMemberController extends Controller
         return view('school_member.show', compact('student'));
     }
 
-    public function update(SchoolMemberRequest $request, SchoolMember $schoolMember)
+    public function update(SchoolMemberRequest $request, $id)
     {
+        $schoolMember = SchoolMember::findOrFail($id);
         $validated = $request->validated();
         $schoolMember->update($validated);
         return $schoolMember;
     }
 
-    public function destroy(SchoolMember $schoolMember)
+    public function destroy($id)
     {
+        $schoolMember = SchoolMember::findOrFail($id);
         $schoolMember->delete();
         return $this->index();
     }
 
-    public function edit(SchoolMember $schoolMember) {
+    public function edit($id) {
+        $schoolMember = SchoolMember::findOrFail($id);
         return view("school_member.edit", compact('schoolMember'));
     }
 

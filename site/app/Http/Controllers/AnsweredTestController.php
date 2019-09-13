@@ -21,7 +21,6 @@ class AnsweredTestController extends Controller
 
     public function show(AnsweredTest $answeredTest)
     {
-        $answeredTest->questionAnsweredTests;
         return view('ans_test.show', compact('answeredTest'));
     }
 

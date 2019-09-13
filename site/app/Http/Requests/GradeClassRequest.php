@@ -24,8 +24,8 @@ class GradeClassRequest extends FormRequest
     public function rules()
     {
         return [
-            "letter" => ["required", "max:1"],
-            "number" => ["required", "numeric"],
+            "class_letter" => ["required", "max:1"],
+            "grade_number" => ["required", "numeric"],
             "school_id" => ["required", "numeric"]
         ];
     }

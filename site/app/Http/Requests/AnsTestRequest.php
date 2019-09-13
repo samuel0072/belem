@@ -24,7 +24,7 @@ class AnsTestRequest extends FormRequest
     public function rules()
     {
         return [
-            "test_id" => ["required", "numeric"],
+            "test_id" => ["required", "numeric", "min:1"],
             "school_member_id" => ["required", "numeric"],
             "score" => ["sometimes", "required", "numeric", "min:0", "max:10"],
             "done" => ["sometimes", "required", "boolean"]
