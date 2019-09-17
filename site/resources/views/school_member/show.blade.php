@@ -1,5 +1,10 @@
 @extends("layouts.layout")
 
+<?php
+    $id = $student->grade_class->school->id
+?>
+@section('return', "/grade_class/$id/students")
+
 @section('title', 'schoolmember')
 
 @section('content')

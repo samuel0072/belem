@@ -1,5 +1,7 @@
 @extends("layouts.create")
 
+@section('return', '/')
+
 @section('title', 'Test')
 
 @section('add_name', 'Teste')

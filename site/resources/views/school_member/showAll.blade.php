@@ -10,6 +10,10 @@
     <div>
         <div class="card">
         @foreach($students as $student)
+                <?php
+                    $id = $student->grade_class->school->id;
+                ?>
+                @section('return', "/school/$id/classes")
                 <div class="card">
                     <ul class="list-group">
                         <li class="list-group-item">
@@ -36,8 +40,7 @@
                                             </tr>
                                         </table>
                                     </div>
-                                    <a class="btn btn-primary" href="/schoolmember/{{$student->id}}/edit">Editar</a>
-                                    <a class="btn btn-grey" href="/schoolmember/{{$student->id}}">Exibir Testes</a>
+                                    @include('school_member.edit')
                                 </div>
                             </div>
                         </li>

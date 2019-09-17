@@ -12,4 +12,8 @@ class SchoolMember extends Model
     public function answeredTests() {
         return $this->hasMany(AnsweredTest::class);
     }
+
+    public function grade_class(){
+        return $this->belongsTo(GradeClass::class);
+    }
 }

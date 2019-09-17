@@ -12,6 +12,9 @@ class AnsweredTest extends Model
         return $this->hasMany(QuestionAnsweredTest::class);
     }
 
+    public function test(){
+        return $this->belongsTo(Test::class);
+    }
     /*
      * Nao funciona O.O
      * */

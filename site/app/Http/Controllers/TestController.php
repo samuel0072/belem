@@ -35,7 +35,7 @@ class TestController extends Controller
     {
         $validated = $request->validated();
         $test->update($validated);
-        return $test;
+        return redirect("/grade_class/$test->id/tests");
     }
 
     public function destroy(Test $test)

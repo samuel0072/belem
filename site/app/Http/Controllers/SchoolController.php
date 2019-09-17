@@ -21,6 +21,7 @@ class SchoolController extends Controller
             "description" => ["required", "min:2", "max:255"]
         ]);
         School::create($validated);
+        redirect("/");
     }
 
     public function update(Request $request, School $school){

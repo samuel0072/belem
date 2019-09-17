@@ -20,7 +20,7 @@
             </div>
 
             <select class="browser-default custom-select" name="type">
-                <option value="Select" selected disabled>Select</option>
+                <option value="Select" selected disabled>Tipo</option>
                 <option value="aluno">Aluno</option>
                 <option value="professor">Professor</option>
             </select>

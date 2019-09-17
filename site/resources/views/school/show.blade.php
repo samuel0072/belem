@@ -16,7 +16,7 @@
                         <li class="list-group-item text-dark"><h3>{{$school->description}}</h3></li>
                     </ul>
                     <div class="btn-group">
-                        @include('school.edit', compact('school'))
+                        @include('school.edit')
                     </div>
 
                 </div>

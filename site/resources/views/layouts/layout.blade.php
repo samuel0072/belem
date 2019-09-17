@@ -34,7 +34,7 @@
                     @yield('logo')
                     <a href = "/" class = "btn btn-primary ">Home</a>
                     <button class = "btn btn-white">Contacts</button>
-                    <button class = "btn btn-white" onclick="back()">Voltar(BETA)</button>
+                    <a href="@yield('return', '/')" class = "btn btn-white" >Voltar</a>
                 </div>
             </li>
         </ul>

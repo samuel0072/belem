@@ -2,6 +2,8 @@
 
 @section('title', 'gradeClass')
 
+@section('return', '/')
+
 @section('add_name', 'Classe')
 
 @include('grade_class.create')
