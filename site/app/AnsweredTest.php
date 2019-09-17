@@ -16,7 +16,7 @@ class AnsweredTest extends Model
      * Nao funciona O.O
      * */
     public function student() {
-        return  $this->belongsTo(SchoolMember::class);
+        return $this->belongsTo(SchoolMember::class);
     }
 
 }

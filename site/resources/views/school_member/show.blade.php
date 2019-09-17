@@ -25,7 +25,7 @@
                 </table>
 
             </div>
-            <a class="btn btn-primary" href="/schoolmember/{{$student->id}}/edit">Editar</a>
+
 
         </div>
         <div class = "card float-right">

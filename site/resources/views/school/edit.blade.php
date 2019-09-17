@@ -1,9 +1,13 @@
-<div class="w3-container">
-    <button onclick="document.getElementById('id02').style.display='block'" class="btn btn-mdb-color ">Editar</button>
-    <div id="id02" class="w3-modal">
-        <div class="w3-modal-content">
+<div style="display:inline" class="w3-container">
+    <button onclick="document.getElementById('id{{$school->id}}').style.display='block'"
+            class="btn btn-mdb-color ">Editar
+    </button>
+    <a href='/school/{{$school->id}}/classes' class="btn btn-mdb-color">Classes</a>
+    <div >
+        <div id="id{{$school->id}}" class="w3-modal w3-animate-left w3-modal-content">
             <div class="w3-container">
-                <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <a onclick="document.getElementById('id{{$school->id}}').style.display='none'"
+                   class="w3-button w3-display-topright">&times;</a>
                 <h1>Editar</h1>
                 <div>
                     <form class="form-group" method="post" action="/school/{{$school->id}}">
@@ -14,7 +18,8 @@
                         </div>
 
                         <div>
-                            <input class="form-control" name="description" value="{{$school->description}}">
+                            <input class="form-control" name="description"
+                                   value="{{$school->description}}">
                         </div>
 
                         <div class="btn-group">

@@ -17,7 +17,9 @@ class SchoolMemberController extends Controller
     public function store(SchoolMemberRequest $request)
     {
         $validated = $request->validated();
-        return SchoolMember::create($validated);
+        $id = $validated['grade_class_id'];
+        SchoolMember::create($validated);
+        return redirect("/grade_class/$id/students");
     }
 
     public function show($id)
@@ -31,14 +33,15 @@ class SchoolMemberController extends Controller
         $schoolMember = SchoolMember::findOrFail($id);
         $validated = $request->validated();
         $schoolMember->update($validated);
-        return $schoolMember;
+        return redirect("/grade_class/$schoolMember->grade_class_id/students");
     }
 
     public function destroy($id)
     {
         $schoolMember = SchoolMember::findOrFail($id);
+        $class = $schoolMember->grade_class_id;
         $schoolMember->delete();
-        return $this->index();
+        return redirect("/grade_class/$class/students");
     }
 
     public function edit($id) {

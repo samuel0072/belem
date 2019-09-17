@@ -1,20 +1,21 @@
-@extends("layouts.layout")
-@section('title', 'CRIAR')
-
-@section('content')
-    <div class = "form-group">
-        <form method="post" action="/test">
+@section('hidden_content')
+    <h1>Criar Teste</h1>
+    <div>
+        <form class = "form-group" id = "form1" method="post" action="/test">
             {{csrf_field()}}
-            <div class="divider-new align-content-center">
-                <label>
+            <div class="align-content-center">
+                <div>
                     <input placeholder="Nome do teste" name ="nick" class = "form-control">
-                </label>
-                <label>
+                </div>
+
+                <div>
                     <input class = "form-control" type="number" placeholder="Subject ID" required name="subject_id" >
-                </label>
-                <label>
+                </div>
+
+                <div>
                     <input class = "form-control" type="number" placeholder="GradeClass ID" required name="grade_class_id" >
-                </label>
+                </div>
+
                 <div>
                     <button type = "submit" class="btn btn-primary">Cadastrar teste</button>
                 </div>

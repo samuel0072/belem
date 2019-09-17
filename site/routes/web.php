@@ -17,7 +17,6 @@
 
 Route::resource('/school', 'SchoolController');
 Route::get('/school/{id}/classes', 'SchoolController@showClasses');
-Route::get('/school_all','SchoolController@showAll' );
 
 Route::resource('/answered_test', 'AnsweredTestController');
 
@@ -43,6 +42,11 @@ Route::resource('/answered_test', 'AnsweredTestController');
 
 
 Route::get('/', function() {
-    return redirect('/school_all');
+    return redirect('/school');
 });
 
+
+
+Route::get('/testing', function() {
+    return view("testing.test");
+});

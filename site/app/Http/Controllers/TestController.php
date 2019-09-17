@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use api\School\GradeClass;
 use App\Http\Requests\TestRequest;
 use App\Question;
 use App\SchoolMember;
@@ -13,17 +14,15 @@ class TestController extends Controller
     public function index()
     {
         $tests = Test::all();
-        return view('test.showAll', compact('tests'));
+        return $tests;
     }
 
     public function store(TestRequest $request)
     {
         $validated = $request->validated();
-        return Test::create($validated);
-    }
-
-    public function create(){
-        return view('test.create');
+        $id = $validated['grade_class_id'];
+        Test::create($validated);
+        return redirect("/grade_class/$id/tests");
     }
 
     public function show(Test $test)
@@ -41,7 +40,9 @@ class TestController extends Controller
 
     public function destroy(Test $test)
     {
-        $test->update();
+        $id = $test->grade_class_id;
+        $test->delete();
+        return redirect("/grade_class/$id/tests");
     }
 
     public function answers($id) {
@@ -85,6 +86,10 @@ class TestController extends Controller
         return view("testing.test");
     }
 
+    public function edit($id){
+        $test = Test::findOrFail($id);
+        return redirect("/grade_class/$test->grade_class_id/tests");
+    }
 
     public function showStudents($id) {
         $students = $this->students($id);

@@ -24,7 +24,7 @@ class GradeClassController extends Controller
     {
         $validated = $request->validated();
         $gradeClass->update($validated);
-        return $gradeClass;
+        return $this->index();
     }
 
     public function create(){

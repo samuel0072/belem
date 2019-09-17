@@ -8,8 +8,7 @@
 
 @section('content')
     <div>
-        <h1>{{$test->nick}}: ID {{$test->id}}</h1>
-        <h3>{{$test->subject_id}}</h3>
+        <h1>{{$test->nick}}: {{$test->id}}</h1>
     </div>
 
     <div class="navigator-route">
@@ -27,9 +26,9 @@
         <div class="card">
             <ul class="list-group">
                 @foreach($test->questions as $question)
-                    <li class="list-group-item active">
+                    <a href="/question/{{$question->id}}"  class="list-group-item active text-white">
                         {{$question->nick}}
-                    </li>
+                    </a>
                     <li style="list-style:none">
                         <table class = "table">
                             <tr>

@@ -1,4 +1,6 @@
 <div class="w3-container">
+    <a class="btn btn-primary" href="/grade_class/{{$class->id}}/students">Alunos</a>
+    <a class="btn btn-secondary" href="/grade_class/{{$class->id}}/tests">Testes</a>
     <button onclick="document.getElementById('id03').style.display='block'" class="btn btn-warning ">Editar</button>
     <div id="id03" class="w3-modal">
         <div class="w3-modal-content">
@@ -37,7 +39,7 @@
                         {{csrf_field()}}
                         {{method_field("DELETE")}}
                         <div>
-                            <button class="btn btn-primary" type="submit">Excluir Classe</button>
+                            <button class="btn btn-red" type="submit">Excluir Classe</button>
                         </div>
                     </form>
                 </div>

@@ -12,7 +12,7 @@ class SchoolController extends Controller
      * */
     public function index(){
         $schools = School::all();
-        return $schools;
+        return view('school.show' , compact('schools'));
     }
 
     public function store(Request $request){
@@ -21,7 +21,6 @@ class SchoolController extends Controller
             "description" => ["required", "min:2", "max:255"]
         ]);
         School::create($validated);
-        return redirect('/');
     }
 
     public function update(Request $request, School $school){
@@ -30,12 +29,12 @@ class SchoolController extends Controller
             "description" => ["required", "min:2", "max:255"]
         ]);
         $school->update($validated);
-        return $school;
+        return redirect("/");
     }
 
     public function destroy(School $school){
         $school->delete();
-        return $this->index();
+        return redirect("/");
     }
 
     public function classes($id) {
@@ -64,8 +63,7 @@ class SchoolController extends Controller
     }
 
     public function showAll() {
-        $schools = $this->index();
-        return view('school.show' , compact('schools'));
+
     }
 
     public function showClasses($id) {

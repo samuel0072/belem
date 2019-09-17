@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
 use App\Question;
+use App\Test;
 use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
@@ -28,6 +29,7 @@ class QuestionController extends Controller
 
     public function show(Question $question)
     {
+        return view('question.edit');
         return $question;
     }
 
@@ -46,6 +48,7 @@ class QuestionController extends Controller
     public function optionCount($id) {
         $question = Question::findOrFail($id);
         $test = Test::findOrFail($question->test_id);
+        $results = [];
 
         if($test->status == "ready") {
             $results = DB::table('question_answered_tests')
@@ -53,7 +56,7 @@ class QuestionController extends Controller
                 ->whereRaw("question_id = $question->id")
                 ->groupBy("option_choosed")
                 ->get();
-            return $results;
         }
+        return $results;
     }
 }

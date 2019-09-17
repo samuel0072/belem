@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.9.7/d3.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
 
 
 
@@ -27,7 +27,7 @@
 
 </head>
 <body>
-    <header >
+    <header>
         <ul class="list-group">
             <li class="list-group-item grey">
                 <div class="btn-group btn-group-toggle">
