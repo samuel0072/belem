@@ -35,6 +35,14 @@
             <div class="card">
                 <div class="card-header">
                     <h1>Questoes</h1>
+                    <button onclick="document.getElementById('id01').style.display='block'" class="w3-button">Adicionar</button>
+                    <div id="id01" class="w3-modal">
+                        <div class="w3-modal-content">
+                            <div class="w3-container"> <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                @include("question.create")
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class = "card-body">
                     <ul class="list-group">

@@ -1,4 +1,4 @@
-@extends("layouts.layout")
+@extends("layouts.create")
 
 @section('title', 'Ans_Test')
 

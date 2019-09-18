@@ -1,8 +1,16 @@
-@extends("layouts.layout")
+@extends("layouts.create")
+
+@section('add_name', 'Teste Resp.')
 
 <?php
-    $id = $student->grade_class->id
+    $id = $student->grade_class->id;
+    $studentId = $student->id;
 ?>
+
+@section('hidden_content')
+    @include("ans_test.create", compact('studentId'))
+@endsection
+
 @section('return', "/grade_class/$id/students")
 
 @section('title', 'schoolmember')
@@ -31,11 +39,9 @@
 
             </div>
 
-
         </div>
         <div class = "card float-right">
-            <a href="/answered_test/create" class = "btn btn-teal">Adicionar</a>
-            <h1 class = " list-group-item active text-center">Testes respondidos</h1>
+            <h1 class = " list-group-item active text-center" style="margin-top: 0px;">Testes respondidos</h1>
             <div class = "table-responsive">
                 <table class="table">
                     <tr>
@@ -53,7 +59,7 @@
                             <td>{{count($answeredTest->questionAnsweredTests)}}</td>
                             <td>{{$answeredTest->done == 1?'Sim':'Não'}}</td>
                             <td>{{$answeredTest->updated_at}}</td>
-                            <td ><a href="/answered_test/{{$answeredTest->id}}" class="btn btn-primary btn-sm fas fa-eye"></a></td>
+                            <td >@include("ans_question.create")</td>
                         </tr>
                     @endforeach
                 </table>

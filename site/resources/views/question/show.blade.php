@@ -12,7 +12,6 @@
         <ul class="list-group">
             @foreach($questions as $question)
                 <div>
-                    {{--                        <img class="school-image" src="{{$school->image}}">--}}
                     <li class="list-group-item active">{{$question->nick}}</li>
                     <li class="list-group-item">Numero da questao: {{$question->number}}</li>
                     <li class="list-group-item">ID do teste: {{$question->test_id}}</li>

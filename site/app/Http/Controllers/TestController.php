@@ -7,6 +7,7 @@ use App\Http\Requests\TestRequest;
 use App\Question;
 use App\SchoolMember;
 use App\Test;
+use function Sodium\compare;
 
 class TestController extends Controller
 {
@@ -34,8 +35,9 @@ class TestController extends Controller
     public function update(TestRequest $request, Test $test)
     {
         $validated = $request->validated();
+        $id = $test->grade_class_id;
         $test->update($validated);
-        return redirect("/grade_class/$test->id/tests");
+        return redirect("/grade_class/$id/tests");
     }
 
     public function destroy(Test $test)
@@ -88,17 +90,17 @@ class TestController extends Controller
 
     public function edit($id){
         $test = Test::findOrFail($id);
-        return redirect("/grade_class/$test->grade_class_id/tests");
+        return redirect("/grade_class/$test->grade_class_id/tests", compact('id'));
     }
 
     public function showStudents($id) {
         $students = $this->students($id);
-        return view("school_member.showAll", compact('students'));
+        return view("school_member.showAll", compact(['students', 'id']));
     }
 
     public function showAnswers($id) {
         $answeredTests = $this->answers($id);
-        return view('ans_test.showAll', compact('answeredTests'));
+        return view('ans_test.showAll', compact(['answeredTests', 'id']));
     }
 
 

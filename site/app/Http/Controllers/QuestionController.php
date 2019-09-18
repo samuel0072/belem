@@ -17,13 +17,15 @@ class QuestionController extends Controller
     }
 
     public function create(){
-        return view('question.create');
+        return redirect('/');
     }
 
     public function store(QuestionRequest $request)
     {
         $validated = $request->validated();
-        return Question::create($validated);
+        Question::create($validated);
+        $id = $validated["test_id"];
+        return redirect("/test/$id");
     }
 
 

@@ -10,27 +10,19 @@
                 {{csrf_field()}}
                 {{method_field("PATCH")}}
                 <div>
-                    <label>
-                        <input type="number" name = "subject_id" required value = "{{$answeredTest->test_id}}">
-                    </label>
+                    <input type="number" name = "subject_id" required value = "{{$answeredTest->test_id}}" hidden>
                 </div>
 
                 <div>
-                    <label>
-                        <input type="number" value="{{$answeredTest->schoolmember_id}}" required name="schoolmember_id">
-                    </label>
+                    <input type="number" value="{{$answeredTest->schoolmember_id}}" required name="schoolmember_id" hidden>
                 </div>
 
                 <div>
-                    <label>
-                        <input name = "score" type="number" placeholder="score">
-                    </label>
+                    <input name = "score" type="number" placeholder="score">
                 </div>
 
                 <div>
-                    <label>
-                        <input name = "done" type="number" placeholder="done" >
-                    </label>
+                    <input name = "done" type="number" placeholder="done" >
                 </div>
 
                 <button type = "submit">Salvar</button>

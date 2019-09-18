@@ -21,21 +21,23 @@ class SchoolController extends Controller
             "description" => ["required", "min:2", "max:255"]
         ]);
         School::create($validated);
-        redirect("/");
+        return redirect("/school");
+
     }
 
     public function update(Request $request, School $school){
+
         $validated = $request->validate([
             "name" => ["required", "min:2", "max:255"],
             "description" => ["required", "min:2", "max:255"]
         ]);
         $school->update($validated);
-        return redirect("/");
+        return redirect("/school");
     }
 
     public function destroy(School $school){
         $school->delete();
-        return redirect("/");
+        return redirect("/school");
     }
 
     public function classes($id) {
@@ -69,7 +71,7 @@ class SchoolController extends Controller
 
     public function showClasses($id) {
         $gradeClasses = $this->classes($id);
-        return view("grade_class.show",compact('gradeClasses'));
+        return view("grade_class.show",compact(['gradeClasses', 'id']));
     }
 
 }

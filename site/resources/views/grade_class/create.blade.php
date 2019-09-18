@@ -1,11 +1,11 @@
 @section('hidden_content')
-    <div>
-        <h1>Criar</h1>
+    <div class = "card">
+        <div class="card-header"><h1>Criar</h1></div>
+        <div class="card-body">
         <form method="post" action="/grade_class">
             {{csrf_field()}}
             <div>
-                <span class="label label-default" for="school_id">ID da escola</span>
-                <input class = "form-control" type = "number" placeholder="Nº da Escola" required name ="school_id">
+                <input class = "form-control" type = "number" placeholder="Nº da Escola" required name ="school_id" value="{{$id}}" hidden>
             </div>
 
             <div>
@@ -23,5 +23,6 @@
                 <button class="btn btn-primary" type = "submit">Criar Classe</button>
             </div>
         </form>
+        </div>
     </div>
 @endsection

@@ -13,13 +13,11 @@
                 </div>
 
                 <div>
-                    <label>Id da disciplina</label>
-                    <input class="form-control" type="number" name="subject_id" value="{{$test->subject_id}}">
+                    <input class="form-control" type="number" name="subject_id" value="{{$test->subject_id}}" hidden>
                 </div>
 
                 <div>
-                    <label>Id da classe</label>
-                    <input class="form-control" type="number" name="grade_class_id" value="{{$test->grade_class_id}}">
+                    <input class="form-control" type="number" name="grade_class_id" value="{{$test->grade_class_id}}" hidden>
                 </div>
 
                 <div>

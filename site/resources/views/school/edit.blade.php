@@ -3,8 +3,8 @@
             class="btn btn-mdb-color ">Editar
     </button>
     <a href='/school/{{$school->id}}/classes' class="btn btn-mdb-color">Classes</a>
-    <div >
-        <div id="id{{$school->id}}" class="w3-modal w3-animate-left w3-modal-content">
+    <div id="id{{$school->id}}" class="w3-modal">
+        <div class="w3-modal-content">
             <div class="w3-container">
                 <a onclick="document.getElementById('id{{$school->id}}').style.display='none'"
                    class="w3-button w3-display-topright">&times;</a>

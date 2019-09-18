@@ -17,7 +17,12 @@ class QuestionAnsweredTestController extends Controller
     public function store(QuestAnsTestRequest $request)
     {
         $validated = $request->validated();
-        return QuestionAnsweredTest::create($validated);
+        $questionAnsweredTest = QuestionAnsweredTest::updateOrCreate([
+            'answered_test_id' => $validated['answered_test_id'],
+            'question_id' => $validated['question_id'],
+            'option_choosed' => $validated['option_choosed']
+        ]);
+        return $questionAnsweredTest;
     }
 
     public function show(QuestionAnsweredTest $questionAnsweredTest)
@@ -25,11 +30,9 @@ class QuestionAnsweredTestController extends Controller
         return $questionAnsweredTest;
     }
 
-    public function update(QuestAnsTestRequest $request, QuestionAnsweredTest $questionAnsweredTest)
+    public function update(QuestAnsTestRequest $request)
     {
-        $validated = $request->validated();
-        $questionAnsweredTest->update($validated);
-        return $questionAnsweredTest;
+        return redirect("/");
     }
 
     public function destroy(QuestionAnsweredTest $questionAnsweredTest)

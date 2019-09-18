@@ -17,14 +17,17 @@ class GradeClassController extends Controller
     public function store(GradeClassRequest $request)
     {
         $validated = $request->validated();
-        return GradeClass::create($validated);
+        GradeClass::create($validated);
+        $id = $validated["school_id"];
+        return redirect("/school/$id/classes");
     }
 
     public function update(GradeClassRequest $request, GradeClass $gradeClass)
     {
         $validated = $request->validated();
         $gradeClass->update($validated);
-        return $this->index();
+        $id = $validated["school_id"];
+        return redirect("/school/$id/classes");
     }
 
     public function create(){
@@ -33,8 +36,9 @@ class GradeClassController extends Controller
 
     public function destroy(GradeClass $gradeClass)
     {
+        $id = $gradeClass->school_id;
         $gradeClass->delete();
-        return $this->index();
+        return redirect("/school/$id/classes");
     }
 
     public function classMembers($id) {
@@ -50,11 +54,11 @@ class GradeClassController extends Controller
 
     public function showClassMembers($id) {
         $students = $this->classMembers($id);
-        return view("school_member.showAll", compact('students'));
+        return view("school_member.showAll", compact(['students', 'id']));
     }
 
     public function showTests($id) {
         $tests = $this->tests($id);
-        return view("test.showAll", compact('tests'));
+        return view("test.showAll", compact(['tests', 'id']));
     }
 }

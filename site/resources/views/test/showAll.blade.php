@@ -12,6 +12,7 @@
             <?php
                 $id = $test->gradeClass->school_id;
             ?>
+            @section('return', "/school/$id/classes")
 
             <ul class="list-group">
                 <li class="list-group-item">
@@ -35,4 +36,3 @@
     </script>
 @endsection
 
-@section('return', "/school/$id/classes")
