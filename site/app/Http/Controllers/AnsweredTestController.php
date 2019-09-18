@@ -16,7 +16,9 @@ class AnsweredTestController extends Controller
     public function store(AnsTestRequest $request)
     {
         $validated = $request->validated();
-        return AnsweredTest::create($validated);
+        $id = $validated["school_member_id"];
+        AnsweredTest::create($validated);
+        return redirect("/schoolmember/$id");
     }
 
     public function show(AnsweredTest $answeredTest)
