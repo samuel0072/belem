@@ -20,4 +20,7 @@ class Test extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+    public function gradeClass() {
+        return $this->belongsTo(GradeClass::class);
+    }
 }

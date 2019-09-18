@@ -1,7 +1,5 @@
 @extends("layouts.create")
 
-@section('return', '/')
-
 @section('title', 'Test')
 
 @section('add_name', 'Teste')
@@ -11,6 +9,10 @@
 @section('content')
     <div class="student-acess">
         @foreach($tests as $test)
+            <?php
+                $id = $test->gradeClass->school_id;
+            ?>
+
             <ul class="list-group">
                 <li class="list-group-item">
                     <div>
@@ -32,3 +34,5 @@
 
     </script>
 @endsection
+
+@section('return', "/school/$id/classes")

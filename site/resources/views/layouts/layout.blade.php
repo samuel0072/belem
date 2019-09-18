@@ -25,6 +25,17 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/js/mdb.min.js"></script>
 
+
+    <!-- todo: mudar isso -->
+    <style>
+        .w3-container {
+            padding: 0 0 0 0;
+        }
+        .w3-display-topright {
+            z-index: 100;
+        }
+    </style>
+
 </head>
 <body>
     <header>

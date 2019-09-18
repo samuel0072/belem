@@ -6,9 +6,12 @@
             <div class="w3-container">
                 <span onclick="document.getElementById('id{{$test->id}}').style.display='none'"
                       class="w3-button w3-display-topright">&times;</span>
-                <h1>Notas</h1>
+
 
                 <div class='card'>
+                    <div class = "card-header">
+                        <h1>Notas</h1>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">

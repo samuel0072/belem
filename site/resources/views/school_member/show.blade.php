@@ -1,7 +1,7 @@
 @extends("layouts.layout")
 
 <?php
-    $id = $student->grade_class->school->id
+    $id = $student->grade_class->id
 ?>
 @section('return', "/grade_class/$id/students")
 
