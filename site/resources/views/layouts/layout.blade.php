@@ -42,7 +42,6 @@
                                 url("https://raw.githubusercontent.com/samuel0072/belem/46d0d2c940d84bacd91ede44e4afda6b331bb71d/site/resources/views/template/ecobit/img/banner_img.png?token=AHJYCDCQSMOZNCP3GUSV7FC5RN5LE");
             background-repeat: no-repeat, no-repeat;
             background-position: left top, right bottom;
-
         }
         li.list-group-item .active {
             background-color: #0d47a1;
@@ -67,6 +66,7 @@
                 @yield('add_button')
             </li>
         </ul>
+
     </header>
     <div class="container">
         @yield('head-content')
