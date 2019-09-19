@@ -19,6 +19,8 @@ class GradeClassesMigration extends Migration
             $table->char("class_letter");
             $table->integer("grade_number");
             $table->timestamps();
+
+            $table->foreign("school_id")->references("id")->on("schools")->onDelete('cascade');
         });
     }
 

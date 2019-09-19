@@ -5,12 +5,12 @@
     <div class="w3-modal-content">
         <div class="w3-container">
       <span onclick="document.getElementById('id21').style.display='none'"
-            class="w3-button w3-display-topright">&times;</span>
+            class="w3-button w3-display-topright text-white">&times;</span>
 
             @php
                 $questions = [];
             @endphp
-            @if($answeredTest->test->questions != null)
+            @if($answeredTest != null && $answeredTest->test != null && $answeredTest->test->questions != null)
                 @php
                     $questions = $answeredTest->test->questions;
                 @endphp

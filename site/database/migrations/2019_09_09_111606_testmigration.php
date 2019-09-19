@@ -20,7 +20,8 @@ class Testmigration extends Migration
             $table->string("nick")->default("Prova sem titulo");
             $table->timestamps();
 
-            $table->foreign("grade_class_id")->references("id")->on("grade_class")->onDelete('cascade');
+            $table->foreign("grade_class_id")->references("id")->on("grade_classes")->onDelete('cascade');
+            $table->foreign("subject_id")->references("id")->on("subjects")->onDelete('cascade');
         });
     }
 

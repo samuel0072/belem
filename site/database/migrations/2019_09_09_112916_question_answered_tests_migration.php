@@ -19,6 +19,9 @@ class QuestionAnsweredTestsMigration extends Migration
             $table->unsignedInteger("question_id");
             $table->integer("option_choosed");
             $table->timestamps();
+
+            $table->foreign("answered_test_id")->references("id")->on("answered_tests")->onDelete('cascade');
+            $table->foreign("question_id")->references("id")->on("questions")->onDelete('cascade');
         });
     }
 

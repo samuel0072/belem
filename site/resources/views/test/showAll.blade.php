@@ -30,9 +30,5 @@
             </ul>
         @endforeach
     </div>
-
-    <script>
-
-    </script>
 @endsection
 

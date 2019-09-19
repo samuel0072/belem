@@ -20,6 +20,8 @@ class SchoolMembersMigration extends Migration
             $table->string("name");
             $table->integer("age");
             $table->timestamps();
+
+            $table->foreign("grade_class_id")->references("id")->on("grade_classes")->onDelete('cascade');
         });
     }
 

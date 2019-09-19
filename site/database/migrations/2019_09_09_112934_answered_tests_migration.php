@@ -21,6 +21,8 @@ class AnsweredTestsMigration extends Migration
             $table->boolean("done")->default(false);
             $table->timestamps();
             //
+            $table->foreign("test_id")->references("id")->on("tests")->onDelete('cascade');
+            $table->foreign("school_member_id")->references("id")->on("school_members")->onDelete('cascade');
         });
     }
 

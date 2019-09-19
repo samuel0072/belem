@@ -20,6 +20,7 @@ class TopicMigration extends Migration
             $table->string("name")->default('Sem nome');
             $table->timestamps();
             //
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
     }
 

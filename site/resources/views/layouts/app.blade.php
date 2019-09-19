@@ -3,32 +3,6 @@
 <head>
     <title> @yield('title')</title>
 
-    <style>
-        .w3-container {
-            padding: 0 0 0 0;
-        }
-
-        .w3-display-topright {
-            z-index: 100;
-        }
-
-        body {
-            background-image: url("https://raw.githubusercontent.com/samuel0072/belem/46d0d2c940d84bacd91ede44e4afda6b331bb71d/site/resources/views/template/ecobit/img/banner_bg.png?token=AHJYCDA33L3HUV2L7LRHBIK5RN5UE"),
-            url("https://raw.githubusercontent.com/samuel0072/belem/46d0d2c940d84bacd91ede44e4afda6b331bb71d/site/resources/views/template/ecobit/img/banner_img.png?token=AHJYCDCQSMOZNCP3GUSV7FC5RN5LE");
-            background-repeat: no-repeat, no-repeat;
-            background-position: left top, right bottom;
-        }
-
-        li.list-group-item .active {
-            background-color: #0d47a1;
-        }
-
-        header li.list-group-item {
-            background-color: rgba(0, 0, 0, 0);
-            border: none;
-        }
-    </style>
-
     <meta name="viewport" content="width=device-width, user-scalable=no">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -70,7 +44,34 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <style>
+        .w3-container {
+            padding: 0 0 0 0;
+        }
+
+        .w3-display-topright {
+            z-index: 100;
+        }
+
+        body {
+            background-image: url("https://raw.githubusercontent.com/samuel0072/belem/46d0d2c940d84bacd91ede44e4afda6b331bb71d/site/resources/views/template/ecobit/img/banner_bg.png?token=AHJYCDA33L3HUV2L7LRHBIK5RN5UE"),
+            url("https://raw.githubusercontent.com/samuel0072/belem/46d0d2c940d84bacd91ede44e4afda6b331bb71d/site/resources/views/template/ecobit/img/banner_img.png?token=AHJYCDCQSMOZNCP3GUSV7FC5RN5LE");
+            background-repeat: no-repeat, no-repeat;
+            background-position: left top, right bottom;
+        }
+
+        li.list-group-item .active {
+            background-color: #0d47a1;
+        }
+
+        header li.list-group-item {
+            background-color: rgba(0, 0, 0, 0);
+            border: none;
+        }
+    </style>
+
     <link rel="stylesheet" href="/css/app.css">
+
 </head>
 <body>
 <div id="app">

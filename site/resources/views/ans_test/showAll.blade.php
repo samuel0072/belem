@@ -1,16 +1,19 @@
 <div class="w3-container">
-    <button onclick="document.getElementById('id{{$test->id}}').style.display='block'" class="btn btn-mdb-color ">
-        Notas
-    </button>
     <div>
+        <button onclick="document.getElementById('id{{$test->id}}').style.display='block'" class="btn btn-mdb-color ">
+            Notas
+        </button>
+        <button onclick="corrigir({{$test->id}})" type="button" class="btn btn-warning" >Corrigir testes</button>
         <form class="form-group" method="post" action="/test/{{$test->id}}">
             {{csrf_field()}}
             {{method_field("DELETE")}}
             <div>
+
                 <button class="btn btn-danger float-top" type="submit">Excluir</button>
             </div>
         </form>
     </div>
+
     <div id="id{{$test->id}}" class="w3-modal w3-animate-opacity">
         <div class="w3-modal-content">
             <div class="w3-container">
