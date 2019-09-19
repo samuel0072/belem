@@ -11,4 +11,8 @@ class Question extends Model
     public function test() {
         return $this->belongsTo(Test::class);
     }
+
+    public function topic() {
+        return $this->hasOne(Topic::class);
+    }
 }

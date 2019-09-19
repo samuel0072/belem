@@ -18,7 +18,6 @@ class Testmigration extends Migration
             $table->unsignedInteger("grade_class_id");
             $table->unsignedInteger("subject_id");
             $table->string("nick")->default("Prova sem titulo");
-            $table->enum("status", ["ready", "inprogress"])->default("inprogress");
             $table->timestamps();
 
             $table->foreign("grade_class_id")->references("id")->on("grade_class")->onDelete('cascade');

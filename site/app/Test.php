@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Test extends Model
 {
@@ -16,6 +17,10 @@ class Test extends Model
         return $this->hasMany(Question::class);
     }
 
+    public static function allTests(){
+        return [DB::table('tests')->value('id')];
+    }
+
     public function subject()
     {
         return $this->belongsTo(Subject::class);
@@ -23,4 +28,5 @@ class Test extends Model
     public function gradeClass() {
         return $this->belongsTo(GradeClass::class);
     }
+
 }

@@ -20,12 +20,6 @@
                 <input class = "form-control" type = "number" placeholder="Class ID" required name ="grade_class_id" value="{{$id}}" hidden>
             </div>
 
-            <select class="browser-default custom-select" name="type">
-                <option value="Select" selected disabled>Tipo</option>
-                <option value="aluno">Aluno</option>
-                <option value="professor">Professor</option>
-            </select>
-
             <div>
                 <button class="btn btn-primary" type = "submit">Criar Aluno</button>
             </div>

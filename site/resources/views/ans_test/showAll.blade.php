@@ -1,15 +1,24 @@
 <div class="w3-container">
-    <button onclick="document.getElementById('id{{$test->id}}').style.display='block'" class="btn btn-mdb-color ">Notas</button>
-    <button onclick="document.getElementById('id{{$test->id}}1').style.display='block'" class="btn btn-warning ">Editar</button>
+    <button onclick="document.getElementById('id{{$test->id}}').style.display='block'" class="btn btn-mdb-color ">
+        Notas
+    </button>
+    <div>
+        <form class="form-group" method="post" action="/test/{{$test->id}}">
+            {{csrf_field()}}
+            {{method_field("DELETE")}}
+            <div>
+                <button class="btn btn-danger float-top" type="submit">Excluir</button>
+            </div>
+        </form>
+    </div>
     <div id="id{{$test->id}}" class="w3-modal w3-animate-opacity">
         <div class="w3-modal-content">
             <div class="w3-container">
                 <span onclick="document.getElementById('id{{$test->id}}').style.display='none'"
                       class="w3-button w3-display-topright">&times;</span>
 
-
                 <div class='card'>
-                    <div class = "card-header">
+                    <div class="card-header">
                         <h1>Notas</h1>
                     </div>
                     <div class="card-body">
@@ -41,21 +50,6 @@
             </div>
         </div>
     </div>
-
-    <!-- EDITAR UM TESTE RELACIONADO COM UM ANS_TEST -->
-    <div id="id{{$test->id}}1" class="w3-modal w3-animate-opacity">
-        <div class="w3-modal-content">
-            <div class="w3-container">
-                <span onclick="document.getElementById('id{{$test->id}}1').style.display='none'"
-                      class="w3-button w3-display-topright">&times;</span>
-
-                @include('test.edit')
-            </div>
-        </div>
-    </div>
-
-
-
 </div>
 
 

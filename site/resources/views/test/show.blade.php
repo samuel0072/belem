@@ -2,17 +2,13 @@
 
 @section('title', 'school')
 
-@section('logo')
-{{--    <img class="logo" src="{{$school->logo}}" />--}}
-@endsection
-
 <?php
  $id = $test->gradeClass->id;
 ?>
 @section('return' ,"/grade_class/$id/tests")
 
 @section('content')
-    <div>
+    <div class="text-white">
         <h1>{{$test->nick}}: {{$test->id}}</h1>
     </div>
 
@@ -28,7 +24,7 @@
     ?>
 
     <div class="student-acess">
-        <section id = "left" class="float-left">
+        <section id = "left" class="float-left text-white">
                 <p>Nenhum gráfico disponivel por enquanto</p>
         </section>
         <section id = "right" class="float-right">

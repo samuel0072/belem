@@ -19,7 +19,6 @@ class SchoolMembersMigration extends Migration
             $table->unsignedInteger("grade_class_id");
             $table->string("name");
             $table->integer("age");
-            $table->enum("type", ["aluno", "professor"])->default('aluno');
             $table->timestamps();
         });
     }

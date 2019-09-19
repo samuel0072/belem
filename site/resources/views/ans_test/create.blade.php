@@ -6,8 +6,17 @@
         <form method="post" action="/answered_test">
             {{csrf_field()}}
             <div class="form-group mx-sm-3 mb-2">
-                <!-- todo:jhonnye -->
-                <input class="form-control" type="number" placeholder="Teste-ID" required name="test_id">
+                <label for="test_id">ID do Teste</label>
+                <select class="browser-default custom-select" name="test_id">
+                    <option selected disabled>Test ID</option>
+                    @php
+                        $allTests = App\Test::allTests();
+                    @endphp
+                    @foreach($allTests as $test_id)
+                        <option value="{{$test_id}}">{{$test_id}}</option>
+                    @endforeach
+                </select>
+
             </div>
 
             <div class="form-group mx-sm-3 mb-2">

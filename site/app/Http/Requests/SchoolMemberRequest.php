@@ -27,7 +27,6 @@ class SchoolMemberRequest extends FormRequest
                 'name' => ["required", "min:2", "max:255"],
                 'age' => ["required", "numeric"],
                 'enroll' => ["required", "numeric"],
-                'type' => ["required", "min:5", "max:9"],//aluno, professor
                 'grade_class_id' => ["required", "min:1", "numeric"]
         ];
     }

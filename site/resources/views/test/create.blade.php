@@ -14,7 +14,15 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="subject_id">ID da disciplina</label>
-                            <input class = "form-control" type="number" placeholder="Subject ID" required name="subject_id" >
+                            <select class="browser-default custom-select" name="subject_id">
+                                <option selected disabled>Subject ID</option>
+                                @php
+                                    $allsubjects = App\Subject::allSubjects();
+                                @endphp
+                                @foreach($allsubjects as $subject_id)
+                                    <option value="{{$subject_id}}">{{$subject_id}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <input class = "form-control" type="number" placeholder="GradeClass ID" required name="grade_class_id" value = "{{$id}}" hidden>

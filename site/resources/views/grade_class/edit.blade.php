@@ -14,9 +14,8 @@
                                 {{csrf_field()}}
                                 {{method_field("PATCH")}}
                                 <div>
-                                    <label for="school_id">ID da escola</label>
                                     <input class="form-control" type="number" value="{{$class->school_id}}" required
-                                           name="school_id">
+                                           name="school_id" hidden>
                                 </div>
 
                                 <div>

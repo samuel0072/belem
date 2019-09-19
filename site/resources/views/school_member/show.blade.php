@@ -31,7 +31,7 @@
                     <tr>
                         <td>{{$student->id}}</td>
                         <td>{{$student->enroll}}</td>
-                        <td>{{$student->grade_class_id}}</td>
+                        <td>{{$student->grade_class->grade_number}}{{$student->grade_class->class_letter}}</td>
                         <td>{{$student->age}}</td>
                         <td>0</td>
                     </tr>
@@ -59,7 +59,7 @@
                             <td>{{count($answeredTest->questionAnsweredTests)}}</td>
                             <td>{{$answeredTest->done == 1?'Sim':'Não'}}</td>
                             <td>{{$answeredTest->updated_at}}</td>
-                            <td >@include("ans_question.create")</td>
+                            <td >@include("ans_question.create", compact('$answeredTest'))</td>
                         </tr>
                     @endforeach
                 </table>

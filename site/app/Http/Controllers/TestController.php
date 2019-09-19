@@ -7,6 +7,7 @@ use App\Http\Requests\TestRequest;
 use App\Question;
 use App\SchoolMember;
 use App\Test;
+use App\Topic;
 use function Sodium\compare;
 
 class TestController extends Controller
@@ -82,6 +83,34 @@ class TestController extends Controller
                 }
             }
         }
+    }
+
+
+    public function topicCount($test_id, $topic_id) {
+        $count = 0;
+        $topic = Topic::findOrFail($topic_id);
+        $test = Test::findOrFail($test_id);
+        $ans_tests = $test->answeredTest;
+        $topicQuestions = [];
+
+        foreach ($topic->questions as $question) {
+            if($question->test_id == $test_id) {
+                $topicQuestions[$question->id] = $question->correct_answer;
+            }
+        }
+
+        foreach ($ans_tests as $ans_test) {
+            $qsts_ans = $ans_test->questionAnsweredTests;
+
+            foreach ($qsts_ans as $qst_ans) {
+                if(array_key_exists($qst_ans->question_id, $topicQuestions)) {
+                    if($topicQuestions[$qst_ans->question_id] == $qst_ans->option_choosed) {
+                        $count++;
+                    }
+                }
+            }
+        }
+        return $count;
     }
 
     public function correct() {

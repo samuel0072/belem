@@ -29,11 +29,6 @@
                                     <label>Idade</label>
                                     <input type="number" name="age" value="{{$student->age}}" class="form-control">
 
-                                    <label>Tipo</label>
-                                    <select class="browser-default custom-select" name="type">
-                                        <option value="professor">Professor</option>
-                                        <option value="aluno">Aluno</option>
-                                    </select>
                                     <div>
                                         <input name="grade_class_id" value="{{$student->grade_class_id}}" hidden >
                                     </div>
