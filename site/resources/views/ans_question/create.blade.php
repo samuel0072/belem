@@ -42,12 +42,12 @@
 
 <script>
     function sendData() {
-        var ids = [];
-        var values = [];
+        const ids = [];
+        const values = [];
         @foreach($questions as $question)
             ids.push({{$question->id}});
         @endforeach
-        for(var i = 0; i < ids.length; i++ ) {
+        for(let i = 0; i < ids.length; i++ ) {
             values.push( {
                 answered_test_id:{{$answeredTest->id}} ,
                 question_id: ids[i],
@@ -55,7 +55,7 @@
             });
         }
         values.forEach((item) => {
-            var ajax = new XMLHttpRequest();
+            const ajax = new XMLHttpRequest();
             ajax.open("POST", "/question_answered_test", true);
             ajax.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {

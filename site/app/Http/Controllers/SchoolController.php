@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SchoolController extends Controller
 {
-    /*
-     * Funções que retornam dados
-     * */
     public function index(){
         if( auth()->user()->access_level > 2) {
             $schools = School::all();
@@ -30,13 +27,6 @@ class SchoolController extends Controller
         School::create($validated);
         return redirect("/school");
 
-    }
-
-    public function showUsers($id){
-        if(auth()->user()->access_level > 2){
-            $users = auth()->user()->showUsers(auth()->user()->id, $id);
-            return view("auth.usersShow", compact('users'));
-        }
     }
 
     public function update(Request $request, School $school){
@@ -61,15 +51,6 @@ class SchoolController extends Controller
         return $gradeClasses;
 
     }
-
-    /*
-     * Funções que retornam views
-     */
-    /*public function show($id) {
-        $schools = School::findOrFail($id);
-        return $schools;
-        return view('school.show', compact('schools'));
-    }*/
 
     public function edit(School $school) {
         return view('school.edit', compact('school'));

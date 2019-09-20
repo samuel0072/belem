@@ -10,14 +10,13 @@
 | contains the "web" middleware group. Now create something terrible!
 |
 */
-/*
- * /test/{id}/answers
- * /answered_tests/{test_id}
- * */
+
 Route::middleware('auth')->group(function () {
     Route::resource('/school', 'SchoolController');
     Route::get('/school/{id}/classes', 'SchoolController@showClasses');
-    Route::get('/users/{id}', 'SchoolController@showUsers');
+
+    Route::get('/users/{id}', 'Auth\UserController@showUsers');
+    Route::post('/users/{id}', 'Auth\UserController@setAccLevel');
 
     Route::resource('/answered_test', 'AnsweredTestController');
 
@@ -40,18 +39,14 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/answered_test', 'AnsweredTestController');
 
-
     Route::get('/', function() {
         return redirect('/school');
     });
-
-
 
     Route::get('/testing', function() {
         return view("testing.test");
     });
 });
-
 
 Auth::routes();
 
