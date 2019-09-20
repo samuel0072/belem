@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
 
 class School extends Model
 {
@@ -10,5 +12,10 @@ class School extends Model
 
     public function gradeClasses() {
         return $this->hasMany(GradeClass::class);
+    }
+
+    public static function allSchools() {
+        //echo "aff";
+        return DB::table('schools')->get();
     }
 }

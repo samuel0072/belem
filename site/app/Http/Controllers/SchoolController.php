@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\School;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SchoolController extends Controller
 {
@@ -11,7 +13,12 @@ class SchoolController extends Controller
      * Funções que retornam dados
      * */
     public function index(){
-        $schools = School::all();
+        if( auth()->user()->access_level > 2) {
+            $schools = School::all();
+        }
+        else {
+            $schools = School::where('id', auth()->user()->school_id)->get();
+        }
         return view('school.show' , compact('schools'));
     }
 

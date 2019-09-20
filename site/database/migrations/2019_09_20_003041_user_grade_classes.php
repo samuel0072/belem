@@ -16,7 +16,7 @@ class UserGradeClasses extends Migration
         Schema::create('user_grade_classes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger("grade_class_id");
-            $table->unsignedInteger("user_id");
+            $table->unsignedBigInteger("user_id");
             $table->timestamps();
 
             $table->foreign("grade_class_id")->references("id")->on("grade_classes")->onDelete('cascade');
@@ -31,6 +31,6 @@ class UserGradeClasses extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('user_grade_classes');
     }
 }

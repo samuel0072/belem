@@ -1,8 +1,11 @@
 <div style="display:inline" class="w3-container">
+    @if(auth()->user()->access_level > 0)
     <button onclick="document.getElementById('id{{$student->id}}').style.display='block'"
             class="btn btn-warning ">Editar
     </button>
+    @endif
     <a class="btn btn-primary" href="/schoolmember/{{$student->id}}">Exibir Testes</a>
+    @if(auth()->user()->access_level > 0)
     <div id="id{{$student->id}}" class="w3-modal">
         <div  class="w3-modal-content">
             <div class="w3-container">
@@ -54,6 +57,7 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
 
 

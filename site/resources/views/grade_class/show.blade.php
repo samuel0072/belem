@@ -5,8 +5,11 @@
 @section('return', '/')
 
 @section('add_name', 'Classe')
+@php
+    $level = 1;
+@endphp
 
-@include('grade_class.create')
+@include('grade_class.create', compact('level'))
 
 @section('content')
 

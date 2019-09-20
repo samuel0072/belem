@@ -1,7 +1,9 @@
 @extends('layouts.layout')
-
+@php
+    $level = 0;
+@endphp
 @section('add_button')
-    @if(auth()->user()->access_level > 2)
+    @if(auth()->user()->access_level > $level)
         <div class="w3-container">
             <button onclick="document.getElementById('id01').style.display='block'" class="btn deep-purple darken-4 text-white w3-right">Adicionar @yield('add_name')</button>
 
