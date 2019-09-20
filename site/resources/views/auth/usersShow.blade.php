@@ -23,17 +23,25 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
 
-                            <td><select class="browser-default custom-select" name="access_level">
+                            <td><select onchange="alterar({{$user->id}}, {{auth()->user()->access_level}})" class="browser-default custom-select" name="access_level">
                                     <option value="{{$user->access_level}}" selected>Select</option>
                                     <option value="1">1</option>
                                     <option value="1">2</option>
                                 </select>
                             </td>
                         </tr>
-                        {{$user->updateOrCreate()}}
+
+                        <script>
+                            function alterar(id, access_level) {
+                                if(access_level > 2)
+                                    console.log(id);
+                            }
+                        </script>
                     @endforeach
                 </table>
             </div>
         </div>
     </div>
 @endsection
+
+

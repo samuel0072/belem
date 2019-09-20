@@ -1,7 +1,5 @@
 @extends('layouts.layout')
-@php
-    $level = 0;
-@endphp
+
 @section('add_button')
     @if(auth()->user()->access_level > $level)
         <div class="w3-container">
