@@ -38,7 +38,6 @@
                 </table>
 
             </div>
-
         </div>
         <div class = "card float-right">
             <h1 class = " list-group-item active text-center" style="margin-top: 0px;">Testes respondidos</h1>
@@ -59,7 +58,7 @@
                             <td>{{count($answeredTest->questionAnsweredTests)}}</td>
                             <td>{{$answeredTest->done == 1?'Sim':'Não'}}</td>
                             <td>{{$answeredTest->updated_at}}</td>
-                            <td >@include("ans_question.create", compact('$answeredTest'))</td>
+                            <td >@include("ans_question.create", compact('answeredTest'))</td>
                         </tr>
                     @endforeach
                 </table>
@@ -69,3 +68,45 @@
     </div>
 
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

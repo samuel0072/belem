@@ -1,8 +1,12 @@
+
 <div style="display:inline" class="w3-container">
+    @if(auth()->user()->access_level > 2)
     <button onclick="document.getElementById('id{{$school->id}}').style.display='block'"
             class="btn btn-mdb-color ">Editar
     </button>
+    @endif
     <a href='/school/{{$school->id}}/classes' class="btn btn-mdb-color">Classes</a>
+    @if(auth()->user()->access_level > 2)
     <div id="id{{$school->id}}" class="w3-modal">
         <div class="w3-modal-content">
             <div class="w3-container">
@@ -44,4 +48,5 @@
                 </div>
         </div>
     </div>
+    @endif
 </div>

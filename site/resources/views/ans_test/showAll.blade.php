@@ -8,7 +8,6 @@
             {{csrf_field()}}
             {{method_field("DELETE")}}
             <div>
-
                 <button class="btn btn-danger float-top" type="submit">Excluir</button>
             </div>
         </form>
@@ -56,4 +55,16 @@
 </div>
 
 
-
+<script>
+    function corrigir(id) {
+        var ajax = new XMLHttpRequest();
+        ajax.open("POST", '/test/'+id+'/correct', true);
+        ajax.onload = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("tudo okay");
+            }
+        };
+        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        ajax.send("_token="+"{{csrf_token()}}");
+    }
+</script>

@@ -66,21 +66,19 @@ class TestController extends Controller
     public function correctAnsTests($testId) {
         $test = Test::findOrFail($testId);
         $answeredTests = $test->answeredTest;
-        if($test->status == "ready") {
-            foreach($answeredTests as $answeredTest) {
-                if(!$answeredTest->done) {
-                    $questionAnswereds = $answeredTest->questionAnsweredTests;
+        foreach($answeredTests as $answeredTest) {
+            if(!$answeredTest->done) {
+                $questionAnswereds = $answeredTest->questionAnsweredTests;
 
-                    foreach ($questionAnswereds as $questionAnswered) {
-                        $question = Question::findOrFail($questionAnswered->question_id);
+                foreach ($questionAnswereds as $questionAnswered) {
+                    $question = Question::findOrFail($questionAnswered->question_id);
 
-                        if($question->correct_answer == $questionAnswered->option_choosed) {
-                            $answeredTest->score++;
-                        }
+                    if($question->correct_answer == $questionAnswered->option_choosed) {
+                        $answeredTest->score++;
                     }
-                    $answeredTest->done = true;
-                    $answeredTest->update();
                 }
+                $answeredTest->done = true;
+                $answeredTest->update();
             }
         }
     }

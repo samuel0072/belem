@@ -17,11 +17,9 @@ class QuestionAnsweredTestController extends Controller
     public function store(QuestAnsTestRequest $request)
     {
         $validated = $request->validated();
-        $questionAnsweredTest = QuestionAnsweredTest::updateOrCreate([
-            'answered_test_id' => $validated['answered_test_id'],
-            'question_id' => $validated['question_id'],
-            'option_choosed' => $validated['option_choosed']
-        ]);
+        $questionAnsweredTest = QuestionAnsweredTest::updateOrCreate(
+            ['answered_test_id' => $validated['answered_test_id'], 'question_id' => $validated['question_id']],
+            ['option_choosed' => $validated['option_choosed']]);
         return $questionAnsweredTest;
     }
 

@@ -54,20 +54,26 @@
                 option_choosed: document.getElementById(ids[i]).value
             });
         }
-        console.log(values);
-        //todo: excluir tudo em cascata
         values.forEach((item) => {
             var ajax = new XMLHttpRequest();
             ajax.open("POST", "/question_answered_test", true);
             ajax.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
+                    updateDone();
                 }
             };
             ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             ajax.send("answered_test_id="+item.answered_test_id+"&question_id="+item.question_id+"&option_choosed="+item.option_choosed+"&_token="+"{{csrf_token()}}");
         });
         document.getElementById('id21').style.display='none';
+
+    }
+    function updateDone() {
+        @php
+            $answeredTest->done = 0;
+            $answeredTest->score = 0;
+            $answeredTest->update();
+        @endphp
     }
 </script>
 

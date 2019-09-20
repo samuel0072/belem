@@ -18,12 +18,10 @@
                     <div class="btn-group">
                         @include('school.edit')
                     </div>
-
                 </div>
             </li>
         @endforeach
     </ul>
-
 @endsection
 
 

@@ -32,7 +32,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/test', 'TestController');
     Route::post('/test/{id}/correct', 'TestController@correctAnsTests');
-    Route::get('/test/{id}/correct', 'TestController@correct');
     Route::get('/test/{id}/students', 'TestController@showStudents');
     Route::get('/test/{id}/answers', 'TestController@showAnswers');
 
