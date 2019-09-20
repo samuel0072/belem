@@ -17,6 +17,7 @@
 Route::middleware('auth')->group(function () {
     Route::resource('/school', 'SchoolController');
     Route::get('/school/{id}/classes', 'SchoolController@showClasses');
+    Route::get('/users/{id}', 'SchoolController@showUsers');
 
     Route::resource('/answered_test', 'AnsweredTestController');
 

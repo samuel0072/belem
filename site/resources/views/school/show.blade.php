@@ -8,10 +8,10 @@
     $level = 2;
 @endphp
 
-
 @include('school.create', compact('level'))
 
 @section('content')
+
     <ul class="list-group">
         @foreach($schools as $school)
             <li class="list-group-item">

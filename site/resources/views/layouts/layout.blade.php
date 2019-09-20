@@ -1,7 +1,3 @@
-
-
-
-
 <html>
     <head>
         <title> @yield('title')</title>
@@ -122,7 +118,7 @@
                     </div>
                 </div>
             </nav>
-            @yield('add_button')
+            @yield('add_button', auth()->user()->school_id)
         </header>
         <div class="container" style="margin-top: 10px;">
             @yield('head-content')

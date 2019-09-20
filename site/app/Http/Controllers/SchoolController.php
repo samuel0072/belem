@@ -32,6 +32,13 @@ class SchoolController extends Controller
 
     }
 
+    public function showUsers($id){
+        if(auth()->user()->access_level > 2){
+            $users = auth()->user()->showUsers(auth()->user()->id, $id);
+            return view("auth.usersShow", compact('users'));
+        }
+    }
+
     public function update(Request $request, School $school){
 
         $validated = $request->validate([

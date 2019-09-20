@@ -5,10 +5,18 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    public function showUsers($user_id, $school_id){
+        return DB::table('users')->where([
+            ['school_id', $school_id],
+            ['id', '<>', $user_id]
+        ])->get();
+    }
 
     /**
      * The attributes that are mass assignable.
