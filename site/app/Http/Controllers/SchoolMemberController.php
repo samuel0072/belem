@@ -65,4 +65,10 @@ class SchoolMemberController extends Controller
         return view('ans_test.showAll', compact(['answeredTests', 'student']));
     }
 
+    public function getTopicScore($student_id, $test_id, $topic_id) {
+        $student = SchoolMember::findOrFail($student_id);
+        $score = (new TestController)->topicCount($test_id, $topic_id, $student_id);
+        return $score;
+    }
+
 }

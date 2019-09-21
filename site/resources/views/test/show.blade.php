@@ -24,9 +24,12 @@
     ?>
 
     <div class="student-acess">
-        <section id = "left" class="float-left text-white">
-            <p >Nenhum gráfico disponivel por enquanto</p>
-            <svg id = "topics-graphic" width="500" height = "300" onload="topicData()"></svg>
+        <section id = "left" class="float-left text-white card ">
+            <div class = "card-header stylish-color"><label>DADOS</label></div>
+            <div class = "card-body stylish-color-dark">
+                <svg id = "topics-graphic" width="500" height = "300" onload="topicData()"></svg>
+
+            </div>
         </section>
         <section id = "right" class="float-right">
             <div class="card">
