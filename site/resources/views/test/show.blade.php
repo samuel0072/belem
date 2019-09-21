@@ -47,9 +47,10 @@
                 <div class = "card-body">
                     <ul class="list-group">
                         @foreach($test->questions as $question)
-                            <a href="/question/{{$question->id}}"  class="list-group-item active text-white">
-                                {{$question->nick}}
-                            </a>
+                            <div class="d-inline-block">
+                                @include('question.show')
+                            </div>
+
                             <li style="list-style:none">
                                 <table class = "table">
                                     <tr>
@@ -128,8 +129,6 @@
                 .range([0, chartArea.width])
                 .padding(.2);
 
-            console.log(yScale);
-            console.log(xScale.range);
 
             var grid = svg.append("g")
                 .attr("class", "grid")
@@ -171,7 +170,6 @@
                 .attr("x", (d, i) => {return xScale(d.name)})
                 .attr("y", (d, i) => {return yScale(d.count)})
                 .attr("fill", (d, i) => {return colors[i]});
-            svg.style("border-style: solid;border-width: 5px;");
 
         }
     </script>
