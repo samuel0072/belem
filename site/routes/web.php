@@ -34,10 +34,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/test/{id}/correct', 'TestController@correctAnsTests');
     Route::get('/test/{id}/students', 'TestController@showStudents');
     Route::get('/test/{id}/answers', 'TestController@showAnswers');
+    Route::get('/test/{test_id}/countdesc/{topic_id}', 'TestController@topicCount');
 
     Route::resource('/question_answered_test', 'QuestionAnsweredTestController');
 
     Route::resource('/answered_test', 'AnsweredTestController');
+
+
+    Route::get('/topic', 'TopicController@index');
 
     Route::get('/', function() {
         return redirect('/school');
@@ -51,5 +55,6 @@ Route::middleware('auth')->group(function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 

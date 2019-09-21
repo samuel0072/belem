@@ -4,7 +4,11 @@
 
 @section('add_name', 'Teste')
 
-@include('test.create')
+@php
+ $level = 0;
+@endphp
+
+@include('test.create', compact('level'))
 
 @section('content') <!--todo: Botão para corrigir os testes-->
     <div class="student-acess">

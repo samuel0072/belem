@@ -5,10 +5,11 @@
 <?php
     $id = $student->grade_class->id;
     $studentId = $student->id;
+    $level = 0;
 ?>
 
 @section('hidden_content')
-    @include("ans_test.create", compact('studentId'))
+    @include("ans_test.create", compact(['studentId', 'level']))
 @endsection
 
 @section('return', "/grade_class/$id/students")

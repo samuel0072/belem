@@ -91,24 +91,31 @@ class TestController extends Controller
         $ans_tests = $test->answeredTest;
         $topicQuestions = [];
 
-        foreach ($topic->questions as $question) {
-            if($question->test_id == $test_id) {
-                $topicQuestions[$question->id] = $question->correct_answer;
+        $total = count($topic->questions) * count($ans_tests);
+
+        if(count($topic->questions) > 0) {
+            foreach ($topic->questions as $question) {
+                if($question->test_id == $test_id) {
+                    $topicQuestions[$question->id] = $question->correct_answer;
+                }
             }
-        }
 
-        foreach ($ans_tests as $ans_test) {
-            $qsts_ans = $ans_test->questionAnsweredTests;
+            foreach ($ans_tests as $ans_test) {
+                $qsts_ans = $ans_test->questionAnsweredTests;
 
-            foreach ($qsts_ans as $qst_ans) {
-                if(array_key_exists($qst_ans->question_id, $topicQuestions)) {
-                    if($topicQuestions[$qst_ans->question_id] == $qst_ans->option_choosed) {
-                        $count++;
+                foreach ($qsts_ans as $qst_ans) {
+                    if(array_key_exists($qst_ans->question_id, $topicQuestions)) {
+                        if($topicQuestions[$qst_ans->question_id] == $qst_ans->option_choosed) {
+                            $count++;
+                        }
                     }
                 }
             }
+            return ($count/$total) * 100;
         }
-        return $count;
+        else {
+            return 0;
+        }
     }
 
     public function correct() {

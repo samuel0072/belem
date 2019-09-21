@@ -60,7 +60,7 @@
         var ajax = new XMLHttpRequest();
         ajax.open("POST", '/test/'+id+'/correct', true);
         ajax.onload = function() {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState === 4 && this.status === 200) {
                 console.log("tudo okay");
             }
         };

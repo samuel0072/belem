@@ -118,6 +118,9 @@
                     </div>
                 </div>
             </nav>
+            @php
+                $level = 0;
+            @endphp
             @yield('add_button', auth()->user()->school_id)
         </header>
         <div class="container" style="margin-top: 10px;">
