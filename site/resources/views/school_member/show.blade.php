@@ -144,9 +144,6 @@
                 .range([0, chartArea.width])
                 .padding(.2);
 
-            console.log(yScale);
-            console.log(xScale.range);
-
             var grid = svg.append("g")
                 .attr("class", "grid")
                 .attr(
