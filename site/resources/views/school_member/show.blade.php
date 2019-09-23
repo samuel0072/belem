@@ -32,7 +32,7 @@
                     <tr>
                         <td>{{$student->id}}</td>
                         <td>{{$student->enroll}}</td>
-                        <td>{{$student->grade_class->grade_number}}{{$student->grade_class->class_letter}}</td>
+                        <td>{{$student->grade_class->grade_number." "}}{{$student->grade_class->class_letter}}</td>
                         <td>{{$student->age}}</td>
                         <td>0</td>
                     </tr>
@@ -45,7 +45,8 @@
                     <i class="fas fa-info-circle"></i>
                 </div>
                 <div class = "card-body">
-                    <svg id = "student-describer-graph" onload="topicData(1)"  width="500" height = "300">
+                    <!--ate 1200px -->
+                    <svg id = "student-describer-graph" onload="topicData(1)"  width="500" height = "300" class="d-sm-block">
 
                     </svg>
                 </div>

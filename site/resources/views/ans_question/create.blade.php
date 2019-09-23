@@ -6,7 +6,6 @@
         <div class="w3-container">
       <span onclick="document.getElementById('id21').style.display='none'"
             class="w3-button w3-display-topright text-white">&times;</span>
-
             @php
                 $questions = [];
             @endphp
@@ -28,7 +27,10 @@
                             </div>
                             <div class="form-group col-sm-6" style="margin: 5px 0px 5px 0px;">
                                 <div class="form-group">
-                                    <input class="form-control" id="{{$question->id}}" type="number" name="option_choosed" value="{{$answeredTest->opt_choosed($question->id)}}">
+                                    @php
+                                        $option_choosed = chr($answeredTest->opt_choosed($question->id) + 64);
+                                    @endphp
+                                    <input class="form-control" id="{{$question->id}}"  name="option_choosed" value="{{$option_choosed}}">
                                 </div>
                             </div>
                         </div>
@@ -51,7 +53,7 @@
             values.push( {
                 answered_test_id:{{$answeredTest->id}} ,
                 question_id: ids[i],
-                option_choosed: document.getElementById(ids[i]).value
+                option_choosed: document.getElementById(ids[i]).value.toUpperCase().charCodeAt(0) - 64
             });
         }
         values.forEach((item) => {
@@ -59,6 +61,7 @@
             ajax.open("POST", "/question_answered_test", true);
             ajax.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
+                    console.log(item);
                     updateDone();
                 }
             };

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class AnsweredTest extends Model
 {
@@ -13,10 +14,14 @@ class AnsweredTest extends Model
     }
 
     public function opt_choosed($question_id){
-        foreach ($this->questionAnsweredTests as $questAns){
-            if($questAns->id == $question_id) return $questAns->option_choosed;
+        $ansTests = DB::table('question_answered_tests')->where('answered_test_id', '=', $this->id)->get();
+        foreach ($ansTests as $res) {
+            if($res->question_id == $question_id) {
+
+                return $res->option_choosed;
+            }
         }
-        return null;
+        return -19;//vai mostrar '-'
     }
 
     public function test(){
