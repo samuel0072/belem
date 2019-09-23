@@ -17,10 +17,10 @@
                             <select class="browser-default custom-select" name="subject_id">
                                 <option selected disabled>Subject ID</option>
                                 @php
-                                    $allsubjects = App\Subject::allSubjects();
+                                    $allsubjects = App\Subject::all();
                                 @endphp
-                                @foreach($allsubjects as $subject_id)
-                                    <option value="{{$subject_id}}">{{$subject_id}}</option>
+                                @foreach($allsubjects as $subject)
+                                    <option value="{{$subject->id}}">{{$subject->name}}</option>
                                 @endforeach
                             </select>
                         </div>

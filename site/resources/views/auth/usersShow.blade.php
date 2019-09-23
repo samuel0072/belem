@@ -26,7 +26,7 @@
                             <td><select id = "acc_lvl_select" onchange="alterar({{json_encode($user)}})" class="browser-default custom-select" name="access_level">
                                     <option value="{{$user->access_level}}" selected>Select</option>
                                     <option value="1">1</option>
-                                    <option value="1">2</option>
+                                    <option value="2">2</option>
                                 </select>
                             </td>
                         </tr>
@@ -35,15 +35,14 @@
                         <script>
                             function alterar(user) {
                                 const ajax = new XMLHttpRequest();
-                                console.log(user.school_id);
-                                {{--ajax.open("POST", `/users/${user.school_id}`, true);--}}
-                                {{--ajax.onreadystatechange = function() {--}}
-                                {{--    if (this.readyState == 4 && this.status == 200) {--}}
-                                {{--        updateDone();--}}
-                                {{--    }--}}
-                                {{--};--}}
-                                {{--ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");--}}
-                                {{--ajax.send("answered_test_id="+item.answered_test_id+"&question_id="+item.question_id+"&option_choosed="+item.option_choosed+"&_token="+"{{csrf_token()}}");--}}
+                                ajax.open("POST", `/users/${user.school_id}`, true);
+                                /*ajax.onreadystatechange = function() {
+                                    if (this.readyState == 4 && this.status == 200) {
+
+                                    }
+                                };*/
+                                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                ajax.send("school_id="+user.school_id+"&name="+user.name+"&password="+user.password+"&access_level="+$('#acc_lvl_select').val()+"&_token="+"{{csrf_token()}}");
                             }
                         </script>
                     @endforeach

@@ -19,8 +19,9 @@ class UserController extends Controller
 
     public function setAccLevel(UserRequest $request, $id){
         $validated = $request->validated();
-        $user = User::findOrFail($validated['id']);
-        $user->access_level = $validated['acc_level'];
+        echo "oi";
+        $user = User::findOrFail($id);
+        $user->access_level = $validated['access_level'];
         $user->update();
         return redirect("/users/$id");
     }
