@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="correct_answer">Alternativa correta</label>
-                        <input type="number" id = "correct-answer" placeholder="Opcao correta" required name="correct_answer"
+                        <input  id = "correct-answer" placeholder="Opcao correta" required name="correct_answer"
                                class="form-control">
                     </div>
                 </div>
@@ -67,6 +67,12 @@
 
     <script>
         var form = document.forms.namedItem("create-question");
-        console.log(form);
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            var input = document.getElementById("correct-answer");
+            var val = input.value.toUpperCase().charCodeAt(0);
+            input.value = val - 64;
+            form.submit();
+        });
     </script>
 </div>
