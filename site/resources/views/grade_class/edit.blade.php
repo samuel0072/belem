@@ -1,6 +1,6 @@
 <div class="w3-container">
     <a class="btn btn-primary" href="/grade_class/{{$class->id}}/students">Alunos</a>
-    <a class="btn btn-secondary" href="/grade_class/{{$class->id}}/tests">Testes</a>
+    <a class="btn btn-secondary" href="/grade_class/{{$class->id}}/tests">Provas</a>
     @if(auth()->user()->access_level > 1)
         <button onclick="document.getElementById('id03').style.display='block'" class="btn btn-warning ">Editar</button>
         <div id="id03" class="w3-modal">
@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="form-group">
-                                <form method="post" action="/school_member/{{$class->id}}">
+                                <form method="post" action="/grade_class/{{$class->id}}">
                                     {{csrf_field()}}
                                     {{method_field("DELETE")}}
                                     <div>

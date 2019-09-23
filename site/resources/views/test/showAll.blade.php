@@ -2,7 +2,7 @@
 
 @section('title', 'Test')
 
-@section('add_name', 'Teste')
+@section('add_name', 'Prova')
 
 @php
  $level = 0;

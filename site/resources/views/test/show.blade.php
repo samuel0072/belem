@@ -54,13 +54,13 @@
                             <li style="list-style:none">
                                 <table class = "table">
                                     <tr>
-                                        <th>ID do topico</th>
+                                        <th>Descritor</th>
                                         <th>Número da questão</th>
                                         <th>Resposta correta</th>
                                         <th>Dificuldade</th>
                                     </tr>
                                     <tr>
-                                        <td>{{$question->topic_id}}</td>
+                                        <td>{{App\Topic::findOrFail($question->topic_id)->name}}</td>
                                         <td>{{$question->number}}</td>
                                         <td>{{chr($question->correct_answer+96)}}</td>
                                         <td>{{$ar[$question->dificult]}}</td>

@@ -1,9 +1,7 @@
 <div class="w3-container">
     <div>
-        <button onclick="document.getElementById('id{{$test->id}}').style.display='block'" class="btn btn-mdb-color ">
-            Notas
-        </button>
-        <button onclick="corrigir({{$test->id}})" type="button" class="btn btn-warning" >Corrigir testes</button>
+        <button onclick="document.getElementById('id{{$test->id}}').style.display='block'" class="btn btn-mdb-color ">Notas</button>
+        <button onclick="corrigir({{$test->id}})" type="button" class="btn btn-warning" >Corrigir provas</button>
         <form class="form-group" method="post" action="/test/{{$test->id}}">
             {{csrf_field()}}
             {{method_field("DELETE")}}
@@ -28,8 +26,8 @@
                             <table class="table">
                                 <tr>
                                     <th>Nome</th>
-                                    <th>ID do aluno</th>
-                                    <th>ID da prova</th>
+                                    <th>Matricula do aluno</th>
+                                    <th>Titulo da prova</th>
                                     <th>Nota</th>
                                     <th>Corrigido</th>
                                     <th>Ultima Atualização</th>
@@ -37,8 +35,8 @@
                                 @foreach($answeredTests as $answeredTest)
                                     <tr>
                                         <td>{{App\SchoolMember::findOrFail($answeredTest->school_member_id)->name}}</td>
-                                        <td>{{$answeredTest->school_member_id}}</td>
-                                        <td><a href="/test/{{$answeredTest->test_id}}">{{$answeredTest->test_id}}</a>
+                                        <td>{{App\SchoolMember::findOrFail($answeredTest->school_member_id)->enroll}}</td>
+                                        <td><a href="/test/{{$answeredTest->test_id}}">{{App\Test::findOrFail($answeredTest->test_id)->nick}}</a>
                                         </td>
                                         <td>{{$answeredTest->score}}</td>
                                         <td>{{$answeredTest->done == 1?'Sim':'Não'}}</td>

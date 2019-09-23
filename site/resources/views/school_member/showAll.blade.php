@@ -32,14 +32,17 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Nº da Matricula</th>
-                                            <th>ID da classe</th>
+                                            <th>Turma</th>
                                             <th>Idade</th>
-                                            <th>Testes feitos</th>
+                                            <th>Provas feitas</th>
                                         </tr>
                                         <tr>
                                             <td>{{$student->id}}</td>
                                             <td>{{$student->enroll}}</td>
-                                            <td>{{$student->grade_class_id}}</td>
+                                            @php
+                                             $class = App\GradeClass::findOrFail($student->grade_class_id);
+                                            @endphp
+                                            <td>{{"$class->grade_number  $class->class_letter"}}</td>
                                             <td>{{$student->age}}</td>
                                             <td>{{count($student->answeredTests)}}</td>
                                         </tr>

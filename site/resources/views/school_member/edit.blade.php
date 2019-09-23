@@ -4,7 +4,7 @@
             class="btn btn-warning ">Editar
     </button>
     @endif
-    <a class="btn btn-primary" href="/schoolmember/{{$student->id}}">Exibir Testes</a>
+    <a class="btn btn-primary" href="/schoolmember/{{$student->id}}">Exibir Provas</a>
     @if(auth()->user()->access_level > 0)
     <div id="id{{$student->id}}" class="w3-modal">
         <div  class="w3-modal-content">

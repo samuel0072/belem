@@ -56,7 +56,7 @@
             <div class = "table-responsive">
                 <table class="table">
                     <tr>
-                        <th>ID da prova</th>
+                        <th>Prova</th>
                         <th>Nota</th>
                         <th>Corrigido</th>
                         <th>Ultima Atualização</th>
@@ -64,7 +64,7 @@
                     </tr>
                     @foreach($student->answeredTests as $answeredTest)
                         <tr>
-                            <td><a href="/test/{{$answeredTest->test_id}}">{{$answeredTest->test_id}}</a></td>
+                            <td><a href="/test/{{$answeredTest->test_id}}">{{App\Test::findOrFail($answeredTest->test_id)->nick}}</a></td>
                             <td>{{$answeredTest->score}}</td>
                             <td>{{$answeredTest->done == 1?'Sim':'Não'}}</td>
                             <td>{{$answeredTest->updated_at}}</td>
@@ -74,12 +74,12 @@
                 </table>
             </div>
 
-            <div id="topic-critic" class = "danger-color">
-                <div>
-                    <h1>ATENÇÃO</h1>
+            <div id="topic-critic" class = "danger-color container shadow-sm p-3 bg-white rounded">
+                <div class="row">
+                    <h1 class="col-sm">ATENÇÃO</h1>
                 </div>
-                <div >
-                    <span id = "most-error"></span>
+                <div>
+                    <span id = "most-error" ></span>
                     <span>é o descritor com mais erros pelo aluno</span>
                 </div>
 

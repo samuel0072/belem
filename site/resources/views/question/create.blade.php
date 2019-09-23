@@ -20,9 +20,9 @@
                     </div>
 
                     <div class="form-group col-md-4 mb-3">
-                        <label for="topic_id">ID do topico</label>
+                        <label for="topic_id">Descritor</label>
                         <select class="browser-default custom-select" name="topic_id">
-                            <option selected disabled>Topic ID</option>
+                            <option selected disabled>Escolha</option>
                             @php
                                 $alltopics = App\Topic::all();
                             @endphp
