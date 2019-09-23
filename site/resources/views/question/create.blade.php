@@ -3,7 +3,7 @@
         <h1>Criar Questão</h1>
     </div>
     <div class="card-body">
-        <form method="post" action="/question">
+        <form id = "create-question" method="post" action="/question">
             {{csrf_field()}}
             <div class="form-group">
                 <div class="form-row">
@@ -24,10 +24,10 @@
                         <select class="browser-default custom-select" name="topic_id">
                             <option selected disabled>Topic ID</option>
                             @php
-                                $alltopics = App\Topic::allTopics();
+                                $alltopics = App\Topic::all();
                             @endphp
-                            @foreach($alltopics as $topic_id)
-                                <option value="{{$topic_id}}">{{$topic_id}}</option>
+                            @foreach($alltopics as $topic)
+                                <option value="{{$topic->id}}">{{$topic->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="correct_answer">Alternativa correta</label>
-                        <input type="number" placeholder="Opcao correta" required name="correct_answer"
+                        <input type="number" id = "correct-answer" placeholder="Opcao correta" required name="correct_answer"
                                class="form-control">
                     </div>
                 </div>
@@ -64,4 +64,9 @@
             </div>
         </form>
     </div>
+
+    <script>
+        var form = document.forms.namedItem("create-question");
+        console.log(form);
+    </script>
 </div>

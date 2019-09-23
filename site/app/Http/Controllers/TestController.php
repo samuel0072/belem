@@ -98,7 +98,7 @@ class TestController extends Controller
 
         $total = count($topic->questions) * count($ans_tests);
 
-        if(count($topic->questions) > 0) {
+        if($total > 0) {
             foreach ($topic->questions as $question) {
                 if($question->test_id == $test_id) {
                     $topicQuestions[$question->id] = $question->correct_answer;
