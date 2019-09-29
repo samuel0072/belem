@@ -126,7 +126,7 @@ class TestController extends Controller
 
     public function scoreCount($test_id) {
         $result = DB::table('answered_tests')
-                    ->selectRaw('COUNT(score) as score_count, score')
+                    ->selectRaw('COUNT(score) as count, score as name')
                     ->where('test_id', '=', $test_id)
                     ->groupBy('score')
                     ->get();
