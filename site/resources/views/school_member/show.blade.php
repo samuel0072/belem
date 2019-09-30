@@ -46,9 +46,11 @@
                 </div>
                 <div class = "card-body">
                     <!--ate 1200px -->
-                    <svg id = "student-describer-graph" onload="topicData(1)"  width="500" height = "300" class="d-sm-block">
+                    @foreach($student->answeredTests as $answeredTest)
+                        <svg id = "student-describer-graph{{$answeredTest->id}}" onload="topicData({{$answeredTest->test_id}}, {{$answeredTest->id}})"  width="500" height = "300" class="d-sm-block">
+                        </svg>
+                        @endforeach
 
-                    </svg>
                 </div>
             </div>
         </div>
@@ -91,20 +93,20 @@
     </div>
 
     <script>
-        function topicData(test_id) {
+        function topicData(test_id, graph_id) {
             var topics = [];
             var ajax = new XMLHttpRequest();
             ajax.open("GET", '/topic', true);
             ajax.onload = function() {
                 if(this.readyState === 4 && this.status === 200) {
                     topics = JSON.parse(this.responseText);
-                    plotData(test_id, topics, {{$student->id}});
+                    plotData(test_id, topics, {{$student->id}}, graph_id);
                 }
             };
             ajax.send();
         }
 
-        function plotData(test_id, topics, student_id) {
+        function plotData(test_id, topics, student_id, graph_id) {
             var data = [];
             topics.forEach(
                 (element) => {
@@ -114,7 +116,7 @@
                         if(this.readyState === 4 && this.status === 200) {
                             response = parseFloat(this.responseText);
                             data.push({name:element.name, count:response});
-                            updateGraphic(data, "student-describer-graph");
+                            updateGraphic(data, "student-describer-graph"+graph_id);
                             orderTopics(data);
                         }
                     };

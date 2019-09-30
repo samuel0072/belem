@@ -6,14 +6,14 @@
         <form method="post" action="/answered_test">
             {{csrf_field()}}
             <div class="form-group mx-sm-3 mb-2">
-                <label for="test_id">ID do Teste</label>
+                <label for="test_id">Provas</label>
                 <select class="browser-default custom-select" name="test_id">
-                    <option selected disabled>Test ID</option>
+                    <option selected disabled>Provas</option>
                     @php
-                        $allTests = App\Test::allTests();
+                        $allTests = App\GradeClass::findOrFail($student->grade_class_id)->tests;
                     @endphp
-                    @foreach($allTests as $test_id)
-                        <option value="{{$test_id}}">{{$test_id}}</option>
+                    @foreach($allTests as $test)
+                        <option value="{{$test->id}}">{{$test->nick}}</option>
                     @endforeach
                 </select>
 

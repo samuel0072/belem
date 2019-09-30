@@ -86,6 +86,7 @@ class TestController extends Controller
 
     public function topicCount($test_id, $topic_id, $student_id = 0) {
         $count = 0;
+
         $topic = Topic::findOrFail($topic_id);
         $test = Test::findOrFail($test_id);
         $student = SchoolMember::find($student_id);
