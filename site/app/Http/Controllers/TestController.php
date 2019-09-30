@@ -8,6 +8,7 @@ use App\Question;
 use App\SchoolMember;
 use App\Test;
 use App\Topic;
+use Illuminate\Support\Facades\DB;
 use function Sodium\compare;
 
 class TestController extends Controller
@@ -124,9 +125,16 @@ class TestController extends Controller
         }
     }
 
-    public function correct() {
-        return view("testing.test");
+    public function scoreCount($test_id) {
+        $result = DB::table('answered_tests')
+                    ->selectRaw('COUNT(score) as count, score as name')
+                    ->where('test_id', '=', $test_id)
+                    ->groupBy('score')
+                    ->get();
+        return $result;
     }
+
+
 
     public function edit($id){
         $test = Test::findOrFail($id);
@@ -142,6 +150,8 @@ class TestController extends Controller
         $answeredTests = $this->answers($id);
         return view('ans_test.showAll', compact(['answeredTests', 'id']));
     }
+
+
 
 
 }

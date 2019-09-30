@@ -42,8 +42,8 @@
             }
 
             body {
-                background-image: url("https://raw.githubusercontent.com/samuel0072/belem/46d0d2c940d84bacd91ede44e4afda6b331bb71d/site/resources/views/template/ecobit/img/banner_bg.png?token=AHJYCDA33L3HUV2L7LRHBIK5RN5UE"),
-                url("https://raw.githubusercontent.com/samuel0072/belem/46d0d2c940d84bacd91ede44e4afda6b331bb71d/site/resources/views/template/ecobit/img/banner_img.png?token=AHJYCDCQSMOZNCP3GUSV7FC5RN5LE");
+                background-image: url("/public/img/banner_bg.png"),
+                url("/public/img/banner_img.png");
                 background-repeat: no-repeat, no-repeat;
                 background-position: left top, right bottom;
             }
