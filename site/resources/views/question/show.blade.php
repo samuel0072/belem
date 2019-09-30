@@ -1,4 +1,4 @@
-<a onclick="ignite({{$question->id}})" class="list-group-item active text-white">{{$question->nick}}</a>
+<a onclick="ignite({{$question->id}})" class="list-group-item active text-white">{{$question->nick}} ID : {{$question->id}}</a>
 
 <!-- The Modal -->
 <div id="id{{$question->id}}" class="w3-modal">
@@ -8,7 +8,7 @@
             class="w3-button w3-display-topright">&times;</span>
             <div class="card">
                 <div class="card-header list-group-item active text-white">
-                    <h1>{{$question->nick}}</h1>
+                    <h1>{{$question->nick}} ID : {{$question->id}}</h1>
                 </div>
                 <div class="card-body">
                     <svg id="option-quant{{$question->id}}" width="500" height = "300">

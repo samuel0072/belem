@@ -9,11 +9,7 @@
 
 @section('content')
     <div class="text-white">
-        <h1>{{$test->nick}}: {{$test->id}}</h1>
-    </div>
-
-    <div class="navigator-route">
-
+        <h1>{{$test->nick}}: ID  {{$test->id}}</h1>
     </div>
     <?php
         $ar = array(
