@@ -1,7 +1,0 @@
-RewriteEngine On # Turn on the rewriting engine
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond $1 !^(api|vendor|composer\.json|composer\.phar)
-
-RewriteRule  ^ server.php [L]
