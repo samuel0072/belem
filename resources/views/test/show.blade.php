@@ -22,7 +22,11 @@
     <div class="container-fluid">
         <div class="row">
             <section id = "left" class="col-md-7 text-white">
-                <div class = "card-header stylish-color"><label>DADOS</label></div>
+                <div class = "card-header stylish-color">
+                    <label>DADOS</label>
+                    @include('layouts.import')
+                </div>
+
                 <div class = "card-body stylish-color-dark">
                     <div>
                         <span class="label label-info">Acertos(%) X Descritor</span>
@@ -81,6 +85,12 @@
         </div>
     </div>
     <script>
+        var questions = [];
+
+        @foreach($test->questions as $question)
+            questions.push({{$question->id}});
+        @endforeach
+        console.log(questions);
 
         function topicData() {
             var topics = [];

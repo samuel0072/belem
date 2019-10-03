@@ -127,5 +127,6 @@
             @yield('head-content')
             @yield('content')
         </div>
+        <script src="/public/js/jquery.csv.js"></script>
     </body>
 </html>
