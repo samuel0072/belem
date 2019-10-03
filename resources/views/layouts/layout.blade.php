@@ -128,5 +128,8 @@
             @yield('content')
         </div>
         <script src="/public/js/jquery.csv.js"></script>
+        <script src ="/public/js/test.script.js"></script>
+        <script src ="/public/js/schoolmember.script.js"></script>
+        <script src="/public/js/ans_test.script.js"></script>
     </body>
 </html>

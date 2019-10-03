@@ -1,7 +1,7 @@
 <div class="w3-container">
     <div>
         <button onclick="document.getElementById('id{{$test->id}}').style.display='block'" class="btn btn-mdb-color ">Notas</button>
-        <button onclick="corrigir({{$test->id}})" type="button" class="btn btn-warning" >Corrigir provas</button>
+        <button onclick="corrigir({{$test->id}},  {{csrf_token()}})" type="button" class="btn btn-warning" >Corrigir provas</button>
         <form class="form-group" method="post" action="/test/{{$test->id}}">
             {{csrf_field()}}
             {{method_field("DELETE")}}
@@ -51,18 +51,3 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    function corrigir(id) {
-        var ajax = new XMLHttpRequest();
-        ajax.open("POST", '/test/'+id+'/correct', true);
-        ajax.onload = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                console.log("tudo okay");
-            }
-        };
-        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        ajax.send("_token="+"{{csrf_token()}}");
-    }
-</script>
