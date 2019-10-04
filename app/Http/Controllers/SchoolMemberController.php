@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SchoolMemberRequest;
 use App\SchoolMember;
+use Illuminate\Support\Facades\DB;
 
 class SchoolMemberController extends Controller
 {
 
-    public function index()
+    /*public function index()
     {
         $students = SchoolMember::all();
         return view('school_member.showAll', compact('students'));
-    }
+    }*/
 
     public function store(SchoolMemberRequest $request)
     {
@@ -69,6 +70,18 @@ class SchoolMemberController extends Controller
         $student = SchoolMember::findOrFail($student_id);
         $score = (new TestController)->topicCount($test_id, $topic_id, $student_id);
         return $score;
+    }
+
+
+    public function getMemberbyEnroll($enroll) {
+        $member = DB::table('school_members')
+                    ->where('enroll', '=', $enroll) ->get();
+        if($user->acess_level > 0) {
+            return $member;
+        }
+        else {
+            return [];
+        }
     }
 
 }

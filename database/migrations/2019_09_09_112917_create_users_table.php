@@ -21,11 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->unsignedInteger('access_level')->default(0);
             $table->unsignedInteger('school_id')->default(0);
-            $table->unsignedInteger('grade_class_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->foreign("school_id")->references("id")->on("schools")->onDelete('cascade');
-            $table->foreign("grade_class_id")->references("id")->on("grade_classes")->onDelete('cascade');
         });
     }
 

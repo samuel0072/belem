@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/schoolmember', 'SchoolMemberController');
     Route::get('/schoolmember/{id}/ans_tests', 'SchoolMemberController@showAnsweredTests');
     Route::get('/schoolmember/{id}/test/{test_id}/topic/{topic_id}', 'SchoolMemberController@getTopicScore');
+    Route::get('/schoolmember/{enroll}/findbyenroll', 'SchoolMemberController@getMemberbyEnroll');
 
     Route::resource('/grade_class', 'GradeClassController');
     Route::get('/grade_class/{id}/students', 'GradeClassController@showClassMembers');
