@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\GradeClass;
 use App\Http\Requests\SchoolMemberRequest;
 use App\SchoolMember;
+use App\UserGradeClass;
 use Illuminate\Support\Facades\DB;
 
 class SchoolMemberController extends Controller
@@ -74,9 +76,11 @@ class SchoolMemberController extends Controller
 
 
     public function getMemberbyEnroll($enroll) {
-        $member = DB::table('school_members')
-                    ->where('enroll', '=', $enroll) ->get();
-        if($user->acess_level > 0) {
+        $member = SchoolMember::where('enroll', $enroll) ->get();
+        $classes = UserGradeClass::where('user_id', '=', auth()->user()->id) ->get();
+        $member = $member[0];
+        $member_class = $member->grade_class;
+        if(in_array($member_class, $classes)) {
             return $member;
         }
         else {
