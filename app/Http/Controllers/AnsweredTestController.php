@@ -7,11 +7,11 @@ use App\Http\Requests\AnsTestRequest;
 
 class AnsweredTestController extends Controller
 {
-    public function index()
+    /*public function index()
     {
         $ans_Test = AnsweredTest::all();
         return $ans_Test;
-    }
+    }*/
 
     public function store(AnsTestRequest $request)
     {

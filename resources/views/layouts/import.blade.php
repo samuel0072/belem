@@ -53,6 +53,7 @@
         csv.forEach((element) => {
             var obj = Object.values(element);
             var resp = obj.slice(1);
+            console.log(resp);
             var enroll = obj[0];
             getStudent(enroll, resp);
         });
@@ -64,8 +65,9 @@
         ajax.onreadystatechange = function() {
             if(this.readyState === 4 && this.status === 200){
                 var res = JSON.parse(this.responseText);
-                if(res !== []) {
-                    sendData(res.id, resp)
+                console.log(res);
+                if(res != []) {
+                    sendData(res[0].id, resp)
                 }
             }
         };
@@ -74,24 +76,25 @@
 
     function sendData(student_id, resp) {
         quest_id.forEach(function(element, index) {
-            console.log(resp[index]);
+            var d = resp[index];
             createAns(student_id, resp[index], element)
         });
     }
 
     function createAns(st_id, option, question_id) {
-        option = option.toUpperCase().charCodeAt(0) - 64;
+        console.log(option);
+        var c = option[0].toUpperCase() - 64;
 
         var ajax = new XMLHttpRequest();
         ajax.open("POST", "/answered_test/", true);
         ajax.onreadystatechange = function() {
             if(this.readyState === 4 && this.status === 200){
                 var resp = JSON.parse(this.responseText);
-                createAnsques(resp.id, option, question_id);
+                createAnsques(resp.id, c, question_id);
             }
         };
         ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        ajax.send("test_id="+test_id+"&school_member_id="+st_id+"&score=0&done=0&_token="+token);
+        ajax.send("test_id="+(test_id)+"&school_member_id="+(st_id)+"&score=0&done=0&_token="+(token));
     }
     function createAnsques(ans_id, option, question_id) {
         var ajax = new XMLHttpRequest();
