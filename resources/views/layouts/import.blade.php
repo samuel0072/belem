@@ -33,4 +33,78 @@
 </div>
 
 
-<script src="/public/js/import.script.js"></script>
+<script>
+    var token = '{{csrf_token()}}';
+
+    var test_id = {{$test->id}};
+    var reader = new FileReader();
+    reader.onload = (evt) => {
+        var csvText = evt.target.result;
+        var csvObject = $.csv.toObjects(csvText);
+        doIt(csvObject);
+    };
+
+    function getRawData(inputFile) {
+        var rawCsv = inputFile[0];
+        reader.readAsText(rawCsv);
+    }
+
+    function doIt(csv) {
+        csv.forEach((element) => {
+            var obj = Object.values(element);
+            var resp = obj.slice(1);
+            var enroll = obj[0];
+            getStudent(enroll, resp);
+        });
+    }
+    function getStudent(enroll, resp) {
+
+        var ajax = new XMLHttpRequest();
+        ajax.open("get", "/schoolmember/"+enroll+"/findbyenroll", true);
+        ajax.onreadystatechange = function() {
+            if(this.readyState === 4 && this.status === 200){
+                var res = JSON.parse(this.responseText);
+                if(res !== []) {
+                    sendData(res.id, resp)
+                }
+            }
+        };
+        ajax.send();
+    }
+
+    function sendData(student_id, resp) {
+        quest_id.forEach(function(element, index) {
+            console.log(resp[index]);
+            createAns(student_id, resp[index], element)
+        });
+    }
+
+    function createAns(st_id, option, question_id) {
+        option = option.toUpperCase().charCodeAt(0) - 64;
+
+        var ajax = new XMLHttpRequest();
+        ajax.open("POST", "/answered_test/", true);
+        ajax.onreadystatechange = function() {
+            if(this.readyState === 4 && this.status === 200){
+                var resp = JSON.parse(this.responseText);
+                createAnsques(resp.id, option, question_id);
+            }
+        };
+        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        ajax.send("test_id="+test_id+"&school_member_id="+st_id+"&score=0&done=0&_token="+token);
+    }
+    function createAnsques(ans_id, option, question_id) {
+        var ajax = new XMLHttpRequest();
+        ajax.open("POST", "/question_answered_test/", true);
+        ajax.onreadystatechange = function() {
+            if(this.readyState === 4 && this.status === 200) {
+                console.log("AHBDFSABAIFBABFHAFBIAEBFIABFAIBF PORRA");
+            }
+        };
+        console.log(token);
+        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        ajax.send("answered_test_id="+ans_id+"&question_id="+question_id+"&option_choosed="+option+"&_token="+token);
+    }
+
+
+</script>

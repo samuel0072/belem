@@ -1,7 +1,7 @@
 <div class="w3-container">
     <div>
         <button onclick="document.getElementById('id{{$test->id}}').style.display='block'" class="btn btn-mdb-color ">Notas</button>
-        <button onclick="corrigir({{$test->id}},  {{csrf_token()}})" type="button" class="btn btn-warning" >Corrigir provas</button>
+        <button onclick="corrigir({{$test->id}},  '{{csrf_token()}}')" type="button" class="btn btn-warning" >Corrigir provas</button>
         <form class="form-group" method="post" action="/test/{{$test->id}}">
             {{csrf_field()}}
             {{method_field("DELETE")}}

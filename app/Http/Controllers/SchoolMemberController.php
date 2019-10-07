@@ -77,15 +77,7 @@ class SchoolMemberController extends Controller
 
     public function getMemberbyEnroll($enroll) {
         $member = SchoolMember::where('enroll', $enroll) ->get();
-        $classes = UserGradeClass::where('user_id', '=', auth()->user()->id) ->get();
-        $member = $member[0];
-        $member_class = $member->grade_class;
-        if(in_array($member_class, $classes)) {
-            return $member;
-        }
-        else {
-            return [];
-        }
+        return $member;
     }
 
 }

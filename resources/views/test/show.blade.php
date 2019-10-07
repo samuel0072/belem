@@ -61,7 +61,7 @@
                                 </div>
 
                                 <li style="list-style:none">
-                                    <table class = "table">
+                                    <table class = "table table-responsive">
                                         <tr>
                                             <th>Descritor</th>
                                             <th>Número da questão</th>
@@ -84,4 +84,11 @@
             </section>
         </div>
     </div>
+
+    <script>
+        var quest_id = [];
+        @foreach($test->questions as $question)
+            quest_id.push({{$question->id}});
+        @endforeach
+    </script>
 @endsection

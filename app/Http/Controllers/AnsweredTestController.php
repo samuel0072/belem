@@ -17,8 +17,8 @@ class AnsweredTestController extends Controller
     {
         $validated = $request->validated();
         $id = $validated["school_member_id"];
-        AnsweredTest::create($validated);
-        return redirect("/schoolmember/$id");
+        $answered = AnsweredTest::create($validated);
+        return $answered;
     }
 
     public function show(AnsweredTest $answeredTest)
