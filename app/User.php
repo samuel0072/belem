@@ -18,6 +18,17 @@ class User extends Authenticatable
         ])->get();
     }
 
+    public function clazzes() {
+        $classes = [];
+        $class_asoc =  $this->hasMany(UserGradeClass::class);
+
+        foreach ($class_asoc as $cl) {
+            $class = $cl->clazz;
+            $classes[] = $class;
+        }
+       return $classes;
+    }
+
     /**
      * The attributes that are mass assignable.
      *

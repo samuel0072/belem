@@ -20,36 +20,54 @@ class SchoolController extends Controller
     }
 
     public function store(Request $request){
-        $validated = $request->validate([
-            "name" => ["required", "min:2", "max:255"],
-            "description" => ["required", "min:2", "max:255"]
-        ]);
-        School::create($validated);
+        if(auth()->user()->access_level > 2) {
+            $validated = $request->validate([
+                "name" => ["required", "min:2", "max:255"],
+                "description" => ["required", "min:2", "max:255"]
+            ]);
+            School::create($validated);
+        }
         return redirect("/school");
-
     }
 
     public function update(Request $request, School $school){
-
-        $validated = $request->validate([
-            "name" => ["required", "min:2", "max:255"],
-            "description" => ["required", "min:2", "max:255"]
-        ]);
-        $school->update($validated);
+        $user = auth()->user();
+        if(($user->access_level > 1 && $user->school_id == $school->id) || ($user->access_level >= 3)) {
+            $validated = $request->validate([
+                "name" => ["required", "min:2", "max:255"],
+                "description" => ["required", "min:2", "max:255"]
+            ]);
+            $school->update($validated);
+        }
         return redirect("/school");
     }
 
     public function destroy(School $school){
-        $school->delete();
+        if(auth()->user()->access_level > 2) {
+            $school->delete();
+        }
         return redirect("/school");
     }
 
     public function classes($id) {
-        $school = School::findOrFail($id);
-        $gradeClasses = $school->gradeClasses;
-
+        $user = auth()->user();
+        $schools = School::where([
+            ['id', '=', $id],
+            ['id', '=', $user->school_id]
+        ])->get() ;
+        $gradeClasses = [];
+        /*
+         * em progresso
+         * foreach ($schools as $school) {
+            $classes = $school->gradeClasses;
+            if($user->access_level < 2 && $user->access_level < 0) {
+                $user_classes = $user->classes;
+                foreach ($classes as $class) {
+                    if()
+                }
+            }
+        }*/
         return $gradeClasses;
-
     }
 
     public function edit(School $school) {

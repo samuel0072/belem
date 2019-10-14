@@ -8,4 +8,8 @@ class UserGradeClass extends Model
 {
     //
     protected $guarded = ['id'];
+
+    public function clazz() {
+        return $this->belongsTo(GradeClass::class);
+    }
 }
