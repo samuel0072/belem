@@ -14,9 +14,8 @@
 Route::middleware('auth')->group(function () {
     Route::resource('/school', 'SchoolController');
     Route::get('/school/{id}/classes', 'SchoolController@showClasses');
-
-    Route::get('/users/{id}', 'Auth\UserController@showUsers');
-    Route::post('/users/{id}', 'Auth\UserController@setAccLevel');
+    Route::get('/school/{id}/users', 'Auth\UserController@showUsers');
+    Route::post('school/{id}/users', 'Auth\UserController@setAccLevel');
 
     Route::resource('/answered_test', 'AnsweredTestController');
 
@@ -48,10 +47,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/', function() {
         return redirect('/school');
-    });
-
-    Route::get('/testing', function() {
-        return view("testing.test");
     });
 });
 

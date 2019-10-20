@@ -64,5 +64,5 @@
             </div>
         </form>
     </div>
-    <script src="/public/js/question.script.js"></script>
+    <script src="/js/question.script.js"></script>
 </div>

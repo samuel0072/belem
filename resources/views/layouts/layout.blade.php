@@ -16,7 +16,7 @@
         <!--W3 css -->
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-        <link rel="stylesheet" href="/css/app.css">
+        <!--link rel="stylesheet" href="/css/app.css"-->
 
 
         <!-- Bootstrap tooltips -->
@@ -42,8 +42,8 @@
             }
 
             body {
-                background-image: url("/public/img/banner_bg.png"),
-                url("/public/img/banner_img.png");
+                background-image: url("/img/banner_bg.png"),
+                url("/img/banner_img.png");
                 background-repeat: no-repeat, no-repeat;
                 background-position: left top, right bottom;
             }
@@ -127,9 +127,9 @@
             @yield('head-content')
             @yield('content')
         </div>
-        <script src="/public/js/jquery.csv.js"></script>
-        <script src ="/public/js/test.script.js"></script>
-        <script src ="/public/js/schoolmember.script.js"></script>
-        <script src="/public/js/ans_test.script.js"></script>
+        <script src="/js/jquery.csv.js"></script>
+        <script src ="/js/test.script.js"></script>
+        <script src ="/js/schoolmember.script.js"></script>
+        <script src="/js/ans_test.script.js"></script>
     </body>
 </html>

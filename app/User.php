@@ -11,20 +11,20 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function showUsers($user_id, $school_id){
+    public function showUsers( $school_id){
         return DB::table('users')->where([
             ['school_id', $school_id],
-            ['id', '<>', $user_id]
+            ['id', '<>', $this->id]
         ])->get();
     }
 
     public function classes() {
-        $string = "$this->id";
+        $id = $this->id;
         return DB::table('grade_classes')
-                ->join('user_grade_classes', [
-                    ['user_id', '=', $string],
-                    ['grade_class_id', '=', 'grade_classes.id']
-                ])
+                ->join('user_grade_classes', function($join) use ($id) {
+                    $join->on('grade_class_id', '=', 'grade_classes.id')
+                            ->where('user_id', '=', $id);
+                    })
                 ->get();
     }
 

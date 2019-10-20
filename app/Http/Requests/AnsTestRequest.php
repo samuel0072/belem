@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\SchoolMember;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AnsTestRequest extends FormRequest
