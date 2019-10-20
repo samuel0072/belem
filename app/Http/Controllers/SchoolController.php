@@ -22,7 +22,7 @@ class SchoolController extends Controller
     }
 
     public function store(Request $request){
-        Gate::authorize('create-school');
+        $this->authorize('create', School::class);
 
         $validated = $request->validate([
             "name" => ["required", "min:2", "max:255"],
@@ -33,7 +33,7 @@ class SchoolController extends Controller
     }
 
     public function update(Request $request, School $school){
-        Gate::authorize('update-school', $school);
+        $this->authorize('update', $school);
 
         $validated = $request->validate([
             "name" => ["required", "min:2", "max:255"],
@@ -44,16 +44,17 @@ class SchoolController extends Controller
     }
 
     public function destroy(School $school){
-        Gate::authorize('destroy-school', $school);
+        $this->authorize('delete', $school);
         $school->delete();
         return redirect("/school");
     }
 
     public function classes($id) {
         $user = auth()->user();
+        $school = School::findOrFail($id);
+        $this->authorize('allowShowClasses', $school);
         $gradeClasses = [];
         if($user->access_level > 1) {
-            $school = School::findOrFail($id);
             $gradeClasses = $school->gradeClasses;
         }
         else {
@@ -63,10 +64,12 @@ class SchoolController extends Controller
     }
 
     public function edit(School $school) {
+        $this->authorize('update', $school);
         return view('school.edit', compact('school'));
     }
 
     public function create(){
+        $this->authorize('create', School::class);
         return view('school.create');
     }
 
