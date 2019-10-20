@@ -22,15 +22,12 @@ class UserController extends Controller
 
     public function setAccLevel(UserRequest $request, $school_id){
         $validated = $request->validated();
-        $user = auth()->user();
-        if($user->access_level > 2) {
-            $user->access_level = $validated['access_level'];
-            $user->update();
-        }
-        else if($user->access_level > 1 && $user->school_id == $validated['school_id']) {
-            $user->access_level = $validated['access_level'];
-            $user->update();
-        }
+        $model = User::findOrFail($validated['id']);
+        $this->authorize('allowUpdateAccessLevel', $model);
+
+        $model->access_level = $validated['access_level'];
+        $model->update();
+
         return redirect("school/$school_id/users");
     }
 }
