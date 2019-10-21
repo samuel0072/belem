@@ -25,7 +25,7 @@ class GradeClassPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->access_level > 2;
     }
 
     /**
@@ -42,6 +42,12 @@ class GradeClassPolicy
         }
         else {
             $classes = $user->classes();
+            foreach ($classes as $class){
+                if($class->id == $gradeClass->id){
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
@@ -53,7 +59,7 @@ class GradeClassPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->access_level > 1;
     }
 
     /**
@@ -65,7 +71,8 @@ class GradeClassPolicy
      */
     public function update(User $user, GradeClass $gradeClass)
     {
-        //
+
+        return $this->view($user, $gradeClass);
     }
 
     /**
@@ -77,7 +84,7 @@ class GradeClassPolicy
      */
     public function delete(User $user, GradeClass $gradeClass)
     {
-        //
+        return ($user->school_id == $gradeClass->school_id) && ($user->access_level > 1);
     }
 
     /**
@@ -89,7 +96,7 @@ class GradeClassPolicy
      */
     public function restore(User $user, GradeClass $gradeClass)
     {
-        //
+        return false;
     }
 
     /**
@@ -101,6 +108,6 @@ class GradeClassPolicy
      */
     public function forceDelete(User $user, GradeClass $gradeClass)
     {
-        //
+        return false;
     }
 }

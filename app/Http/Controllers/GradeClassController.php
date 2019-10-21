@@ -10,12 +10,21 @@ class GradeClassController extends Controller
 
     public function index()
     {
-        $gradeClasses = GradeClass::all();
+        $user = auth()->user();
+        $gradeClasses = [];
+        if($user->acess_level > 2) {
+            $gradeClasses = GradeClass::all();
+        }
+        else {
+            $gradeClasses = $user->classes();
+        }
+
         return view('grade_class.show', compact('gradeClasses'));
     }
 
     public function store(GradeClassRequest $request)
     {
+        $this->authorize('create', GradeClass::class);
         $validated = $request->validated();
         GradeClass::create($validated);
         $id = $validated["school_id"];
@@ -24,6 +33,7 @@ class GradeClassController extends Controller
 
     public function update(GradeClassRequest $request, GradeClass $gradeClass)
     {
+        $this->authorize('update', $gradeClass);
         $validated = $request->validated();
         $gradeClass->update($validated);
         $id = $validated["school_id"];
@@ -31,11 +41,13 @@ class GradeClassController extends Controller
     }
 
     public function create(){
+        $this->authorize('create', GradeClass::class);
         return view('grade_class.create');
     }
 
     public function destroy(GradeClass $gradeClass)
     {
+        $this->authorize('delete', $gradeClass);
         $id = $gradeClass->school_id;
         $gradeClass->delete();
         return redirect("/school/$id/classes");
@@ -43,15 +55,18 @@ class GradeClassController extends Controller
 
     public function classMembers($id) {
         $class = GradeClass::findOrFail($id);
+        $this->authorize('view', $class);//mesma logica de ver os dados de uma classe
         $students = $class->schoolMembers;
         return $students;
     }
 
     public function tests($id) {
         $class = GradeClass::findOrFail($id);
+        $this->authorize('view', $class);//mesma logica de ver os dados de uma classe
         return $class->tests;
     }
-
+    //aqui não precisa colocar autorização
+    //meu teclado ta bugado
     public function showClassMembers($id) {
         $students = $this->classMembers($id);
         return view("school_member.showAll", compact(['students', 'id']));
