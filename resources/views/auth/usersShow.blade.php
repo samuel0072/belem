@@ -30,7 +30,7 @@
             const ajax = new XMLHttpRequest();
             ajax.open("POST", `/school/${user.school_id}/users/`, true);
             ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            ajax.send("school_id="+user.school_id+"&name="+user.name+"&password="+user.password+"&access_level="+$('#acc_lvl_select').val()+"&_token="+"{{csrf_token()}}");
+            ajax.send("id="+user.id+"&school_id="+user.school_id+"&name="+user.name+"&password="+user.password+"&access_level="+$('#acc_lvl_select').val()+"&_token="+"{{csrf_token()}}");
         }
     </script>
 @endsection
