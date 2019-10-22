@@ -41,6 +41,16 @@
                 z-index: 100;
             }
 
+            .Site{
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+            }
+
+            .Site-content{
+                flex: 1;
+            }
+
             body {
                 background-image: url("/img/banner_bg.png"),
                 url("/img/banner_img.png");
@@ -59,7 +69,7 @@
         </style>
 
     </head>
-    <body>
+    <body class="Site Site-content">
         <header>
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
