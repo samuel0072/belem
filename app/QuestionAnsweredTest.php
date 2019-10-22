@@ -8,7 +8,11 @@ class QuestionAnsweredTest extends Model
 {
     protected $guarded =["id"];
 
-    public function gradeClass() {
-        return $this->belongsTo(Test::class);
+    public function ansTest() {
+        return $this->belongsTo(AnsweredTest::class);
+    }
+
+    public function test(){
+        return $this->ansTest->test;
     }
 }

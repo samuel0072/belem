@@ -26,6 +26,7 @@ class AnsTestRequest extends FormRequest
     {
         return [
             "test_id" => ["required", "numeric", "min:1"],
+            "grade_class_id" => ["required", "numeric", "min:1"],
             "school_member_id" => ["required", "numeric"],
             "score" => ["sometimes", "required", "numeric", "min:0", "max:10"],
             "done" => ["sometimes", "required", "boolean"]

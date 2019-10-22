@@ -66,7 +66,7 @@
                 }
             };
             ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            ajax.send("answered_test_id="+item.answered_test_id+"&question_id="+item.question_id+"&option_choosed="+item.option_choosed+"&_token="+"{{csrf_token()}}");
+            ajax.send("grade_class_id="+"{{$answeredTest->test->gradeClass->id}}"+"&answered_test_id="+item.answered_test_id+"&question_id="+item.question_id+"&option_choosed="+item.option_choosed+"&_token="+"{{csrf_token()}}");
         });
         document.getElementById('id21').style.display='none';
 

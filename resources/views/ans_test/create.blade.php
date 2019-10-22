@@ -20,6 +20,12 @@
             </div>
 
             <div class="form-group mx-sm-3 mb-2">
+                <input class="form-control" type="number" placeholder="Grade Class ID" required
+                       name="grade_class_id",
+                       value="{{$student->grade_class_id}}" hidden>
+            </div>
+
+            <div class="form-group mx-sm-3 mb-2">
                 <input class="form-control" type="number" placeholder="School Member ID" required
                        name="school_member_id" ,
                        value="{{$studentId}}" hidden>

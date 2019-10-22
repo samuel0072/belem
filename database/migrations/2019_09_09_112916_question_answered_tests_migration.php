@@ -17,11 +17,13 @@ class QuestionAnsweredTestsMigration extends Migration
             $table->increments("id");
             $table->unsignedInteger("answered_test_id");
             $table->unsignedInteger("question_id");
+            $table->unsignedInteger("grade_class_id");
             $table->integer("option_choosed");
             $table->timestamps();
 
             $table->foreign("answered_test_id")->references("id")->on("answered_tests")->onDelete('cascade');
             $table->foreign("question_id")->references("id")->on("questions")->onDelete('cascade');
+            $table->foreign("grade_class_id")->references("id")->on("grade_classes")->onDelete('cascade');
         });
     }
 

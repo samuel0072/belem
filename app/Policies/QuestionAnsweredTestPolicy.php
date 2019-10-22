@@ -3,8 +3,10 @@
 namespace App\Policies;
 
 use App\User;
+use App\GradeClass;
 use App\QuestionAnsweredTest;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\App;
 
 class QuestionAnsweredTestPolicy
 {
@@ -37,13 +39,14 @@ class QuestionAnsweredTestPolicy
      */
     public function view(User $user, QuestionAnsweredTest $questionAnsweredTest)
     {
-        if($user->access_level > 1 && $questionAnsweredTest->gradeClass()->school_id == $user->school_id){
+        $gr = GradeClass::find($questionAnsweredTest->grade_class_id);
+        if($user->access_level > 1 && $gr->school_id == $user->school_id){
             return true;
         }
         else{
 
             foreach ($user->classes() as $class){
-                if($class->id == $questionAnsweredTest->gradeClass()->id){
+                if($class->id == $gr->id){
                     return true;
                 }
             }
@@ -58,7 +61,7 @@ class QuestionAnsweredTestPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->access_level > 0;
     }
 
     /**
@@ -70,7 +73,7 @@ class QuestionAnsweredTestPolicy
      */
     public function update(User $user, QuestionAnsweredTest $questionAnsweredTest)
     {
-        //
+        return view($user, $questionAnsweredTest);
     }
 
     /**
@@ -82,7 +85,7 @@ class QuestionAnsweredTestPolicy
      */
     public function delete(User $user, QuestionAnsweredTest $questionAnsweredTest)
     {
-        //
+        return view($user, $questionAnsweredTest);
     }
 
     /**
@@ -94,7 +97,7 @@ class QuestionAnsweredTestPolicy
      */
     public function restore(User $user, QuestionAnsweredTest $questionAnsweredTest)
     {
-        //
+        return view($user, $questionAnsweredTest);
     }
 
     /**
@@ -106,6 +109,6 @@ class QuestionAnsweredTestPolicy
      */
     public function forceDelete(User $user, QuestionAnsweredTest $questionAnsweredTest)
     {
-        //
+        return view($user, $questionAnsweredTest);
     }
 }

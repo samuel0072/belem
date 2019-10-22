@@ -25,6 +25,7 @@ class QuestAnsTestRequest extends FormRequest
     {
         return [
             "answered_test_id" => ["required", "numeric"],
+            "grade_class_id" => ["required", "numeric", "min:1"],
             "question_id" => ["required", "numeric"],
             "option_choosed" => ["required", "numeric"]
         ];
