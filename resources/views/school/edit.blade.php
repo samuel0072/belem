@@ -1,48 +1,53 @@
 
-<div style="display:inline" class="w3-container">
-    <button onclick="document.getElementById('id{{$school->id}}').style.display='block'"
-            class="btn btn-mdb-color ">Editar
-    </button>
-    <a href='/school/{{$school->id}}/classes' class="btn btn-mdb-color">Classes</a>
-    <div id="id{{$school->id}}" class="w3-modal">
-        <div class="w3-modal-content">
-            <div class="w3-container">
-                <a onclick="document.getElementById('id{{$school->id}}').style.display='none'"
-                   class="w3-button w3-display-topright">&times;</a>
+    <div style="display:inline" class="w3-container">
+    @if(auth()->user()->access_level > 2)
+        <button onclick="document.getElementById('id{{$school->id}}').style.display='block'"
+                class="btn btn-mdb-color ">Editar
+        </button>
 
-                <div class = "card">
-                    <div class="card-header">
-                        <h1>Editar</h1>
-                    </div>
-                    <div class = "card-body">
-                        <form class="form-group" method="post" action="/school/{{$school->id}}">
-                            {{csrf_field()}}
-                            {{method_field("PATCH")}}
-                            <div>
-                                <input class="form-control" name="name" value="{{$school->name}}">
-                            </div>
+        <div id="id{{$school->id}}" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <a onclick="document.getElementById('id{{$school->id}}').style.display='none'"
+                       class="w3-button w3-display-topright">&times;</a>
 
-                            <div>
-                                <input class="form-control" name="description"
-                                       value="{{$school->description}}">
-                            </div>
-
-                            <div class="btn-group">
-                                <button class="btn btn-primary" type="submit">Salvar dados</button>
-                            </div>
-                        </form>
-                        <div>
+                    <div class = "card">
+                        <div class="card-header">
+                            <h1>Editar</h1>
+                        </div>
+                        <div class = "card-body">
                             <form class="form-group" method="post" action="/school/{{$school->id}}">
                                 {{csrf_field()}}
-                                {{method_field("DELETE")}}
+                                {{method_field("PATCH")}}
                                 <div>
-                                    <button class="btn btn-teal" type="submit">Excluir escola</button>
+                                    <input class="form-control" name="name" value="{{$school->name}}">
+                                </div>
+
+                                <div>
+                                    <input class="form-control" name="description"
+                                           value="{{$school->description}}">
+                                </div>
+
+                                <div class="btn-group">
+                                    <button class="btn btn-primary" type="submit">Salvar dados</button>
                                 </div>
                             </form>
+                            <div>
+                                <form class="form-group" method="post" action="/school/{{$school->id}}">
+                                    {{csrf_field()}}
+                                    {{method_field("DELETE")}}
+                                    <div>
+                                        <button class="btn btn-teal" type="submit">Excluir escola</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         </div>
                     </div>
-                    </div>
-                </div>
+            </div>
         </div>
-    </div>
+    @endif
+
+    <a href='/school/{{$school->id}}/classes' class="btn btn-mdb-color">Classes</a>
 </div>
+

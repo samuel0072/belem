@@ -15,10 +15,14 @@
                         <th>Nome</th>
                         <th>Ação</th>
                     </tr>
+                    @php
+                        $authUser = auth()->user();
+                    @endphp
                     @foreach($users as $user)
+
                         <tr>
                             <td>{{$user->name}}</td>
-                            <td>@include('auth.show', compact('user'))</td>
+                            <td>@include('auth.show', compact('authUser'))</td>
                         </tr>
                     @endforeach
                 </table>

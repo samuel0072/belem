@@ -1,10 +1,10 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal{{$user->id}}">
     Ver Usuario
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="basicExampleModal{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -37,7 +37,7 @@
                                               2 => "Diretor",
                                               3 => "Administrador"];
                                     $i = 0;
-                                    while(($i < $user->access_level && $i<= 3)) {
+                                    while(($i <= $authUser->access_level) && ($i<= 3)) {
                                         echo "<option value=$i>$level[$i]</option>";
                                         $i++;
                                     }

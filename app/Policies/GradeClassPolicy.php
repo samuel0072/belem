@@ -40,15 +40,15 @@ class GradeClassPolicy
         if($user->access_level > 1 && $user->school_id == $gradeClass->school_id){
             return true;
         }
-        else {
+        else if($user->access_level > 0 && $user->school_id == $gradeClass->school_id){
             $classes = $user->classes();
             foreach ($classes as $class){
                 if($class->id == $gradeClass->id){
                     return true;
                 }
             }
-            return false;
         }
+        return false;
     }
 
     /**
