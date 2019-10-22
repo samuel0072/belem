@@ -37,7 +37,7 @@
                                               2 => "Diretor",
                                               3 => "Administrador"];
                                     $i = 0;
-                                    while($i < $user->access_level) {
+                                    while(($i < $user->access_level && $i<= 3)) {
                                         echo "<option value=$i>$level[$i]</option>";
                                         $i++;
                                     }

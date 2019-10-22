@@ -67,21 +67,14 @@
                 var res = JSON.parse(this.responseText);
                 console.log(res);
                 if(res != []) {
-                    sendData(res[0].id, resp)
+                    createAns(res[0].id, resp)
                 }
             }
         };
         ajax.send();
     }
 
-    function sendData(student_id, resp) {
-        quest_id.forEach(function(element, index) {
-            var d = resp[index];
-            createAns(student_id, resp[index], element)
-        });
-    }
-
-    function createAns(st_id, option, question_id) {
+    function createAns(st_id, resp) {
         console.log(option);
         var c = option[0].toUpperCase() - 64;
 
@@ -90,23 +83,26 @@
         ajax.onreadystatechange = function() {
             if(this.readyState === 4 && this.status === 200){
                 var resp = JSON.parse(this.responseText);
-                createAnsques(resp.id, c, question_id);
+                createAnsques(resp.id, resp);
             }
         };
         ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         ajax.send("test_id="+(test_id)+"&school_member_id="+(st_id)+"&score=0&done=0&_token="+(token));
     }
-    function createAnsques(ans_id, option, question_id) {
-        var ajax = new XMLHttpRequest();
-        ajax.open("POST", "/question_answered_test/", true);
-        ajax.onreadystatechange = function() {
-            if(this.readyState === 4 && this.status === 200) {
-                console.log("AHBDFSABAIFBABFHAFBIAEBFIABFAIBF PORRA");
-            }
-        };
-        console.log(token);
-        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        ajax.send("answered_test_id="+ans_id+"&question_id="+question_id+"&option_choosed="+option+"&_token="+token);
+    function createAnsques(ans_id, resp) {
+        quest_id.forEach(function(element, index) {
+            var option = resp[index];
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/question_answered_test/", true);
+            ajax.onreadystatechange = function() {
+                if(this.readyState === 4 && this.status === 200) {
+                    console.log("AHBDFSABAIFBABFHAFBIAEBFIABFAIBF PORRA");
+                }
+            };
+            console.log(token);
+            ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            ajax.send("answered_test_id="+ans_id+"&question_id="+element+"&option_choosed="+option+"&_token="+token);
+        });
     }
 
 
