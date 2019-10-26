@@ -11,13 +11,13 @@
     <div class="text-white">
         <h1>{{$test->nick}}: ID  {{$test->id}}</h1>
     </div>
-    <?php
+    @php
         $ar = array(
             "f" => "fácil",
             "m" => "médio",
             "d" => "difícil"
         );
-    ?>
+    @endphp
 
     <div class="container-fluid">
         <div class="row">
@@ -30,7 +30,7 @@
                 <div class = "card-body stylish-color-dark">
                     <div>
                         <span class="label label-info">Acertos(%) X Descritor</span>
-                        <svg id = "topics-graphic" width="500" height = "300" onload="topicData({{$test->id}})"></svg>
+                        <svg id = "topics-graphic" width="500" height = "300" onload="getQues({{$test->id}})"></svg>
                     </div>
                     <div>
                         <span class="label label-info">Quantidade X Pontuação</span>
@@ -84,11 +84,4 @@
             </section>
         </div>
     </div>
-
-    <script>
-        var quest_id = [];
-        @foreach($test->questions as $question)
-            quest_id.push({{$question->id}});
-        @endforeach
-    </script>
 @endsection

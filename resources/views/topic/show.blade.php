@@ -1,10 +1,6 @@
 @extends("layouts.layout")
 
-@section('title', 'school')
-
-@section('logo')
-    <img class="logo" src="{{$school->logo}}" />
-@endsection
+@section('title', 'escola')
 
 @section('content')
 

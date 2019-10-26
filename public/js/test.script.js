@@ -1,4 +1,25 @@
-var questions = [];
+var questions = [];//nao sei pra q serve, mas deixa ai
+var quest_id = [];
+
+function getQues(test_id) {
+
+    var xmlHttp = new XMLHttpRequest();
+
+    xmlHttp.open('get', '/test/'+test_id+'/questions', true);
+    xmlHttp.onload= function (){
+        if(this.readyState === 4 && this.status === 200) {
+            res = JSON.parse(this.responseText);
+            res.forEach((question) => {
+                quest_id.push(question.id);
+            });
+            topicData(test_id);
+        }
+    };
+    xmlHttp.send();
+}
+
+
+
 function topicData(test_id) {
     var topics = [];
     var ajax = new XMLHttpRequest();

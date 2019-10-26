@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/test/{id}/answers', 'TestController@showAnswers');
     Route::get('/test/{test_id}/countdesc/{topic_id}', 'TestController@topicCount');
     Route::get('/test/{id}/scorecount', 'TestController@scoreCount');
+    Route::get('/test/{id}/questions', 'TestController@questions');
 
     Route::resource('/question_answered_test', 'QuestionAnsweredTestController');
 

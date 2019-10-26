@@ -162,6 +162,12 @@ class TestController extends Controller
         return view('ans_test.showAll', compact(['answeredTests', 'id']));
     }
 
+    public function questions($test_id) {
+        $test = Test::findOrFail($test_id);
+        $this->authorize('view', $test);
+        return $test->questions;
+    }
+
 
 
 

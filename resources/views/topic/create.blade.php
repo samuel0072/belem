@@ -1,9 +1,9 @@
 @extends("layouts.layout")
-@section('title', 'CRIAR')
+@section('title', 'criar')
 
 @section('content')
     <div>
-        <form method="post" action="/class/{{$id}}/tests">
+        <form method="post" action="/class/{{$topic->id}}/tests">
             {{csrf_field()}}
             <div>
                 <label>
