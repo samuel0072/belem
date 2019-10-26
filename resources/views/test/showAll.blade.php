@@ -10,7 +10,7 @@
 
 @include('test.create', compact('level'))
 
-@section('content') <!--todo: Botão para corrigir os testes-->
+@section('content')
     <div class="student-acess">
         @foreach($tests as $test)
             <?php

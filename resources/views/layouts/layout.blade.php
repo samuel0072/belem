@@ -141,5 +141,6 @@
         <script src ="/js/test.script.js"></script>
         <script src ="/js/schoolmember.script.js"></script>
         <script src="/js/ans_test.script.js"></script>
+        <script src="/js/import.script.js"></script>
     </body>
 </html>

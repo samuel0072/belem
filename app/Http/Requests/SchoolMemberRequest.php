@@ -13,7 +13,7 @@ class SchoolMemberRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;//todo: autorizacao
+        return true;
     }
 
     /**

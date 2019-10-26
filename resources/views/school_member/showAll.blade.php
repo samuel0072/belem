@@ -40,7 +40,8 @@
                                             <td>{{$student->id}}</td>
                                             <td>{{$student->enroll}}</td>
                                             @php
-                                             $class = App\GradeClass::findOrFail($student->grade_class_id);
+                                                $controller = new \App\Http\Controllers\GradeClassController();
+                                                $class = $controller->show($student->grade_class_id);
                                             @endphp
                                             <td>{{"$class->grade_number  $class->class_letter"}}</td>
                                             <td>{{$student->age}}</td>

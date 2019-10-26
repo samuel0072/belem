@@ -24,10 +24,10 @@ class QuestAnsTestRequest extends FormRequest
     public function rules()
     {
         return [
-            "answered_test_id" => ["required", "numeric"],
+            "answered_test_id" => ["required", "numeric", "min:1"],
             "grade_class_id" => ["required", "numeric", "min:1"],
-            "question_id" => ["required", "numeric"],
-            "option_choosed" => ["required", "numeric"]
+            "question_id" => ["required", "numeric", "min:1"],
+            "option_choosed" => ["required", "numeric", "min:1"],
         ];
     }
 }

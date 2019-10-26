@@ -22,6 +22,11 @@ class GradeClassController extends Controller
         return view('grade_class.show', compact('gradeClasses'));
     }
 
+    public function show($gradeClassId){
+        $gradeClass = GradeClass::findOrFail($gradeClassId);
+        $this->authorize('view', $gradeClass);
+        return $gradeClass;
+    }
     public function store(GradeClassRequest $request)
     {
         $this->authorize('create', GradeClass::class);
