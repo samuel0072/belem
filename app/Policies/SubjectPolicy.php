@@ -26,9 +26,7 @@ class SubjectPolicy
      */
     public function viewAny(User $user)
     {
-        if ($user->acess_level > 2) {
-            return true;
-        }
+        return $user->access_level > 0;
     }
 
     /**
@@ -40,7 +38,7 @@ class SubjectPolicy
      */
     public function view(User $user, Subject $subject)
     {
-        return $user->access_level > 2;
+        return $user->access_level > 0;
     }
 
     /**
