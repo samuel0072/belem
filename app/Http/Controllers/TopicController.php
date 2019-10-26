@@ -15,6 +15,7 @@ class TopicController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny');
         $topics = DB::table('topics')->select('id', 'name')->get();
         return $topics;
     }
@@ -24,10 +25,6 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,9 +32,13 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TopicRequest $request)
     {
-        //
+        $topic = $request->validated();
+        $this->authorize('create');
+        Topic::create($topic);
+        $url = $request->fullUrl();
+        return redirect($url);
     }
 
     /**
@@ -48,18 +49,8 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Topic  $topic
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Topic $topic)
-    {
-        //
+        $this->authorize('view');
+        return $topic;
     }
 
     /**
@@ -69,9 +60,13 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Topic $topic)
+    public function update(TopicRequest $request, Topic $topic)
     {
-        //
+        $data = $request->validated();
+        $this->authorize('update', $topic);
+        $topic->update($data);
+        $url = $request->fullUrl();
+        return redirect($url);
     }
 
     /**
@@ -82,6 +77,8 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
-        //
+        $this->authorize('delete');
+        $topic->delete();
+        return redirect('/');
     }
 }
