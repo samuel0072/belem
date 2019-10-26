@@ -11,11 +11,10 @@ use Illuminate\Support\Facades\DB;
 class SchoolMemberController extends Controller
 {
 
-    /*public function index()
+    public function index()
     {
-        $students = SchoolMember::all();
-        return view('school_member.showAll', compact('students'));
-    }*/
+       return redirect('/', 403);
+    }
 
     public function store(SchoolMemberRequest $request)
     {
@@ -56,10 +55,12 @@ class SchoolMemberController extends Controller
 
     public function edit($id) {
         $schoolMember = SchoolMember::findOrFail($id);
+        $this->authorize('update', $schoolMember);
         return view("school_member.edit", compact('schoolMember'));
     }
 
     public function create() {
+        $this->authorize('create');
         return view("school_member.create");
     }
 
@@ -72,6 +73,7 @@ class SchoolMemberController extends Controller
     public function showAnsweredTests($id) {
         $answeredTests = $this->answeredTests($id);
         $student = $this->show(SchoolMember::findOrFail($id));
+        $this->authorize('view', $student);
 
         return view('ans_test.showAll', compact(['answeredTests', 'student']));
     }

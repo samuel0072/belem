@@ -16,12 +16,13 @@ class TestController extends Controller
 
     public function index()
     {
-        $tests = Test::all();
-        return $tests;
+
+        return redirect('/', 403);
     }
 
     public function store(TestRequest $request)
     {
+        $this->authorize('create');
         $validated = $request->validated();
         $id = $validated['grade_class_id'];
         Test::create($validated);
@@ -30,12 +31,14 @@ class TestController extends Controller
 
     public function show(Test $test)
     {
+        $this->authorize('view', $test);
         return view('test.show', compact('test'));
     }
 
 
     public function update(TestRequest $request, Test $test)
     {
+        $this->authorize('update', $test);
         $validated = $request->validated();
         $id = $test->grade_class_id;
         $test->update($validated);
@@ -44,13 +47,16 @@ class TestController extends Controller
 
     public function destroy(Test $test)
     {
+        $this->authorize('delete', $test);
         $id = $test->grade_class_id;
         $test->delete();
         return redirect("/grade_class/$id/tests");
     }
 
     public function answers($id) {
+
         $test = Test::findOrFail($id);
+        $this->authorize('view', $test);
         return $test->answeredTest;
     }
 
@@ -66,6 +72,7 @@ class TestController extends Controller
 
     public function correctAnsTests($testId) {
         $test = Test::findOrFail($testId);
+        $this->authorize('update', $test);
         $answeredTests = $test->answeredTest;
         foreach($answeredTests as $answeredTest) {
             if(!$answeredTest->done) {
@@ -90,6 +97,7 @@ class TestController extends Controller
 
         $topic = Topic::findOrFail($topic_id);
         $test = Test::findOrFail($test_id);
+        $this->authorize('view', $test);
         $student = SchoolMember::find($student_id);
         $ans_tests = $test->answeredTest;
         $topicQuestions = [];
@@ -126,6 +134,8 @@ class TestController extends Controller
     }
 
     public function scoreCount($test_id) {
+        $test = Test::findOrFail($test_id);
+        $this->authorize('view', $test);
         $result = DB::table('answered_tests')
                     ->selectRaw('COUNT(score) as count, score as name')
                     ->where('test_id', '=', $test_id)
@@ -138,6 +148,7 @@ class TestController extends Controller
 
     public function edit($id){
         $test = Test::findOrFail($id);
+        $this->authorize('update', $test);
         return redirect("/grade_class/$test->grade_class_id/tests", compact('id'));
     }
 

@@ -46,4 +46,11 @@ class SubjectController extends Controller
         $subject->delete();
         return redirect('/');
     }
+
+    public function create() {
+        return redirect('/', 403);
+    }
+    public function edit(){
+        return redirect('/', 403);
+    }
 }

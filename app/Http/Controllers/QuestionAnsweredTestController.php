@@ -10,12 +10,12 @@ class QuestionAnsweredTestController extends Controller
 
     public function index()
     {
-        $record = QuestionAnsweredTest::all();
-        return $record;
+        return redirect('/', 403);
     }
 
     public function store(QuestAnsTestRequest $request)
     {
+        $this->authorize('create', $request);
         $validated = $request->validated();
         $questionAnsweredTest = QuestionAnsweredTest::updateOrCreate(
             ['answered_test_id' => $validated['answered_test_id'], 'question_id' => $validated['question_id']],
@@ -25,16 +25,23 @@ class QuestionAnsweredTestController extends Controller
 
     public function show(QuestionAnsweredTest $questionAnsweredTest)
     {
+        $this->authorize('view', $questionAnsweredTest);
         return $questionAnsweredTest;
     }
 
     public function update(QuestAnsTestRequest $request)
     {
-        return redirect("/");
+        return redirect("/", 403);
     }
 
     public function destroy(QuestionAnsweredTest $questionAnsweredTest)
     {
+        $this->authorize('delete', $questionAnsweredTest);
         $questionAnsweredTest->delete();
+        return redirect('/', 200);
+    }
+
+    public function edit() {
+        return redirect('/', 403);
     }
 }

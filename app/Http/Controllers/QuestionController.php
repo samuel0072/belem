@@ -12,9 +12,8 @@ class QuestionController extends Controller
 
     public function store(QuestionRequest $request)
     {
-        $validated = $request->validated();
         $this->authorize('create');
-
+        $validated = $request->validated();
         Question::create($validated);
         $id = $validated["test_id"];
         return redirect("/test/$id");
@@ -29,8 +28,8 @@ class QuestionController extends Controller
 
     public function update(QuestionRequest $request, Question $question)
     {
-        $validated = $request->validated();
         $this->authorize('update', $question);
+        $validated = $request->validated();
         $question->update($validated);
         return $question;
     }
@@ -45,25 +44,24 @@ class QuestionController extends Controller
         $question = Question::findOrFail($id);
         $this->authorize('view', $question);
 
-        $test = Test::findOrFail($question->test_id);
-        $results = [];
-
         $results = DB::table('question_answered_tests')
-            ->selectRaw("option_choosed, COUNT(answered_test_id) as quantity")
+            ->selectRaw("option_choosed, COUNT(answered_test_id) as quantity")//todo:graficos aqui
             ->whereRaw("question_id = $question->id")
             ->groupBy("option_choosed")
             ->get();
         return $results;
     }
 
-    /*public function index()
+    public function index()
     {
+        return redirect('/', 403);
+    }
 
-        $questions = Question::all();
-        return view('question.show', compact('questions'));
-    }*/
+    public function create(){
+       return redirect('/', 403);
+   }
 
-    /*public function create(){
-       return redirect('/');
-   }*/
+   public function edit(){
+        return redirect('/', 403);
+   }
 }
