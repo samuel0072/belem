@@ -2,11 +2,20 @@
 
 namespace App\Providers;
 
+use App\AnsweredTest;
 use App\GradeClass;
+use App\Policies\AnsweredTestPolicy;
 use App\Policies\GradeClassPolicy;
+use App\Policies\QuestionAnsweredTestPolicy;
 use App\Policies\SchoolPolicy;
+use App\Policies\SubjectPolicy;
+use App\Policies\TestPolicy;
 use App\Policies\UserPolicy;
+use App\QuestionAnsweredTest;
 use App\School;
+use App\Subject;
+use App\Test;
+use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -21,7 +30,12 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Model' => 'App\Policies\ModelPolicy',
         School::class => SchoolPolicy::class,
         User::class => UserPolicy::class,
-        GradeClass::class => GradeClassPolicy::class
+        GradeClass::class => GradeClassPolicy::class,
+        AnsweredTest::class => AnsweredTestPolicy::class,
+        Subject::class => SubjectPolicy::class,
+        QuestionAnsweredTest::class => QuestionAnsweredTestPolicy::class,
+        Test::class => TestPolicy::class
+
     ];
 
     /**
