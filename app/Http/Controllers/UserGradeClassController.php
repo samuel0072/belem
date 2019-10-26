@@ -14,7 +14,7 @@ class UserGradeClassController extends Controller
      */
     public function index()
     {
-        //
+        return redirect('/', 403);
     }
 
     /**
@@ -24,7 +24,7 @@ class UserGradeClassController extends Controller
      */
     public function create()
     {
-        //
+        return redirect('/', 403);
     }
 
     /**
@@ -33,9 +33,12 @@ class UserGradeClassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserGradeClassRequest $request)
     {
-        //
+        $this->authorize('create');
+        $data = $request->validated();
+        UserGradeClass::create($data);
+        return redirect('/', 200);
     }
 
     /**
@@ -46,7 +49,8 @@ class UserGradeClassController extends Controller
      */
     public function show(UserGradeClass $userGradeClass)
     {
-        //
+        $this->authorize('view', $userGradeClass);
+        return $userGradeClass;
     }
 
     /**
@@ -57,7 +61,7 @@ class UserGradeClassController extends Controller
      */
     public function edit(UserGradeClass $userGradeClass)
     {
-        //
+        return redirect('/', 403);
     }
 
     /**
@@ -67,9 +71,12 @@ class UserGradeClassController extends Controller
      * @param  \App\UserGradeClass  $userGradeClass
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserGradeClass $userGradeClass)
+    public function update(UserGradeClassRequest $request, UserGradeClass $userGradeClass)
     {
-        //
+        $this->authorize('update', $userGradeClass);
+        $data = $request->validated();
+        $userGradeClass->update($data);
+        return $userGradeClass;
     }
 
     /**
@@ -80,6 +87,8 @@ class UserGradeClassController extends Controller
      */
     public function destroy(UserGradeClass $userGradeClass)
     {
-        //
+        $this->authorize('delete', $userGradeClass);
+        $userGradeClass->delete();
+        return redirect('/', 200);
     }
 }
