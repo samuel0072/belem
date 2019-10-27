@@ -10,7 +10,8 @@
                 <select class="browser-default custom-select" name="test_id">
                     <option selected disabled>Provas</option>
                     @php
-                        $allTests = App\GradeClass::findOrFail($student->grade_class_id)->tests;
+                        $controller = new App\Http\Controllers\GradeClassController();
+                        $allTests = $controller->tests($student->grade_class_id);
                     @endphp
                     @foreach($allTests as $test)
                         <option value="{{$test->id}}">{{$test->nick}}</option>
