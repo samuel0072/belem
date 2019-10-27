@@ -73,4 +73,9 @@ class AnsweredTestController extends Controller
         $test = Test::findOrFail($answeredTest->school_member_id);
         return $test;
     }
+
+    public function getTestQuestions($answered_test_id) {
+        $test = $this->getTest($answered_test_id);
+        return $test->questions;
+    }
 }
