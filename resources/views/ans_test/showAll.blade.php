@@ -1,3 +1,7 @@
+@php
+    use App\Http\Controllers\AnsweredTestController;
+@endphp
+
 <div class="w3-container">
     <div>
         <button onclick="document.getElementById('id{{$test->id}}').style.display='block'" class="btn btn-mdb-color ">Notas</button>
@@ -34,9 +38,15 @@
                                 </tr>
                                 @foreach($answeredTests as $answeredTest)
                                     <tr>
-                                        <td>{{App\SchoolMember::findOrFail($answeredTest->school_member_id)->name}}</td>
-                                        <td>{{App\SchoolMember::findOrFail($answeredTest->school_member_id)->enroll}}</td>
-                                        <td><a href="/test/{{$answeredTest->test_id}}">{{App\Test::findOrFail($answeredTest->test_id)->nick}}</a>
+                                        @php
+
+                                            $controller = new AnsweredTestController();
+                                            $student = $controller->getStudent($answeredTest->id);
+                                            $test = $controller->getTest($answeredTest->id);
+                                        @endphp
+                                        <td>{{$student->name}}</td>
+                                        <td>{{$student->enroll}}</td>
+                                        <td><a href="/test/{{$answeredTest->test_id}}">{{$test->nick}}</a>
                                         </td>
                                         <td>{{$answeredTest->score}}</td>
                                         <td>{{$answeredTest->done == 1?'Sim':'Não'}}</td>

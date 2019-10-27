@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\AnsweredTest;
 use App\Http\Requests\AnsTestRequest;
+use App\SchoolMember;
+use App\Test;
 
 class AnsweredTestController extends Controller
 {
@@ -52,5 +54,23 @@ class AnsweredTestController extends Controller
     public function create()
     {
         return redirect('/', 403);
+    }
+
+    public function getStudent($answered_test_id)
+    {
+        $answeredTest = AnsweredTest::findOrFail($answered_test_id);
+        $this->authorize('view', $answeredTest);
+
+        $student = SchoolMember::findOrFail($answeredTest->school_member_id);
+        return $student;
+    }
+
+    public function getTest($answered_test_id)
+    {
+        $answeredTest = AnsweredTest::findOrFail($answered_test_id);
+        $this->authorize('view', $answeredTest);
+
+        $test = Test::findOrFail($answeredTest->school_member_id);
+        return $test;
     }
 }
