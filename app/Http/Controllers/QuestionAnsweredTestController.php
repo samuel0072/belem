@@ -10,7 +10,7 @@ class QuestionAnsweredTestController extends Controller
 
     public function index()
     {
-        return redirect('/', 403);
+        return response('not allowed', 403);
     }
 
     public function store(QuestAnsTestRequest $request)
@@ -31,7 +31,7 @@ class QuestionAnsweredTestController extends Controller
 
     public function update(QuestAnsTestRequest $request)
     {
-        return redirect("/", 403);
+        return response('not allowed', 403);
     }
 
     public function destroy(QuestionAnsweredTest $questionAnsweredTest)
@@ -42,6 +42,6 @@ class QuestionAnsweredTestController extends Controller
     }
 
     public function edit() {
-        return redirect('/', 403);
+        return response('not allowed', 403);
     }
 }

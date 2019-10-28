@@ -54,14 +54,14 @@ class QuestionController extends Controller
 
     public function index()
     {
-        return redirect('/', 403);
+        return response('not allowed', 403);
     }
 
     public function create(){
-       return redirect('/', 403);
+        return response('not allowed', 403);
    }
 
    public function edit(){
-        return redirect('/', 403);
+       return response('not allowed', 403);
    }
 }

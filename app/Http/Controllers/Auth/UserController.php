@@ -10,6 +10,7 @@ class UserController extends Controller
 {
     public function showUsers($school_id){
         $user= auth()->user();
+        $this->authorize('viewAny');
         $users = [];
         if($user->access_level > 2) {
             $users = User::all();

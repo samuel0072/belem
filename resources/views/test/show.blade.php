@@ -30,11 +30,11 @@
                 <div class = "card-body stylish-color-dark">
                     <div>
                         <span class="label label-info">Acertos(%) X Descritor</span>
-                        <svg id = "topics-graphic" width="500" height = "300" onload="getQues({{$test->id}})"></svg>
+                        <svg id = "topics-graphic" width="1000" height = "300" onload="getQues({{$test->id}})"></svg>
                     </div>
                     <div>
                         <span class="label label-info">Quantidade X Pontuação</span>
-                        <svg id = "count-graphic" width="500" height="300" onload="scoreData({{$test->id}})"></svg>
+                        <svg id = "count-graphic" width="1000" height="300" onload="scoreData({{$test->id}})"></svg>
                     </div>
 
 
@@ -79,7 +79,6 @@
                             @endforeach
                         </ul>
                     </div>
-
                 </div>
             </section>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubjectRequest;
 use App\Subject;
 use Illuminate\Http\Request;
 //por enquanto controler nao vai ser usado
@@ -48,9 +49,9 @@ class SubjectController extends Controller
     }
 
     public function create() {
-        return redirect('/', 403);
+        return response('not allowed', 403);
     }
     public function edit(){
-        return redirect('/', 403);
+        return response('not allowed', 403);
     }
 }

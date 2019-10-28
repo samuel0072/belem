@@ -22,7 +22,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->access_level > 0;
     }
 
     /**

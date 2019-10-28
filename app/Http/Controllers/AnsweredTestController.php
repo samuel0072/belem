@@ -11,8 +11,7 @@ class AnsweredTestController extends Controller
 {
     public function index()
     {
-
-        return redirect('/', 403);
+        return response('not allowed', 403);
     }
 
     public function store(AnsTestRequest $request)
@@ -53,7 +52,7 @@ class AnsweredTestController extends Controller
 
     public function create()
     {
-        return redirect('/', 403);
+        return response('not allowed', 403);
     }
 
     public function getStudent($answered_test_id)

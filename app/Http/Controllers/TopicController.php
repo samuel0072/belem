@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TopicRequest;
 use App\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,7 +46,7 @@ class TopicController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Topic  $topic
-     * @return \Illuminate\Http\Response
+     * @return \App\Topic
      */
     public function show(Topic $topic)
     {

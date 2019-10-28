@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserGradeClassRequest;
 use App\UserGradeClass;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class UserGradeClassController extends Controller
      */
     public function index()
     {
-        return redirect('/', 403);
+        return response('not allowed', 403);
     }
 
     /**
@@ -24,7 +25,7 @@ class UserGradeClassController extends Controller
      */
     public function create()
     {
-        return redirect('/', 403);
+        return response('not allowed', 403);
     }
 
     /**
