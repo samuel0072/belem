@@ -73,7 +73,7 @@ class QuestionAnsweredTestPolicy
      */
     public function update(User $user, QuestionAnsweredTest $questionAnsweredTest)
     {
-        return view($user, $questionAnsweredTest);
+        return $this->view($user, $questionAnsweredTest);
     }
 
     /**
@@ -85,7 +85,7 @@ class QuestionAnsweredTestPolicy
      */
     public function delete(User $user, QuestionAnsweredTest $questionAnsweredTest)
     {
-        return view($user, $questionAnsweredTest);
+        return $this->view($user, $questionAnsweredTest);
     }
 
     /**
@@ -97,7 +97,7 @@ class QuestionAnsweredTestPolicy
      */
     public function restore(User $user, QuestionAnsweredTest $questionAnsweredTest)
     {
-        return view($user, $questionAnsweredTest);
+        return $this->view($user, $questionAnsweredTest);
     }
 
     /**
@@ -109,6 +109,6 @@ class QuestionAnsweredTestPolicy
      */
     public function forceDelete(User $user, QuestionAnsweredTest $questionAnsweredTest)
     {
-        return view($user, $questionAnsweredTest);
+        return $this->view($user, $questionAnsweredTest);
     }
 }

@@ -83,7 +83,7 @@ class SchoolMemberPolicy
      */
     public function update(User $user, SchoolMember $schoolMember)
     {
-        return view($user, $schoolMember);//mesma logica
+        return $this->view($user, $schoolMember);//mesma logica
     }
 
     /**
@@ -95,7 +95,7 @@ class SchoolMemberPolicy
      */
     public function delete(User $user, SchoolMember $schoolMember)
     {
-        return view($user, $schoolMember);
+        return $this->view($user, $schoolMember);
     }
 
     /**
@@ -123,10 +123,10 @@ class SchoolMemberPolicy
     }
 
     public function viewAnsTests(User $user, SchoolMember $schoolMember){
-        return view($user, $schoolMember);
+        return $this->view($user, $schoolMember);
     }
 
     public function viewTopicScore(User $user, SchoolMember $schoolMember){
-        return view($user, $schoolMember);
+        return $this->view($user, $schoolMember);
     }
 }

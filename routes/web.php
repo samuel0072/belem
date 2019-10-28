@@ -17,7 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/school/{id}/users', 'Auth\UserController@showUsers');
     Route::post('school/{id}/users', 'Auth\UserController@setAccLevel');
 
-    Route::resource('/answered_test', 'AnsweredTestController');
+    Route::resource('/answered_test', 'AnsweredTestController');//ver edit
 
     Route::resource('/schoolmember', 'SchoolMemberController');
     Route::get('/schoolmember/{id}/ans_tests', 'SchoolMemberController@showAnsweredTests');
