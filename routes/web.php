@@ -44,7 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/answered_test', 'AnsweredTestController');
 
 
-    Route::get('/topic', 'TopicController@index');
+    Route::resource('/topic', 'TopicController');
+    Route::resource('/user_class', 'UserGradeClassController');
+
 
     Route::get('/', function() {
         return redirect('/school');

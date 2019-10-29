@@ -27,7 +27,14 @@ function topicData(test_id) {
     ajax.onload = function() {
         if(this.readyState === 4 && this.status === 200) {
             topics = JSON.parse(this.responseText);
-            plotData(test_id, topics);
+            var length =Math.round(topics.length/3);
+            topics1 = topics.slice(0, length);
+            topics2 = topics.slice(length, (2*length));
+            topics3 = topics.slice(2*length, (3*length));
+
+            plotData(test_id, topics1, "topics-graphic1");
+            plotData(test_id, topics2, "topics-graphic2");
+            plotData(test_id, topics3, "topics-graphic3");
         }
     };
     ajax.send();
@@ -46,7 +53,7 @@ function scoreData(test_id) {
     ajax.send();
 }
 
-function plotData(test_id, topics) {
+function plotData(test_id, topics, elementname) {
     var data = [];
     topics.forEach(
         (element) => {
@@ -56,7 +63,7 @@ function plotData(test_id, topics) {
                 if(this.readyState === 4 && this.status === 200) {
                     response = parseFloat(this.responseText);
                     data.push({name:element.name, count:response});
-                    updateGraphic(data, "topics-graphic");
+                    updateGraphic(data, elementname);
                 }
             };
             ajax.send();
@@ -69,7 +76,7 @@ function updateGraphic(data, graph_id) {
     var svg = d3.select("#"+graph_id);
     d3.selectAll("#"+graph_id+" > *").remove();
     var padding = {top:20, right:30, bottom:30, left:50};
-    var colors = d3.schemeCategory10;
+    var colors = d3.schemePaired;
     var chartArea = {
         "width":parseInt(svg.style("width")) - padding.left - padding.right,
         "height":parseInt(svg.style("height")) - padding.top - padding.bottom
@@ -125,7 +132,7 @@ function updateGraphic(data, graph_id) {
         })
         .attr("x", (d, i) => {return xScale(d.name)})
         .attr("y", (d, i) => {return yScale(d.count)})
-        .attr("fill", (d, i) => {return colors[i]});
+        .attr("fill", (d, i) => {return colors[i%12]});
 
 }
 

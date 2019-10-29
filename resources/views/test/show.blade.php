@@ -21,7 +21,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <section id = "left" class="col-md-7 text-white">
+            <section id = "left" class="col-md-12 text-white">
                 <div class = "card-header stylish-color">
                     <label>DADOS</label>
                     @include('layouts.import')
@@ -30,11 +30,14 @@
                 <div class = "card-body stylish-color-dark">
                     <div>
                         <span class="label label-info">Acertos(%) X Descritor</span>
-                        <svg id = "topics-graphic" width="1000" height = "300" onload="getQues({{$test->id}})"></svg>
+                        <svg id = "topics-graphic1" width="1000" height = "300"></svg>
+                        <svg id = "topics-graphic2" width="1000" height = "300"></svg>
+                        <svg id = "topics-graphic3" width="1000" height = "300" onload="getQues({{$test->id}})"></svg>
                     </div>
                     <div>
                         <span class="label label-info">Quantidade X Pontuação</span>
                         <svg id = "count-graphic" width="1000" height="300" onload="scoreData({{$test->id}})"></svg>
+
                     </div>
 
 

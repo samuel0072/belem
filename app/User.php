@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Policies\SchoolPolicy;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -26,6 +27,10 @@ class User extends Authenticatable
                             ->where('user_id', '=', $id);
                     })
                 ->get();
+    }
+
+    public function school() {
+        return $this->belongsTo(School::class);
     }
 
     /**
