@@ -30,7 +30,7 @@ function topicData(test_id) {
             var length =Math.round(topics.length/3);
             topics1 = topics.slice(0, length);
             topics2 = topics.slice(length, (2*length));
-            topics3 = topics.slice(2*length, (3*length));
+            topics3 = topics.slice(2*length, (3*length)+1);
 
             plotData(test_id, topics1, "topics-graphic1");
             plotData(test_id, topics2, "topics-graphic2");

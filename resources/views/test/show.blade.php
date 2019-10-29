@@ -1,46 +1,61 @@
 @extends("layouts.layout")
 
-@section('title', 'school')
+@section('title', 'Prova')
 
-<?php
+@php
  $id = $test->gradeClass->id;
-?>
+ $ar = array(
+    "f" => "fácil",
+    "m" => "médio",
+    "d" => "difícil"
+);
+@endphp
 @section('return' ,"/grade_class/$id/tests")
 
 @section('content')
     <div class="text-white">
         <h1>{{$test->nick}}: ID  {{$test->id}}</h1>
     </div>
-    @php
-        $ar = array(
-            "f" => "fácil",
-            "m" => "médio",
-            "d" => "difícil"
-        );
-    @endphp
-
     <div class="container-fluid">
         <div class="row">
-            <section id = "left" class="col-md-12 text-white">
+            <section id = "left" class="col-md-7 text-white">
                 <div class = "card-header stylish-color">
                     <label>DADOS</label>
                     @include('layouts.import')
                 </div>
-
                 <div class = "card-body stylish-color-dark">
                     <div>
                         <span class="label label-info">Acertos(%) X Descritor</span>
-                        <svg id = "topics-graphic1" width="1000" height = "300"></svg>
-                        <svg id = "topics-graphic2" width="1000" height = "300"></svg>
-                        <svg id = "topics-graphic3" width="1000" height = "300" onload="getQues({{$test->id}})"></svg>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="sla"
+                                   aria-selected="true">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                                   aria-selected="false">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+                                   aria-selected="false">Contact</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="sla">
+                                <svg id = "topics-graphic1" width="500" height = "300"></svg>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <svg id = "topics-graphic2" width="500" height = "300"></svg>
+                            </div>
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <svg  id = "topics-graphic3" width="500" height = "300" onload="getQues({{$test->id}})"></svg>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <span class="label label-info">Quantidade X Pontuação</span>
                         <svg id = "count-graphic" width="1000" height="300" onload="scoreData({{$test->id}})"></svg>
-
                     </div>
-
-
                 </div>
             </section>
             <section id = "right" class="col-md-5">
@@ -72,7 +87,7 @@
                                             <th>Dificuldade</th>
                                         </tr>
                                         <tr>
-                                            <td>{{App\Topic::findOrFail($question->topic_id)->name}}</td>
+                                            <td>{{$question->topic->name}}</td>
                                             <td>{{$question->number}}</td>
                                             <td>{{chr($question->correct_answer+96)}}</td>
                                             <td>{{$ar[$question->dificult]}}</td>
