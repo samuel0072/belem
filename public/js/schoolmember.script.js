@@ -21,7 +21,7 @@ function plotData2(test_id, topics, student_id, graph_id) {
                 if(this.readyState === 4 && this.status === 200) {
                     response = parseFloat(this.responseText);
                     data.push({label:element.name, value:response});
-                    updateGraphic(data, "student-describer-graph"+graph_id);
+                    updateGraphic(data, "student-describer-graph"+graph_id, "Descritores", "% de acertos");
                     orderTopics(data);
                 }
             };
