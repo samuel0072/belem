@@ -23,9 +23,9 @@
                     <label>DADOS</label>
                     @include('layouts.import')
                 </div>
-                <div class = "card-body stylish-color-dark">
-                    <div>
-                        <span class="label label-info">Acertos(%) X Descritor</span>
+                <div class = "card-body stylish-color-dark" style="background-image: url('/img/grid_png.png')">
+                    <div >
+
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="sla"
@@ -54,7 +54,7 @@
                     </div>
                     <div>
                         <span class="label label-info">Quantidade X Pontuação</span>
-                        <svg id = "count-graphic" width="1000" height="300" onload="scoreData({{$test->id}})"></svg>
+                        <svg id = "count-graphic" width="500" height="300" onload="scoreData({{$test->id}})"></svg>
                     </div>
                 </div>
             </section>

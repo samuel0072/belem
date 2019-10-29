@@ -18,7 +18,11 @@ class QuestionAnsweredTestController extends Controller
         $this->authorize('create', $request);
         $validated = $request->validated();
         $questionAnsweredTest = QuestionAnsweredTest::updateOrCreate(
-            ['answered_test_id' => $validated['answered_test_id'], 'question_id' => $validated['question_id']],
+            [
+                'answered_test_id' => $validated['answered_test_id'],
+                'question_id' => $validated['question_id'],
+                'grade_class_id'=> $validated['grade_class_id']
+            ],
             ['option_choosed' => $validated['option_choosed']]);
         return $questionAnsweredTest;
     }

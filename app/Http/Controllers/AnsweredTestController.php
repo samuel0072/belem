@@ -69,7 +69,7 @@ class AnsweredTestController extends Controller
         $answeredTest = AnsweredTest::findOrFail($answered_test_id);
         $this->authorize('view', $answeredTest);
 
-        $test = Test::findOrFail($answeredTest->school_member_id);
+        $test = Test::findOrFail($answeredTest->test_id);
         return $test;
     }
 

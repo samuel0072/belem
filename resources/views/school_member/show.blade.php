@@ -69,7 +69,7 @@
                         </tr>
                         @foreach($student->answeredTests as $answeredTest)
                             <tr>
-                                <td><a href="/test/{{$answeredTest->test_id}}">{{App\Test::findOrFail($answeredTest->test_id)->nick}}</a></td>
+                                <td><a href="/test/{{$answeredTest->test_id}}">{{$answeredTest->test->nick}}</a></td>
                                 <td>{{$answeredTest->score}}</td>
                                 <td>{{$answeredTest->done == 1?'Sim':'Não'}}</td>
                                 <td>{{$answeredTest->updated_at}}</td>
@@ -78,7 +78,6 @@
                         @endforeach
                     </table>
                 </div>
-
                 <div id="topic-critic" class = "danger-color container shadow-sm p-3 bg-white rounded">
                     <div class="row">
                         <h1 class="col-sm">ATENÇÃO</h1>
@@ -87,14 +86,10 @@
                         <span id = "most-error" ></span>
                         <span>é o descritor com mais erros pelo aluno</span>
                     </div>
-
                 </div>
-
             </div>
         </div>
-
     </div>
-
 @endsection
 
 

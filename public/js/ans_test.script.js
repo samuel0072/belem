@@ -16,31 +16,35 @@ function corrigir(id, token) {
 
 function populateIds(ID) {
     ids.push(ID);
+
 }
-function sendData(answeredTest,  token) {
+function sendData(answeredTest, questions,token) {
     answeredTest = JSON.parse(answeredTest);
+    questions = JSON.parse(questions);
+
 
     var values = [];
-    for(let i = 0; i < ids.length; i++ ) {
+    for(let i = 0; i < questions.length; i++ ) {
         values.push( {
             answered_test_id:answeredTest.id ,
-            question_id: ids[i],
-            option_choosed: document.getElementById(ids[i]).value.toUpperCase().charCodeAt(0) - 64,
+            question_id: questions[i].id,
+            option_choosed: document.getElementById(questions[i].id).value.toUpperCase().charCodeAt(0) - 64,
             grade_class_id: answeredTest.grade_class_id
         });
     }
+    console.log(answeredTest, questions, values);
     values.forEach((item) => {
         const ajax = new XMLHttpRequest();
         ajax.open("POST", "/question_answered_test", true);
         ajax.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(item);
                 updateDone(answeredTest, token);
             }
         };
         ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         ajax.send("grade_class_id="+item.grade_class_id+"&answered_test_id="+item.answered_test_id+"&question_id="+item.question_id+"&option_choosed="+item.option_choosed+"&_token="+token);
     });
+
     document.getElementById('id21').style.display='none';
 
 }

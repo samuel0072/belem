@@ -46,7 +46,7 @@ class QuestionController extends Controller
 
         $results = DB::table('question_answered_tests')
             ->selectRaw("option_choosed, COUNT(answered_test_id) as quantity")//todo:graficos aqui
-            ->whereRaw("question_id = $question->id")
+            ->whereRaw("question_id = ?", [$question->id])
             ->groupBy("option_choosed")
             ->get();
         return $results;

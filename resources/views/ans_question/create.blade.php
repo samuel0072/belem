@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     @endforeach
-                    <button onclick="sendData({{json_encode($answeredTest)}}, '{{csrf_token()}}' )" class="btn btn-dark">Salvar</button>
+                    <button onclick="sendData('{{$answeredTest}}','{{$answeredTest->test->questions}}', '{{csrf_token()}}' )" class="btn btn-dark">Salvar</button>
                 </div>
             </div>
         </div>
