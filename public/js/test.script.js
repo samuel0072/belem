@@ -186,11 +186,11 @@ function updateGraphic(data, graph_id, xcaption, ycaption) {
 *
 * */
 
-function start(test_id) {
-    var div = $("#graphic1000");
-    var svg = $("#graphic-full");
-    var card = $("#card-graphic");
-    var close = $("#close-button");
+function start(test_id, _div, _svg, _card, _close, plotfunction) {
+    var div = $("#"+_div);
+    var svg = $("#"+_svg);
+    var card = $("#"+_card);
+    var close = $("#"+_close);
 
     var screenWidth = $(window).width();
     var screenHeight = $(window).height();
@@ -213,11 +213,20 @@ function start(test_id) {
     svg.attr("width", screenWidth * 0.97);
 
     close.css("position", "absolute");
-    close.css("padding", "10px");
+    close.css("padding", "8px 16px");
     close.css("right", 0);
     close.css("top", 0);
+    close.css("background-color", "#ccc");
+    close.css("font-size", "18px");
+    close.css("text-align", "center");
+    close.css("cursor", "pointer");
+    console.log(svg.children().length);
 
 
-    plotData(test_id, topics, "graphic-full");
+    if(svg.children().length < 1) {
+        plotfunction(test_id, topics, _svg);
+    }
+
+
 }
 

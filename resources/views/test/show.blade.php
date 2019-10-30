@@ -9,6 +9,16 @@
     "m" => "médio",
     "d" => "difícil"
 );
+/*
+* <=> Serve para plotar os graficos na graphic.desc_view
+*/
+$test_id = $test->id;
+$func = "getQues";
+$plotfunction = "plotData";
+$_graphic = 'graphic1000';
+$_svg = 'graphic-full';
+$_card = 'card-graphic';
+$_close = 'close-button';
 @endphp
 @section('return' ,"/grade_class/$id/tests")
 
@@ -76,7 +86,8 @@
     </div>
     <div id ="graphic1000" style=" display:none">
         <div class="card text-white" id="card-graphic">
-            <span id="close-button">&times</span>
+            <span id="close-button" onclick="$('#graphic1000').css('display', 'none')"
+                  onhover="$('#close-button').css('display', 'none')">&times</span>
             <div class="card-header stylish-color">
                 <h1>Visão Completa</h1>
             </div>

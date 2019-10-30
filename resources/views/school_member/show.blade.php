@@ -3,7 +3,7 @@
 @section('add_name', 'Teste Resp.')
 
 <?php
-    $id = $student->grade_class->id;
+    $class_id = $student->grade_class->id;
     $studentId = $student->id;
     $level = 0;
 ?>
@@ -12,7 +12,7 @@
     @include("ans_test.create", compact(['studentId', 'level']))
 @endsection
 
-@section('return', "/grade_class/$id/students")
+@section('return', "/grade_class/$class_id/students")
 
 @section('title', 'schoolmember')
 
@@ -49,6 +49,7 @@
                         <span class="label label-info">Acertos(%) X Descritor</span>
                         <!--ate 1200px -->
                         @foreach($student->answeredTests as $answeredTest)
+
                             <svg id = "student-describer-graph{{$answeredTest->id}}" onload="topicData2({{$answeredTest->test_id}}, {{$answeredTest->id}}, {{$student->id}})"  width="500" height = "300" class="d-sm-block">
                             </svg>
 

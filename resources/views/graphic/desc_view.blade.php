@@ -25,7 +25,8 @@
                aria-selected="false">6</a>
         </li>
         <li class="nav-item">
-            <a class="btn btn-sm" onclick="start({{$test->id}})"> Expandir</a>
+            <a class="btn btn-sm"
+               onclick="start({{$test_id}},'{{$_graphic}}' , '{{$_svg}}', '{{$_card}}', '{{$_close}}', {{$plotfunction}})"> Expandir</a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -45,7 +46,7 @@
             <svg  id = "topics-graphic5" width="500" height = "300"></svg>
         </div>
         <div class="tab-pane fade" id="sixth" role="tabpanel" aria-labelledby="sixth-tab">
-            <svg  id = "topics-graphic6" width="500" height = "300"  onload="getQues({{$test->id}})" ></svg>
+            <svg  id = "topics-graphic6" width="500" height = "300"  onload="{{$func}}({{$test_id}})" ></svg>
         </div>
     </div>
 </div>
