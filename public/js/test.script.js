@@ -1,8 +1,12 @@
 var questions = [];//nao sei pra q serve, mas deixa ai
 var quest_id = [];
+var topics = [];
 
 
-
+/*
+* Pra plotar os graficos menores
+*
+* */
 /*{label: String, value:Number}*/
 function getQues(test_id) {
     console.log('aff');
@@ -22,7 +26,7 @@ function getQues(test_id) {
     xmlHttp.send();
 }
 function topicData(test_id) {
-    var topics = [];
+
     var ajax = new XMLHttpRequest();
     ajax.open("GET", '/topic', true);
     ajax.onload = function() {
@@ -175,3 +179,45 @@ function updateGraphic(data, graph_id, xcaption, ycaption) {
         .text(ycaption)
 
 }
+
+/*
+* Aqui para plotar o grafico maior que é atividado
+* quando o boão expandir é apertado
+*
+* */
+
+function start(test_id) {
+    var div = $("#graphic1000");
+    var svg = $("#graphic-full");
+    var card = $("#card-graphic");
+    var close = $("#close-button");
+
+    var screenWidth = $(window).width();
+    var screenHeight = $(window).height();
+
+
+    div.css("display", "block");
+    div.css("position", "fixed");
+    div.css("top", 0);
+    div.css("left", 0);
+    div.css("z-index", 100);
+    div.css("background-color", "rgba(0, 0, 0, 0.4)");
+    div.css("width", screenWidth);
+    div.css("height", screenHeight);
+
+    card.css("width", screenWidth * 0.97);
+    card.css("left", 20);
+
+
+    svg.attr("height", screenHeight * 0.6);
+    svg.attr("width", screenWidth * 0.97);
+
+    close.css("position", "absolute");
+    close.css("padding", "10px");
+    close.css("right", 0);
+    close.css("top", 0);
+
+
+    plotData(test_id, topics, "graphic-full");
+}
+

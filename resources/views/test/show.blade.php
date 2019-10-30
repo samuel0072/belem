@@ -16,7 +16,7 @@
     <div class="text-white">
         <h1>{{$test->nick}}: ID  {{$test->id}}</h1>
     </div>
-    <div class="container-fluid">
+    <div id="main-content" class="container-fluid">
         <div class="row">
             <section id = "left" class="col-md-7 text-white">
                 <div class = "card-header stylish-color">
@@ -26,9 +26,9 @@
                 <div class = "card-body stylish-color-dark" style="background-image: url('/img/grid_png.png')">
                     @include('graphic.desc_view')
                     <div>
-                        <span class="label label-info">Quantidade X Pontuação</span>
                         <svg id = "count-graphic" width="500" height="300" onload="scoreData({{$test->id}})"></svg>
                     </div>
+
                 </div>
             </section>
             <section id = "right" class="col-md-5">
@@ -74,4 +74,16 @@
             </section>
         </div>
     </div>
+    <div id ="graphic1000" style=" display:none">
+        <div class="card text-white" id="card-graphic">
+            <span id="close-button">&times</span>
+            <div class="card-header stylish-color">
+                <h1>Visão Completa</h1>
+            </div>
+            <div class="card-body stylish-color-dark" style="background-image: url('/img/grid_png.png')">
+                <svg id="graphic-full" ></svg>
+            </div>
+        </div>
+    </div>
+
 @endsection

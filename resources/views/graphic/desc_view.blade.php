@@ -25,7 +25,7 @@
                aria-selected="false">6</a>
         </li>
         <li class="nav-item">
-            <a class="btn btn-sm"> Expandir</a>
+            <a class="btn btn-sm" onclick="start({{$test->id}})"> Expandir</a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
