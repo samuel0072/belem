@@ -12,7 +12,13 @@ class QuestionAnsweredTestPolicy
 {
     use HandlesAuthorization;
 
-    public function before($user, $ability)
+    /**
+     * Se for admin, pode fazer tudo
+     * @param User $user
+     * @param $ability
+     * @return bool
+     */
+    public function before(User $user, $ability)
     {
         if ($user->acess_level > 2) {
             return true;

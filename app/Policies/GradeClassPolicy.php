@@ -10,7 +10,13 @@ class GradeClassPolicy
 {
     use HandlesAuthorization;
 
-    public function before($user, $ability)
+    /**
+     * Se for admin, pode fazer tudo
+     * @param User $user
+     * @param $ability
+     * @return bool
+     */
+    public function before(User $user, $ability)
     {
         if ($user->acess_level > 2) {
             return true;
@@ -20,7 +26,7 @@ class GradeClassPolicy
     /**
      * Determine whether the user can view any grade classes.
      *
-     * @param  \App\User  $user
+     * @param User $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -31,8 +37,8 @@ class GradeClassPolicy
     /**
      * Determine whether the user can view the grade class.
      *
-     * @param  \App\User  $user
-     * @param  \App\GradeClass  $gradeClass
+     * @param User $user
+     * @param GradeClass $gradeClass
      * @return mixed
      */
     public function view(User $user, GradeClass $gradeClass)
@@ -54,8 +60,8 @@ class GradeClassPolicy
     /**
      * Determine whether the user can create grade classes.
      *
-     * @param  \App\User  $user
-     * @return mixed
+     * @param User $user
+     * @return bool
      */
     public function create(User $user)
     {
@@ -65,9 +71,9 @@ class GradeClassPolicy
     /**
      * Determine whether the user can update the grade class.
      *
-     * @param  \App\User  $user
-     * @param  \App\GradeClass  $gradeClass
-     * @return mixed
+     * @param User $user
+     * @param GradeClass $gradeClass
+     * @return bool
      */
     public function update(User $user, GradeClass $gradeClass)
     {
@@ -78,9 +84,9 @@ class GradeClassPolicy
     /**
      * Determine whether the user can delete the grade class.
      *
-     * @param  \App\User  $user
-     * @param  \App\GradeClass  $gradeClass
-     * @return mixed
+     * @param User $user
+     * @param GradeClass $gradeClass
+     * @return bool
      */
     public function delete(User $user, GradeClass $gradeClass)
     {
@@ -90,9 +96,9 @@ class GradeClassPolicy
     /**
      * Determine whether the user can restore the grade class.
      *
-     * @param  \App\User  $user
-     * @param  \App\GradeClass  $gradeClass
-     * @return mixed
+     * @param User $user
+     * @param GradeClass $gradeClass
+     * @return bool
      */
     public function restore(User $user, GradeClass $gradeClass)
     {
@@ -102,9 +108,9 @@ class GradeClassPolicy
     /**
      * Determine whether the user can permanently delete the grade class.
      *
-     * @param  \App\User  $user
-     * @param  \App\GradeClass  $gradeClass
-     * @return mixed
+     * @param User $user
+     * @param GradeClass $gradeClass
+     * @return bool
      */
     public function forceDelete(User $user, GradeClass $gradeClass)
     {
