@@ -4,14 +4,21 @@ namespace App;
 
 use App\Policies\SchoolPolicy;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
+    /**
+     * Retorna todos os usuarios de uma escola
+     * @param iny $school_id
+     * @return Collection
+     */
     public function showUsers( $school_id){
         return DB::table('users')->where([
             ['school_id', $school_id],
@@ -19,6 +26,10 @@ class User extends Authenticatable
         ])->get();
     }
 
+    /**
+     * Retorna todas as classes associadas ao usuario
+     * @return Collection
+     */
     public function classes() {
         $id = $this->id;
         return DB::table('grade_classes')
@@ -29,6 +40,10 @@ class User extends Authenticatable
                 ->get();
     }
 
+    /**
+     * Retorna a escola associada
+     * @return BelongsTo
+     */
     public function school() {
         return $this->belongsTo(School::class);
     }

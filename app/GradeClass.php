@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class GradeClass extends Model
 {
+    /**
+     * @var array
+     */
     protected $guarded =["id"];
 
     /**
