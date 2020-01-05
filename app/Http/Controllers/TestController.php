@@ -92,7 +92,7 @@ class TestController extends Controller
     /**
      * Retorna as respostas dos alunos ao test
      * @param int $id
-     * @return array AnsweredTest
+     * @return AnsweredTest[]
      * @throws AuthorizationException
      */
     public function answers($id) {
@@ -105,7 +105,7 @@ class TestController extends Controller
     /**
      * Retorna os estudantes que responderam o test
      * @param int $id
-     * @return array
+     * @return SchoolMember[]
      * @throws AuthorizationException
      */
     public function students($id) {
@@ -258,7 +258,7 @@ class TestController extends Controller
     /**
      * Retorna as questoes do test
      * @param int $test_id
-     * @return array
+     * @return Question[]
      * @throws AuthorizationException
      */
     public function questions($test_id) {

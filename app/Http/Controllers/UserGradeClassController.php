@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserGradeClassRequest;
 use App\UserGradeClass;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class UserGradeClassController extends Controller
@@ -31,9 +34,9 @@ class UserGradeClassController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param UserGradeClassRequest $request
+     * @return RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws AuthorizationException
      */
     public function store(UserGradeClassRequest $request)
     {
@@ -46,9 +49,9 @@ class UserGradeClassController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\UserGradeClass $userGradeClass
-     * @return Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param UserGradeClass $userGradeClass
+     * @return UserGradeClass
+     * @throws AuthorizationException
      */
     public function show(UserGradeClass $userGradeClass)
     {
@@ -59,7 +62,7 @@ class UserGradeClassController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserGradeClass  $userGradeClass
+     * @param UserGradeClass $userGradeClass
      * @return Response
      */
     public function edit(UserGradeClass $userGradeClass)
@@ -70,10 +73,10 @@ class UserGradeClassController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\UserGradeClass $userGradeClass
-     * @return Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param UserGradeClassRequest $request
+     * @param UserGradeClass $userGradeClass
+     * @return UserGradeClass
+     * @throws AuthorizationException
      */
     public function update(UserGradeClassRequest $request, UserGradeClass $userGradeClass)
     {
@@ -86,9 +89,9 @@ class UserGradeClassController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\UserGradeClass $userGradeClass
-     * @return Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param UserGradeClass $userGradeClass
+     * @return RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws AuthorizationException
      */
     public function destroy(UserGradeClass $userGradeClass)
     {

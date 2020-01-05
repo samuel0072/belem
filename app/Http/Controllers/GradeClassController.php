@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\GradeClass;
 use App\Http\Requests\GradeClassRequest;
+use App\SchoolMember;
+use App\Test;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -36,7 +38,7 @@ class GradeClassController extends Controller
     /**
      * Retorna a classe
      * @param int $gradeClassId , id da classe
-     * @return App\GradeClass
+     * @return GradeClass
      *
      * @throws AuthorizationException
      */
@@ -48,7 +50,7 @@ class GradeClassController extends Controller
 
     /**
      *  Cria uma classe no banco
-     * @param App\Http\Requests\GradeClassRequest $request
+     * @param GradeClassRequest $request
      * @return RedirectResponse|Redirector
      *
      * @throws AuthorizationException
@@ -108,7 +110,7 @@ class GradeClassController extends Controller
     /**
      *  Retorna os estudantes da classe(school_members)
      * @param int $id , id da classe
-     * @return array App\SchoolMember
+     * @return SchoolMember[]
      *
      * @throws AuthorizationException
      */
@@ -122,7 +124,7 @@ class GradeClassController extends Controller
     /**
      *  Retorna os testes associados a uma classe
      * @param int $id , id da classe
-     * @return array App\Test
+     * @return Test[]
      *
      * @throws AuthorizationException
      */

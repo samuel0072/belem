@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\QuestionAnsweredTest;
 use App\Http\Requests\QuestAnsTestRequest;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 
 class QuestionAnsweredTestController extends Controller
 {
 
     /**
+     * Metodo nao utilizado
      * @return ResponseFactory|Response
      */
     public function index()
@@ -18,11 +22,17 @@ class QuestionAnsweredTestController extends Controller
         return response('not allowed', 403);
     }
 
+    /**
+     * Cria e Retorna um QuestionAnsweredTest
+     * @param QuestAnsTestRequest $request
+     * @return QuestionAnsweredTest
+     * @throws AuthorizationException
+     */
     public function store(QuestAnsTestRequest $request)
     {
         $this->authorize('create', $request);
         $validated = $request->validated();
-        $questionAnsweredTest = QuestionAnsweredTest::updateOrCreate(
+        $questionAnsweredTest = QuestionAnsweredTest::updateOrCreate(//Tenta atualizar, se não, cria.
             [
                 'answered_test_id' => $validated['answered_test_id'],
                 'question_id' => $validated['question_id'],
@@ -32,17 +42,34 @@ class QuestionAnsweredTestController extends Controller
         return $questionAnsweredTest;
     }
 
+    /**
+     * Retorna o QuestionAnsweredTest
+     * @param QuestionAnsweredTest $questionAnsweredTest
+     * @return QuestionAnsweredTest
+     * @throws AuthorizationException
+     */
     public function show(QuestionAnsweredTest $questionAnsweredTest)
     {
         $this->authorize('view', $questionAnsweredTest);
         return $questionAnsweredTest;
     }
 
+    /**
+     * Atualiza o QuestionAnsweredTest
+     * @param QuestAnsTestRequest $request
+     * @return ResponseFactory|Response
+     */
     public function update(QuestAnsTestRequest $request)
     {
         return response('not allowed', 403);
     }
 
+    /**
+     * Deleta o QuestionAnsweredTest
+     * @param QuestionAnsweredTest $questionAnsweredTest
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
+     */
     public function destroy(QuestionAnsweredTest $questionAnsweredTest)
     {
         $this->authorize('delete', $questionAnsweredTest);
@@ -50,6 +77,10 @@ class QuestionAnsweredTestController extends Controller
         return redirect('/', 200);
     }
 
+    /**
+     * Metodo nao utilizado
+     * @return ResponseFactory|Response
+     */
     public function edit() {
         return response('not allowed', 403);
     }

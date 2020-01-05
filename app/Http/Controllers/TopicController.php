@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TopicRequest;
 use App\Topic;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class TopicController extends Controller
@@ -12,7 +17,8 @@ class TopicController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Collection
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -21,17 +27,14 @@ class TopicController extends Controller
         return $topics;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
      */
     public function store(TopicRequest $request)
     {
@@ -45,8 +48,9 @@ class TopicController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Topic  $topic
-     * @return \App\Topic
+     * @param Topic $topic
+     * @return Topic
+     * @throws AuthorizationException
      */
     public function show(Topic $topic)
     {
@@ -57,9 +61,10 @@ class TopicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Topic  $topic
-     * @return \Illuminate\Http\Response
+     * @param TopicRequest $request
+     * @param Topic $topic
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
      */
     public function update(TopicRequest $request, Topic $topic)
     {
@@ -73,8 +78,9 @@ class TopicController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Topic  $topic
-     * @return \Illuminate\Http\Response
+     * @param Topic $topic
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
      */
     public function destroy(Topic $topic)
     {

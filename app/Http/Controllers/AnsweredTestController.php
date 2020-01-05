@@ -135,7 +135,7 @@ class AnsweredTestController extends Controller
     /**
      * Retorna as questoes do test associado
      * @param $answered_test_id
-     * @return Question
+     * @return Question[]
      * @throws AuthorizationException
      */
     public function getTestQuestions($answered_test_id) {
