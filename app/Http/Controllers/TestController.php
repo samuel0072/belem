@@ -8,18 +8,34 @@ use App\Question;
 use App\SchoolMember;
 use App\Test;
 use App\Topic;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use function Sodium\compare;
 
 class TestController extends Controller
 {
 
+    /**
+     * Metodo não utilizado.
+     * @return RedirectResponse|Redirector
+     */
     public function index()
     {
 
         return redirect('/', 403);
     }
 
+    /**
+     * Cria um test no banco
+     * @param TestRequest $request
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
+     */
     public function store(TestRequest $request)
     {
         $this->authorize('create');
@@ -29,6 +45,12 @@ class TestController extends Controller
         return redirect("/grade_class/$id/tests");
     }
 
+    /**
+     * Renderiza uma view para mostrar o test
+     * @param Test $test
+     * @return Factory|View
+     * @throws AuthorizationException
+     */
     public function show(Test $test)
     {
         $this->authorize('view', $test);
@@ -36,6 +58,13 @@ class TestController extends Controller
     }
 
 
+    /**
+     * Atualiza os dados do test especificado
+     * @param TestRequest $request
+     * @param Test $test
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
+     */
     public function update(TestRequest $request, Test $test)
     {
         $this->authorize('update', $test);
@@ -45,6 +74,12 @@ class TestController extends Controller
         return redirect("/grade_class/$id/tests");
     }
 
+    /**
+     * Deleta o test especificado
+     * @param Test $test
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
+     */
     public function destroy(Test $test)
     {
         $this->authorize('delete', $test);
@@ -53,6 +88,13 @@ class TestController extends Controller
         return redirect("/grade_class/$id/tests");
     }
 
+
+    /**
+     * Retorna as respostas dos alunos ao test
+     * @param int $id
+     * @return array AnsweredTest
+     * @throws AuthorizationException
+     */
     public function answers($id) {
 
         $test = Test::findOrFail($id);
@@ -60,6 +102,12 @@ class TestController extends Controller
         return $test->answeredTest;
     }
 
+    /**
+     * Retorna os estudantes que responderam o test
+     * @param int $id
+     * @return array
+     * @throws AuthorizationException
+     */
     public function students($id) {
         $ans_tests = $this->answers($id);
         $students = [];
@@ -70,21 +118,30 @@ class TestController extends Controller
         return $students;
     }
 
+    /**
+     * Corrige os AnsweredTest dos alunos
+     * @param int $testId
+     * @throws AuthorizationException
+     * @return void
+     */
     public function correctAnsTests($testId) {
         $test = Test::findOrFail($testId);
         $this->authorize('update', $test);
         $answeredTests = $test->answeredTest;
         foreach($answeredTests as $answeredTest) {
+            // se ja nao tiver corrigido
             if(!$answeredTest->done) {
+                //vai corrigir uma a uma as questoes
                 $questionAnswereds = $answeredTest->questionAnsweredTests;
 
                 foreach ($questionAnswereds as $questionAnswered) {
                     $question = Question::findOrFail($questionAnswered->question_id);
 
                     if($question->correct_answer == $questionAnswered->option_choosed) {
-                        $answeredTest->score++;
+                        $answeredTest->score++;//Aumenta o score
                     }
                 }
+                //AnsweredTest corrigido e atualizado
                 $answeredTest->done = true;
                 $answeredTest->update();
             }
@@ -92,6 +149,17 @@ class TestController extends Controller
     }
 
 
+    /**
+     * Retorna a proporcao de questoes de cada topico acertadas pelos alunos
+     * Exemplo: Em um test tinham 5 questoes do descritor d1, 5 alunos fizeram a prova. Entao, tinham
+     * 5 * 5 questoes para corrigir do descritor d1. Entao, após a correcao, 18 foram acertadas. O retorno vai ser 18/25.
+     * Retorna 0 quando o test nao tem questoes do descritor.
+     * @param int $test_id
+     * @param int $topic_id
+     * @param int $student_id
+     * @return float|int
+     * @throws AuthorizationException
+     */
     public function topicCount($test_id, $topic_id, $student_id = 0) {
         $count = 0;
 
@@ -100,8 +168,9 @@ class TestController extends Controller
         $this->authorize('view', $test);
         $student = SchoolMember::find($student_id);
         $ans_tests = $test->answeredTest;
-        $topicQuestions = [];
+        $topicQuestions = [];//pra facilitar a busca das questoes do topic
 
+        //essa parte e pra o relatorio individual de cada aluno
         if($student != null) {
             $ans_tests = $student->answeredTests;
         }
@@ -133,6 +202,14 @@ class TestController extends Controller
         }
     }
 
+    /**
+     * Retorna o score dos alunos
+     * Agrupa pelo score
+     * @param int $test_id
+     * @return Collection
+     * @throws AuthorizationException
+     */
+
     public function scoreCount($test_id) {
         $test = Test::findOrFail($test_id);
         $this->authorize('view', $test);
@@ -144,24 +221,46 @@ class TestController extends Controller
         return $result;
     }
 
-
-
+    /**
+     * Redireciona para a view de atualizacao o test especificado
+     * @param int $id
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
+     */
     public function edit($id){
         $test = Test::findOrFail($id);
         $this->authorize('update', $test);
         return redirect("/grade_class/$test->grade_class_id/tests", compact('id'));
     }
 
+    /**
+     * Renderiza uma view para mostrar os estudantes que fizeram o test
+     * @param int $id
+     * @return Factory|View
+     * @throws AuthorizationException
+     */
     public function showStudents($id) {
         $students = $this->students($id);
         return view("school_member.showAll", compact(['students', 'id']));
     }
 
+    /**
+     * Renderiza uma view para mostrar os answeredTest dos estudantes
+     * @param int $id
+     * @return Factory|View
+     * @throws AuthorizationException
+     */
     public function showAnswers($id) {
         $answeredTests = $this->answers($id);
         return view('ans_test.showAll', compact(['answeredTests', 'id']));
     }
 
+    /**
+     * Retorna as questoes do test
+     * @param int $test_id
+     * @return array
+     * @throws AuthorizationException
+     */
     public function questions($test_id) {
         $test = Test::findOrFail($test_id);
         $this->authorize('view', $test);
