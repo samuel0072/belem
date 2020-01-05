@@ -4,18 +4,34 @@ namespace App\Http\Controllers;
 
 use App\AnsweredTest;
 use App\Http\Requests\AnsTestRequest;
+use App\Question;
 use App\SchoolMember;
 use App\Test;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
+use Illuminate\View\View;
 
 class AnsweredTestController extends Controller
 {
-    //ninguém pode acessar essa rota
+    /**
+     * Essa rota nao e utilizada
+     * @return ResponseFactory|Response
+     */
     public function index()
     {
         return response('not allowed', 403);
     }
 
-    //salva um asnwered_test no db
+    /**
+     * Cria um AnsweredTest no banco de dados
+     * @param AnsTestRequest $request
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
+     */
     public function store(AnsTestRequest $request)
     {
         $this->authorize('create');
@@ -25,14 +41,25 @@ class AnsweredTestController extends Controller
         return redirect("/schoolmember/$id");
     }
 
-    //renderiza no front end
+    /**
+     * Renderiza uma view para mostrar o AnsweredTest
+     * @param AnsweredTest $answeredTest
+     * @return Factory|View
+     * @throws AuthorizationException
+     */
     public function show(AnsweredTest $answeredTest)
     {
         $this->authorize('view', $answeredTest);
         return view('ans_test.show', compact('answeredTest'));
     }
 
-    //atualiza
+    /**
+     * Atualiza o AnsweredTest
+     * @param AnsTestRequest $request
+     * @param AnsweredTest $answeredTest
+     * @return AnsweredTest
+     * @throws AuthorizationException
+     */
     public function update(AnsTestRequest $request, AnsweredTest $answeredTest)
     {
         $this->authorize('update', $answeredTest);
@@ -41,7 +68,12 @@ class AnsweredTestController extends Controller
         return $answeredTest;
     }
 
-    //deleta
+    /**
+     * Deleta o AnsweredTest
+     * @param AnsweredTest $answeredTest
+     * @return ResponseFactory|Response
+     * @throws AuthorizationException
+     */
     public function destroy(AnsweredTest $answeredTest)
     {
         $this->authorize('delete', $answeredTest);//checa a autorização
@@ -49,29 +81,48 @@ class AnsweredTestController extends Controller
         return $this->index();
     }
 
-    //renderiza uma view para editar
+    /**
+     * Renderiza uma view para editar
+     * @param AnsweredTest $answeredTest
+     * @return Factory|View
+     * @throws AuthorizationException
+     */
     public function edit(AnsweredTest $answeredTest)
     {
-        $this->authorize('update', $answeredTest);//checa a autorização
+        $this->authorize('update', $answeredTest);
         return view("ans_test.edit", compact('answeredTest'));
     }
 
-    //ninguém pode acessar a view de criação
+    /**
+     * nao utilizado, mas ainda acessivel.
+     * @return ResponseFactory|Response
+     */
     public function create()
     {
         return response('not allowed', 403);
     }
 
-    //retorna o student associado(school_member)
+    /**
+     * Retorna o estudante associado
+     * @param $answered_test_id
+     * @return SchoolMember
+     * @throws AuthorizationException
+     */
     public function getStudent($answered_test_id)
     {
-        $answeredTest = AnsweredTest::findOrFail($answered_test_id);//se falha retorna 404
-        $this->authorize('view', $answeredTest);//checa a autorização
+        $answeredTest = AnsweredTest::findOrFail($answered_test_id);
+        $this->authorize('view', $answeredTest);
 
         $student = SchoolMember::findOrFail($answeredTest->school_member_id);
         return $student;
     }
-    //retorna o test associado
+
+    /**
+     * retorna o test associado
+     * @param $answered_test_id
+     * @return Test
+     * @throws AuthorizationException
+     */
     public function getTest($answered_test_id)
     {
         $answeredTest = AnsweredTest::findOrFail($answered_test_id);//se falha retorna 404
@@ -80,7 +131,13 @@ class AnsweredTestController extends Controller
         $test = Test::findOrFail($answeredTest->test_id);
         return $test;
     }
-    //retorna as questões do test associado
+
+    /**
+     * Retorna as questoes do test associado
+     * @param $answered_test_id
+     * @return Question
+     * @throws AuthorizationException
+     */
     public function getTestQuestions($answered_test_id) {
         $test = $this->getTest($answered_test_id);//checa a autorização
         return $test->questions;

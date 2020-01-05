@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\QuestionAnsweredTest;
 use App\Http\Requests\QuestAnsTestRequest;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Response;
 
 class QuestionAnsweredTestController extends Controller
 {
 
+    /**
+     * @return ResponseFactory|Response
+     */
     public function index()
     {
         return response('not allowed', 403);
