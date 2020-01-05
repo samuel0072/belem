@@ -36,7 +36,7 @@ $_close = 'close-button';
                 <div class = "card-body stylish-color-dark" style="background-image: url('/img/grid_png.png')">
                     @include('graphic.desc_view')
                     <div>
-                        <svg id = "count-graphic" width="500" height="300" onload="scoreData({{$test->id}})"></svg>
+                        <svg id = "count-graphic" width="500" height="300" onload="scoreData({{$test->id})"></svg>
                     </div>
 
                 </div>

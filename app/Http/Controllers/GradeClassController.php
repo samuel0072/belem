@@ -8,20 +8,22 @@ use App\Http\Requests\GradeClassRequest;
 class GradeClassController extends Controller
 {
 
+    //retorna as classes de acordo com o usuario
     public function index()
     {
         $user = auth()->user();
         $gradeClasses = [];
-        if($user->acess_level > 2) {
+        if($user->acess_level > 2) {// se o usuario for admin ele retorna todas as classes, todo: mudar para somente classes da scola
             $gradeClasses = GradeClass::all();
         }
         else {
-            $gradeClasses = $user->classes();
+            $gradeClasses = $user->classes();// se não retorna só as classes do usuario, todo: alterar para diretor ter todas as classes da escola
         }
 
         return view('grade_class.show', compact('gradeClasses'));
     }
 
+    //renderiza uma view para mostrar uma classe
     public function show($gradeClassId){
         $gradeClass = GradeClass::findOrFail($gradeClassId);
         $this->authorize('view', $gradeClass);
