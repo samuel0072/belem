@@ -1,5 +1,0 @@
-- Os metodos findOrFail retornam status 404 na respostas quando não encontram o registro no banco
-- Os metodos authorize servem para verificar se o usuário tem permissão de executar a ação.
-- Os metodos validated validam os dados da requisição que vem na query ou no corpo.
-- Os metodos redirect servem para redirecionar para uma rota especifica
-- Os metodos view servem para renderizar uma view no front end, as vezes passando algumas variaveis como parametro através do metodo compact.
