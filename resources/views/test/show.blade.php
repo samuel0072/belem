@@ -19,6 +19,7 @@ $_graphic = 'graphic1000';
 $_svg = 'graphic-full';
 $_card = 'card-graphic';
 $_close = 'close-button';
+$subject_id = $test->subject_id;
 @endphp
 @section('return' ,"/grade_class/$id/tests")
 
@@ -36,7 +37,7 @@ $_close = 'close-button';
                 <div class = "card-body stylish-color-dark" style="background-image: url('/img/grid_png.png')">
                     @include('graphic.desc_view')
                     <div>
-                        <svg id = "count-graphic" width="500" height="300" onload="scoreData({{$test->id})"></svg>
+                        <svg id = "count-graphic" width="500" height="300" onload="scoreData({{$test->id}})"></svg>
                     </div>
 
                 </div>
@@ -58,7 +59,7 @@ $_close = 'close-button';
                         <ul class="list-group">
                             @foreach($test->questions as $question)
                                 <div class="d-inline-block">
-                                    @include('question.show')
+                                    @include('question.show', compact('test'))
                                 </div>
 
                                 <li style="list-style:none">

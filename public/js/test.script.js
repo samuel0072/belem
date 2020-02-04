@@ -8,7 +8,7 @@ var topics = [];
 *
 * */
 /*{label: String, value:Number}*/
-function getQues(test_id) {
+function getQues(test_id, subject_id) {
     console.log('aff');
 
     var xmlHttp = new XMLHttpRequest();
@@ -20,15 +20,15 @@ function getQues(test_id) {
             res.forEach((question) => {
                 quest_id.push(question.id);
             });
-            topicData(test_id);
+            topicData(test_id, subject_id);
         }
     };
     xmlHttp.send();
 }
-function topicData(test_id) {
+function topicData(test_id, subject_id) {
 
     var ajax = new XMLHttpRequest();
-    ajax.open("GET", '/topic', true);
+    ajax.open("GET", '/subject/'+subject_id+'/topics', true);
     ajax.onload = function() {
         if(this.readyState === 4 && this.status === 200) {
             topics = JSON.parse(this.responseText);
@@ -186,7 +186,7 @@ function updateGraphic(data, graph_id, xcaption, ycaption) {
 *
 * */
 
-function start(test_id, _div, _svg, _card, _close, plotfunction) {
+function start(test_id, _div, _svg, _card, _close, plotfunction, subject_id) {
     var div = $("#"+_div);
     var svg = $("#"+_svg);
     var card = $("#"+_card);
@@ -220,11 +220,9 @@ function start(test_id, _div, _svg, _card, _close, plotfunction) {
     close.css("font-size", "18px");
     close.css("text-align", "center");
     close.css("cursor", "pointer");
-    console.log(svg.children().length);
-
 
     if(svg.children().length < 1) {
-        plotfunction(test_id, topics, _svg);
+        plotfunction(test_id, topics, _svg, subject_id);
     }
 
 

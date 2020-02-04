@@ -18,7 +18,7 @@ function populateIds(ID) {
     ids.push(ID);
 
 }
-function sendData(answeredTest, questions,token) {
+function sendData(answeredTest, questions,token, id_div) {
     answeredTest = JSON.parse(answeredTest);
     questions = JSON.parse(questions);
 
@@ -45,7 +45,7 @@ function sendData(answeredTest, questions,token) {
         ajax.send("grade_class_id="+item.grade_class_id+"&answered_test_id="+item.answered_test_id+"&question_id="+item.question_id+"&option_choosed="+item.option_choosed+"&_token="+token);
     });
 
-    document.getElementById('id21').style.display='none';
+    document.getElementById(id_div).style.display='none';
 
 }
 function updateDone(answeredTest, token) {

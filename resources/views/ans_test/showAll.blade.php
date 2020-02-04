@@ -15,7 +15,7 @@
         </form>
     </div>
 
-    <div id="id{{$test->id}}" class="w3-modal w3-animate-opacity">
+    <div id="id{{$test->id}}" class="w3-modal w3-animate-opacity" style="z-index: 2;">
         <div class="w3-modal-content">
             <div class="w3-container">
                 <span onclick="document.getElementById('id{{$test->id}}').style.display='none'"

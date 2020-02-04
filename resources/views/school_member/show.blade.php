@@ -52,7 +52,7 @@
 
                             <svg id = "student-describer-graph{{$answeredTest->id}}" onload="topicData2({{$answeredTest->test_id}}, {{$answeredTest->id}}, {{$student->id}})"  width="500" height = "300" class="d-sm-block">
                             </svg>
-
+                            @break
                         @endforeach
 
                     </div>

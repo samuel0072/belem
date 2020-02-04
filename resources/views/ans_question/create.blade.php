@@ -3,13 +3,13 @@
     $questions = $controller->getTestQuestions($answeredTest->id);
 @endphp
 
-<button onclick="document.getElementById('id21').style.display='block'"
+<button onclick="document.getElementById('ques{{ $answeredTest->id }}').style.display='block'"
         class="btn btn-primary btn-sm fas fa-eye"></button>
 
-<div id="id21" class="w3-modal">
+<div id="ques{{ $answeredTest->id }}" class="w3-modal">
     <div class="w3-modal-content">
         <div class="w3-container">
-      <span onclick="document.getElementById('id21').style.display='none'"
+      <span onclick="document.getElementById('ques{{ $answeredTest->id }}').style.display='none'"
             class="w3-button w3-display-topright text-white">&times;</span>
 
             <div class="card">
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     @endforeach
-                    <button onclick="sendData('{{$answeredTest}}','{{$answeredTest->test->questions}}', '{{csrf_token()}}' )" class="btn btn-dark">Salvar</button>
+                    <button onclick="sendData('{{$answeredTest}}','{{$answeredTest->test->questions}}', '{{csrf_token()}}', 'ques{{ $answeredTest->id }}' )" class="btn btn-dark">Salvar</button>
                 </div>
             </div>
         </div>

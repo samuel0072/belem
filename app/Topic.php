@@ -25,4 +25,8 @@ class Topic extends Model
     public static function allTopics(){
         return [DB::table('topics')->value('id')];
     }
+
+    public static function getSubjectTopics($subject_id) {
+        return Topic::where('subject_id', $subject_id) ->get();
+    }
 }

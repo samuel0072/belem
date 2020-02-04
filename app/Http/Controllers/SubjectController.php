@@ -102,4 +102,10 @@ class SubjectController extends Controller
     public function edit(){
         return response('not allowed', 403);
     }
+
+    public function subjectTopics($subject_id) {
+        $this->authorize('view');
+        $subject = Subject::findOrFail($subject_id);
+        return $subject->topics;
+    }
 }

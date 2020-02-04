@@ -20,14 +20,15 @@
                     </div>
 
                     <div class="form-group col-md-4 mb-3">
+                        
                         <label for="topic_id">Descritor</label>
                         <select class="browser-default custom-select" name="topic_id">
                             <option selected disabled>Escolha</option>
                             @php
-                                $alltopics = App\Topic::all();
+                                $alltopics = App\Topic::getSubjectTopics($test->subject_id);
                             @endphp
-                            @foreach($alltopics as $topic)
-                                <option value="{{$topic->id}}">{{$topic->name}}</option>
+                            @foreach($alltopics as $topic) 
+                                <option value = "{{$topic->id}}">{{$topic->name}}</option>
                             @endforeach
                         </select>
                     </div>
