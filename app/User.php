@@ -19,10 +19,10 @@ class User extends Authenticatable
      * @param iny $school_id
      * @return Collection
      */
-    public function showUsers( $school_id){
+    public static function showUsers( $school_id, $user_id){
         return DB::table('users')->where([
             ['school_id', $school_id],
-            ['id', '<>', $this->id]
+            ['id', '<>', $user_id]
         ])->get();
     }
 

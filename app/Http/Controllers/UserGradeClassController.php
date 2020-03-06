@@ -43,7 +43,7 @@ class UserGradeClassController extends Controller
         $this->authorize('create');
         $data = $request->validated();
         UserGradeClass::create($data);
-        return redirect('/' );
+        return redirect('/home' );
     }
 
     /**

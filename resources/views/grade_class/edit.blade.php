@@ -1,12 +1,18 @@
+@php
+    $current_user = auth()->user();
+    $users = $current_user->showUsers( $id, $current_user->id);
+@endphp
+
 <div class="w3-container">
     <a class="btn btn-primary" href="/grade_class/{{$class->id}}/students">Alunos</a>
     <a class="btn btn-secondary" href="/grade_class/{{$class->id}}/tests">Provas</a>
+
     @if(auth()->user()->access_level > 1)
-        <button onclick="document.getElementById('id03').style.display='block'" class="btn btn-warning ">Editar</button>
-        <div id="id03" class="w3-modal">
+        <button onclick="document.getElementById('grade{{$class->id}}3').style.display='block'" class="btn btn-warning ">Editar</button>
+        <div id='grade{{$class->id}}3' class="w3-modal">
             <div class="w3-modal-content">
                 <div class="w3-container">
-                    <span onclick="document.getElementById('id03').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    <span onclick="document.getElementById('grade{{$class->id}}3').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                     <div class = "card">
                         <div class="card-header"><h1>Editar</h1></div>
                         <div class="card-body">
@@ -50,6 +56,28 @@
                     </div>
                 </div>
             </div>
-        @endif
-    </div>
+        </div>
+
+        <button class="btn btn-danger" onclick="document.getElementById('grade{{$class->id}}4').style.display='block'" >Adicionar professor</button>
+        <div id="grade{{$class->id}}4" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <span onclick="document.getElementById('grade{{$class->id}}4').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    <ul>
+                        @foreach($users as $user)
+                            <li>
+                                {{$user->name}}
+                                <form action="/user_class" method="post">
+                                    {{csrf_field()}}
+                                    <input name="grade_class_id" value="{{$class->id}}" hidden>
+                                    <input name="user_id" value="{{$user->id}}" hidden>
+                                    <button type="submit">Adicionar</button>
+                                </form>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
